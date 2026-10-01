@@ -4,20 +4,350 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Grand Royale Pizza</title>
-<meta name="description" content="Grand Royale Pizza. Wood-fired pizza. Loud room. Coming soon.">
+<meta name="description" content="Grand Royale Pizza: wood-fired pizza, coming soon. Get a text when the pies are hot and ready for pickup.">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root { --bg:#111; --fg:#f3efe6; --accent:#ffd400; }
-  html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:"Helvetica Neue",Arial,sans-serif}
-  main{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px}
-  h1{font-size:clamp(2.5rem,12vw,8rem);line-height:.9;margin:0;letter-spacing:-.04em;text-transform:uppercase;font-weight:900}
-  h1 span{display:block;color:var(--accent)}
-  p{font-size:clamp(1rem,2.5vw,1.5rem);margin:1.5rem 0 0;text-transform:uppercase;letter-spacing:.2em}
+  :root {
+    --ink: #000000;
+    --paper: #ece4cf;
+    --paper-dark: #d6cbb0;
+    --hot: #ffd400;
+    --dot: #262626;
+    --display: "Anton", Impact, "Haettenschweiler", "Arial Narrow Bold", sans-serif;
+    --type: "Courier Prime", "Courier New", Courier, monospace;
+    --cutout: Georgia, "Times New Roman", serif;
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { background: var(--ink); overflow-x: clip; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--type);
+    font-size: 1rem;
+    line-height: 1.5;
+    overflow-x: clip;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  /* Halftone wash fading out from the top-left, like a third-generation photocopy. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, var(--dot) 1.3px, transparent 1.8px) 0 0 / 7px 7px;
+    -webkit-mask-image: linear-gradient(155deg, #000 0%, rgba(0,0,0,.6) 35%, transparent 70%);
+            mask-image: linear-gradient(155deg, #000 0%, rgba(0,0,0,.6) 35%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: var(--grain);
+    opacity: .16;
+    mix-blend-mode: screen;
+    filter: invert(1);
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .wall {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 28px 16px 40px;
+    display: grid;
+    gap: 40px;
+    align-content: center;
+  }
+
+  /* Wordmark */
+  .brand { position: relative; margin: 0; }
+  .brand h1 {
+    margin: 0;
+    font-family: var(--display);
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: clamp(4.25rem, 29vw, 11.5rem);
+    line-height: .8;
+    letter-spacing: -.01em;
+    color: var(--paper);
+  }
+  .brand h1 span { display: block; }
+  .brand h1 .r2 { margin-left: .18em; }
+  .sticker {
+    position: absolute;
+    right: 2%;
+    top: -6px;
+    width: clamp(88px, 26vw, 150px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--hot);
+    color: var(--ink);
+    display: grid;
+    place-items: center;
+    text-align: center;
+    font-family: var(--display);
+    text-transform: uppercase;
+    font-size: clamp(1rem, 5vw, 1.7rem);
+    line-height: .9;
+    transform: rotate(14deg);
+    box-shadow: 0 0 0 3px var(--ink), 0 0 0 6px var(--hot);
+  }
+
+  /* Ransom-note headline */
+  .ransom {
+    margin: 18px 0 0;
+    font-weight: 400;
+    font-size: clamp(2.3rem, 11.5vw, 4.6rem);
+    line-height: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .12em .5em;
+  }
+  .ransom .word { display: inline-flex; gap: .06em; }
+  .ransom .k {
+    display: inline-block;
+    min-width: .9em;
+    padding: .08em .14em .02em;
+    text-align: center;
+    text-transform: uppercase;
+    transform: translateY(var(--y, 0)) rotate(var(--r, 0deg));
+    box-shadow: 2px 3px 0 rgba(0,0,0,.6);
+  }
+  .k.a { font-family: var(--display); background: var(--hot); color: var(--ink); }
+  .k.b { font-family: var(--cutout); font-weight: 700; font-style: italic; background: var(--paper); color: var(--ink); }
+  .k.c { font-family: var(--display); background: var(--ink); color: var(--paper); outline: 3px solid var(--paper); outline-offset: -6px; }
+  .k.d { font-family: var(--type); font-weight: 700; background: var(--hot); color: var(--ink); }
+  .k.e { font-family: var(--display); background: var(--paper); color: var(--ink); }
+  .k.f { font-family: var(--cutout); font-weight: 700; background: var(--ink); color: var(--hot); border: 2px solid var(--hot); }
+  .k.g { font-family: var(--type); font-weight: 700; background: var(--paper-dark); color: var(--ink); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .ransom .k { animation: slap .32s cubic-bezier(.2, 1.6, .4, 1) both; animation-delay: calc(var(--i) * 70ms + 150ms); }
+    @keyframes slap {
+      from { opacity: 0; transform: translateY(-30px) rotate(calc(var(--r, 0deg) * -3)) scale(1.5); }
+      to   { opacity: 1; transform: translateY(var(--y, 0)) rotate(var(--r, 0deg)) scale(1); }
+    }
+  }
+
+  /* The flyer */
+  .flyer {
+    position: relative;
+    background: var(--paper);
+    color: var(--ink);
+    padding: 34px 20px 24px;
+    transform: rotate(-1.4deg);
+    max-width: 520px;
+    width: 100%;
+    justify-self: center;
+  }
+  .flyer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--grain);
+    opacity: .28;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+  .tape {
+    position: absolute;
+    top: -14px;
+    width: 92px;
+    height: 28px;
+    background: rgba(236, 228, 207, .55);
+    border-left: 2px dashed rgba(0,0,0,.15);
+    border-right: 2px dashed rgba(0,0,0,.15);
+  }
+  .tape.l { left: -14px; transform: rotate(-32deg); }
+  .tape.r { right: -14px; transform: rotate(28deg); }
+
+  .pitch {
+    margin: 0 0 14px;
+    font-family: var(--display);
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: clamp(1.9rem, 8.4vw, 2.6rem);
+    line-height: .95;
+  }
+  .ask { margin: 0 0 22px; font-size: 1.05rem; max-width: 34ch; }
+
+  form { position: relative; display: grid; gap: 14px; }
+  label[for="phone"] { font-weight: 700; font-size: 1rem; }
+  .phone-field { display: grid; gap: 6px; }
+  input[type="tel"] {
+    width: 100%;
+    font: 700 1.5rem/1.2 var(--type);
+    color: var(--ink);
+    background: #fffaf0;
+    border: 3px solid var(--ink);
+    border-radius: 0;
+    padding: 12px 14px;
+  }
+  input[type="tel"]::placeholder { color: #8d8572; font-weight: 400; }
+  input[type="tel"][aria-invalid="true"] { background: #fff2a6; }
+
+  .consent {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 10px;
+    align-items: start;
+    font-size: .8rem;
+    line-height: 1.45;
+  }
+  .consent input {
+    width: 22px;
+    height: 22px;
+    margin: 1px 0 0;
+    accent-color: var(--ink);
+  }
+
+  button[type="submit"] {
+    font-family: var(--display);
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: clamp(1.35rem, 6.2vw, 1.75rem);
+    letter-spacing: .01em;
+    line-height: 1;
+    color: var(--ink);
+    background: var(--hot);
+    border: 3px solid var(--ink);
+    border-radius: 0;
+    padding: 16px 14px 14px;
+    cursor: pointer;
+    box-shadow: 6px 6px 0 var(--ink);
+    margin: 4px 6px 6px 0;
+  }
+  button[type="submit"]:hover { background: #ffe14d; }
+  button[type="submit"]:active { transform: translate(4px, 4px); box-shadow: 2px 2px 0 var(--ink); }
+  button[type="submit"]:disabled { cursor: progress; background: var(--paper-dark); }
+
+  :focus-visible { outline: 3px solid var(--hot); outline-offset: 3px; }
+  .flyer :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; box-shadow: 0 0 0 6px var(--hot); }
+
+  .error {
+    margin: 0;
+    background: var(--ink);
+    color: var(--hot);
+    font-weight: 700;
+    padding: 10px 12px;
+    font-size: .95rem;
+  }
+
+  .success { position: relative; }
+  .success h3 {
+    margin: 0 0 10px;
+    font-family: var(--display);
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: clamp(2.6rem, 13vw, 3.6rem);
+    line-height: .9;
+    background: var(--hot);
+    display: inline-block;
+    padding: .06em .15em 0;
+    transform: rotate(-2deg);
+    box-shadow: 0 0 0 3px var(--ink);
+  }
+  .success h3:focus { outline: none; }
+  .success p { margin: 14px 0 0; font-size: 1.05rem; max-width: 34ch; }
+  .success strong { white-space: nowrap; }
+  @media (prefers-reduced-motion: no-preference) {
+    .success:not([hidden]) h3 { animation: stamp .35s cubic-bezier(.2, 1.4, .4, 1) both; }
+    @keyframes stamp { from { opacity: 0; transform: rotate(-12deg) scale(1.8); } to { opacity: 1; transform: rotate(-2deg) scale(1); } }
+  }
+
+  [hidden] { display: none !important; }
+
+  footer {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 18px 16px 28px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 4px 24px;
+    font-size: .85rem;
+    color: var(--paper);
+    border-top: 2px dashed rgba(236, 228, 207, .35);
+  }
+  footer p { margin: 0; }
+  footer a { color: inherit; text-decoration-color: var(--hot); text-underline-offset: 3px; }
+
+  @media (min-width: 900px) {
+    .wall {
+      grid-template-columns: minmax(0, 1.25fr) minmax(380px, 470px);
+      gap: 56px;
+      align-items: center;
+      padding: 56px 40px;
+    }
+    .brand h1 { font-size: clamp(8rem, 13.5vw, 12.5rem); }
+    .sticker { right: 6%; top: 4px; }
+    .ransom { font-size: clamp(3.4rem, 5.4vw, 5rem); margin-top: 28px; }
+    .flyer { padding: 44px 34px 32px; transform: rotate(1.6deg); justify-self: end; }
+    footer { padding: 20px 40px 32px; }
+  }
 </style>
 </head>
 <body>
-<main>
-  <h1>Grand<span>Royale</span>Pizza</h1>
-  <p>Wood-fired. Loud. Coming soon.</p>
+<main class="wall">
+  <header class="brand">
+    <h1><span>Grand</span><span class="r2">Royale</span><span>Pizza</span></h1>
+    <div class="sticker" aria-hidden="true">Wood<br>fired</div>
+    <h2 class="ransom" aria-label="Coming soon">
+      <span class="word" aria-hidden="true"><span class="k a" style="--i:0;--r:-5deg;--y:2px">C</span><span class="k b" style="--i:1;--r:3deg;--y:-3px">o</span><span class="k c" style="--i:2;--r:-2deg;--y:4px">M</span><span class="k d" style="--i:3;--r:6deg;--y:-1px">i</span><span class="k e" style="--i:4;--r:-4deg;--y:3px">N</span><span class="k f" style="--i:5;--r:2deg;--y:-4px">g</span></span>
+      <span class="word" aria-hidden="true"><span class="k g" style="--i:6;--r:4deg;--y:-2px">S</span><span class="k a" style="--i:7;--r:-3deg;--y:3px">O</span><span class="k b" style="--i:8;--r:5deg;--y:-1px">o</span><span class="k e" style="--i:9;--r:-6deg;--y:2px">N</span></span>
+    </h2>
+  </header>
+
+  <section class="flyer" aria-labelledby="pitch">
+    <span class="tape l" aria-hidden="true"></span>
+    <span class="tape r" aria-hidden="true"></span>
+    <p class="pitch" id="pitch">Wood-fired pizza. Blistered crust, real char, Brooklyn manners.</p>
+    <p class="ask">Drop your number and we'll send a text when the pies are hot and ready for pickup.</p>
+
+    <form id="signup" novalidate>
+      <div class="phone-field">
+        <label for="phone">Your phone number</label>
+        <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(231) 555-0199" required aria-describedby="signup-error">
+      </div>
+      <label class="consent">
+        <input id="consent" name="consent" type="checkbox" value="yes" required>
+        <span>By signing up you agree to receive text messages from Grand Royale Pizza about pizza pickups. Message and data rates may apply. Message frequency varies. Reply STOP to opt out, HELP for help.</span>
+      </label>
+      <p class="error" id="signup-error" role="alert" hidden></p>
+      <button type="submit">Text me when they're hot</button>
+    </form>
+
+    <div class="success" id="signup-success" hidden>
+      <h3 tabindex="-1">You're on the list</h3>
+      <p>We'll text <strong id="signup-number"></strong> when the pies are hot and ready for pickup.</p>
+    </div>
+  </section>
 </main>
+
+<footer>
+  <p>Todd Webb + Pat Carolan</p>
+  <p><a href="https://grandroyalepizza.com">grandroyalepizza.com</a></p>
+</footer>
+
+<script src="assets/config.js"></script>
+<script type="module" src="assets/signup.js"></script>
 </body>
 </html>

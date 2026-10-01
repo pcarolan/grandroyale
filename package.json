@@ -1,0 +1,8 @@
+{
+  "name": "grandroyale",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/"
+  }
+}
