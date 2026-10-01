@@ -36,3 +36,12 @@ Originals are cached in `photos/src/` (gitignored). Needs ImageMagick 7 and `rsv
 `build.mjs` exists because the page reads its manifest from an inline
 `<script type="application/json" id="manifest">`, so it renders from `file://` (headless screenshots) as well as
 over HTTP. `fetch('photos/manifest.json')` is only the fallback. `npm test` fails if the inline copy is stale.
+
+## Adding your own photos
+
+```
+node tools/own.mjs <image> <slug> color|xerox|red <weight 3-9> "<alt text>" "<title>"
+node build.mjs
+```
+
+The entry goes to the top of `photos/manifest.json` with license `Own photo`; `tools/photos.mjs` keeps own entries when it regenerates the Wikimedia set.

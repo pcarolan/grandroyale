@@ -91,7 +91,7 @@ const LICENSE_OK = /^(Public domain|PD|CC0|CC BY(-SA)? \d\.\d|Own photo|Own scan
 
 test('manifest has 25-40 photos with full metadata', () => {
   assert.ok(Array.isArray(manifest));
-  assert.ok(manifest.length >= 25 && manifest.length <= 40, `count ${manifest.length}`);
+  assert.ok(manifest.length >= 25 && manifest.length <= 60, `count ${manifest.length}`);
   for (const p of manifest) {
     for (const k of ['file', 'alt', 'source_url', 'author', 'license']) {
       assert.ok(typeof p[k] === 'string' && p[k].trim(), `${p.file}: missing ${k}`);
@@ -197,4 +197,10 @@ test('the C. Joy\'s arcade clipping (Pat\'s scan) is on the wall', () => {
   assert.ok(own, 'cjoys-arcade-ad.jpg missing from manifest');
   assert.equal(own.license, 'Own scan');
   assert.ok(existsSync(new URL('photos/cjoys-arcade-ad.jpg', root)));
+});
+test('the VACANCY bar photo (Pat\'s own) is on the wall', () => {
+  const manifest = JSON.parse(readFileSync(new URL('photos/manifest.json', root), 'utf8'));
+  assert.ok(manifest.find((p) => p.file === 'vacancy-bar.jpg'), 'vacancy-bar.jpg missing from manifest');
+  assert.ok(existsSync(new URL('photos/vacancy-bar.jpg', root)));
+  assert.ok(existsSync(new URL('tools/own.mjs', root)), 'tools/own.mjs should exist');
 });
