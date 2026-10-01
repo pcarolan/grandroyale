@@ -31,7 +31,6 @@ export const PHOTOS = [
   { slug: 'mixtape-notes', title: 'File:Mix tape sleeve notes.jpg', t: 'xerox', w: 5 },
   { slug: 'old-skateboard', title: 'File:1990s skateboard in Tornio 20190608 001.jpg', t: 'color', w: 5 },
   { slug: 'night-ollie', title: 'File:Ollie monster by Olivier Bareau.jpg', t: 'xerox', w: 6 },
-  { slug: 'dirt-ollie', title: 'File:Proceso de Ollie.jpg', t: 'xerox', w: 3 },
   { slug: 'ollie-sequence', title: 'File:Ollie skateboarding trick.jpg', t: 'xerox', w: 4 },
   { slug: 'crowd-surf', title: 'File:Mosh (1428617892).jpg', t: 'xerox', w: 9 },
   { slug: 'red-pit', title: 'File:TH - Mosh Pit (5370149877).jpg', t: 'red', w: 5 },

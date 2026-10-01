@@ -247,3 +247,13 @@ test('the Victory Lanes bowling alley photo (Pat\'s own) is on the wall', () => 
   assert.ok(manifest.find((p) => p.file === 'victory-lanes.jpg'), 'victory-lanes.jpg missing from manifest');
   assert.ok(existsSync(new URL('photos/victory-lanes.jpg', root)));
 });
+
+// ---- Owner removal 2026-10-01: one skate photo fewer (dirt ollie) ----
+test('the dirt-ollie skate photo is gone', () => {
+  const manifest = JSON.parse(readFileSync(new URL('photos/manifest.json', root), 'utf8'));
+  assert.ok(!manifest.find((p) => p.file === 'dirt-ollie.jpg'));
+  assert.ok(!existsSync(new URL('photos/dirt-ollie.jpg', root)));
+  assert.doesNotMatch(html, /dirt-ollie/);
+  assert.doesNotMatch(readFileSync(new URL('tools/photos.mjs', root), 'utf8'), /dirt-ollie/);
+  assert.doesNotMatch(readFileSync(new URL('photos/ATTRIBUTION.md', root), 'utf8'), /dirt-ollie/);
+});
