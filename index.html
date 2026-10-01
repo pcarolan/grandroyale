@@ -4,223 +4,257 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Grand Royale Pizza</title>
-<meta name="description" content="Grand Royale Pizza, coming soon. Get a text when the pies are hot and ready for pickup.">
-<meta name="theme-color" content="#000000">
+<meta name="description" content="Grand Royale Pizza, coming soon to Petoskey, MI. Get a text when the pies are hot and ready for pickup.">
+<meta name="theme-color" content="#e4e0d3">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:wght@400;700&family=Sancreek&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:wght@400;700&family=Permanent+Marker&family=Sancreek&display=swap" rel="stylesheet">
 <style>
+  /* After Grand Royal magazine, issue #1 (1993). See DESIGN.md. */
   :root {
-    --ink: #000000;
-    --paper: #ece4cf;
-    --paper-dark: #d6cbb0;
-    --hot: #ffd400;
-    --dot: #262626;
+    --paper: #e4e0d3;      /* cheap newsprint */
+    --bed: #b9b3a2;        /* the table the magazine is lying on */
+    --ink: #000;
+    --red: #d7261e;        /* the one spot color */
+    --muted: #4a463c;
     --royal: "Sancreek", "Rye", Georgia, serif;
-    --display: "Anton", Impact, "Haettenschweiler", "Arial Narrow Bold", sans-serif;
+    --gothic: "Anton", Impact, "Haettenschweiler", "Arial Narrow Bold", sans-serif;
     --type: "Courier Prime", "Courier New", Courier, monospace;
-    --cutout: Georgia, "Times New Roman", serif;
-    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    --marker: "Permanent Marker", "Comic Sans MS", cursive;
+    --times: "Times New Roman", Times, serif;
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    --teeth: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='16'%3E%3Cpath d='M0 0L12 8L0 16Z'/%3E%3C/svg%3E");
   }
 
   *, *::before, *::after { box-sizing: border-box; }
-  html { background: var(--ink); overflow-x: clip; }
+  html { background: var(--bed); overflow-x: clip; }
   body {
     margin: 0;
     min-height: 100vh;
-    min-height: 100dvh;
-    background: var(--ink);
-    color: var(--paper);
-    font-family: var(--type);
-    font-size: 1rem;
-    line-height: 1.5;
+    background: var(--bed);
+    color: var(--ink);
+    font-family: var(--times);
+    font-size: 1.0625rem;
+    line-height: 1.45;
     overflow-x: clip;
-    position: relative;
-    display: flex;
-    flex-direction: column;
   }
-  /* Halftone wash fading out from the top-left, like a third-generation photocopy. */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle, var(--dot) 1.3px, transparent 1.8px) 0 0 / 7px 7px;
-    -webkit-mask-image: linear-gradient(155deg, #000 0%, rgba(0,0,0,.6) 35%, transparent 70%);
-            mask-image: linear-gradient(155deg, #000 0%, rgba(0,0,0,.6) 35%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
+  /* Xerox grain over everything. */
   body::after {
     content: "";
     position: fixed;
     inset: 0;
     background: var(--grain);
-    opacity: .16;
-    mix-blend-mode: screen;
-    filter: invert(1);
+    opacity: .3;
+    mix-blend-mode: multiply;
     pointer-events: none;
-    z-index: 3;
+    z-index: 10;
   }
 
-  .wall {
+  /* Cover teaser strip */
+  .teasers {
+    margin: 0;
+    background: var(--ink);
+    color: var(--paper);
+    font: 400 .95rem/1.2 var(--gothic);
+    text-transform: uppercase;
+    letter-spacing: .02em;
+    text-align: center;
+    padding: 8px 16px 7px;
+  }
+  .teasers b { font-weight: 400; padding: 0 .45em; }
+
+  .spread {
     position: relative;
-    z-index: 1;
-    flex: 1;
-    width: 100%;
-    max-width: 1280px;
+    background: var(--paper);
+    max-width: 1240px;
     margin: 0 auto;
-    padding: 28px 16px 40px;
     display: grid;
-    gap: 40px;
-    align-content: center;
   }
+  .page { position: relative; padding: 22px 16px 34px; min-width: 0; }
 
-  /* Wordmark: a Victorian label lockup, crown over a swashy serif, trade line under. */
-  .brand { position: relative; margin: 0; }
+  /* Issue line */
+  .issue {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 2px 16px;
+    margin: 0 0 18px;
+    padding-bottom: 6px;
+    border-bottom: 3px solid var(--ink);
+  }
+  .issue .vol { font: 400 1rem/1.2 var(--gothic); text-transform: uppercase; letter-spacing: .03em; }
+  .issue .joke { font-style: italic; font-size: .95rem; }
+
+  /* Wordmark: Sancreek only here. */
   .lockup {
     margin: 0;
     display: inline-grid;
     justify-items: center;
     font-weight: 400;
-    color: var(--paper);
   }
-  .crown {
-    display: block;
-    width: clamp(46px, 13vw, 78px);
-    height: auto;
-    margin-bottom: -.1em;
-    overflow: visible;
-  }
+  .crown { display: block; width: clamp(46px, 13vw, 72px); height: auto; margin-bottom: -.1em; overflow: visible; }
   .wordmark {
     display: block;
     font-family: var(--royal);
     font-weight: 400;
-    font-size: clamp(2.2rem, 14.6vw, 7rem);
+    font-size: clamp(2.2rem, 14.6vw, 6.2rem);
     line-height: 1.05;
-    letter-spacing: .005em;
     white-space: nowrap;
   }
-  /* PIZZA as the small spaced trade line, the way RECORDS sits under Grand Royal. */
   .trade {
-    font-family: var(--display);
-    font-weight: 400;
+    font-family: var(--gothic);
     text-transform: uppercase;
     display: flex;
     align-items: center;
     gap: .7em;
-    font-size: clamp(1.05rem, 4.6vw, 1.7rem);
+    font-size: clamp(1.05rem, 4.6vw, 1.6rem);
     letter-spacing: .55em;
     margin: .1em 0 0 .55em;
     line-height: 1;
   }
-  .trade::before,
-  .trade::after { content: ""; width: 1.6em; height: 2px; background: currentColor; }
+  .trade::before, .trade::after { content: ""; width: 1.6em; height: 3px; background: currentColor; }
   .trade::after { margin-left: -.55em; }
 
-  /* Ransom-note headline */
-  .ransom {
-    margin: 18px 0 0;
-    font-weight: 400;
-    font-size: clamp(2.3rem, 11.5vw, 4.6rem);
-    line-height: 1;
+  /* Half-knockout section tab: IN|SIDE, INTRO|PAGE */
+  .tab {
     display: flex;
-    flex-wrap: wrap;
-    gap: .12em .5em;
-  }
-  .ransom .word { display: inline-flex; gap: .06em; }
-  .ransom .k {
-    display: inline-block;
-    min-width: .9em;
-    padding: .08em .14em .02em;
-    text-align: center;
+    align-items: stretch;
+    margin: 0;
+    font: 400 1.9rem/1 var(--gothic);
     text-transform: uppercase;
-    transform: translateY(var(--y, 0)) rotate(var(--r, 0deg));
-    box-shadow: 2px 3px 0 rgba(0,0,0,.6);
+    letter-spacing: .01em;
   }
-  .k.a { font-family: var(--display); background: var(--hot); color: var(--ink); }
-  .k.b { font-family: var(--cutout); font-weight: 700; font-style: italic; background: var(--paper); color: var(--ink); }
-  .k.c { font-family: var(--display); background: var(--ink); color: var(--paper); outline: 3px solid var(--paper); outline-offset: -6px; }
-  .k.d { font-family: var(--type); font-weight: 700; background: var(--hot); color: var(--ink); }
-  .k.e { font-family: var(--display); background: var(--paper); color: var(--ink); }
-  .k.f { font-family: var(--cutout); font-weight: 700; background: var(--ink); color: var(--hot); border: 2px solid var(--hot); }
-  .k.g { font-family: var(--type); font-weight: 700; background: var(--paper-dark); color: var(--ink); }
+  .tab > span { padding: .12em .14em .04em; }
+  .tab .on { background: var(--ink); color: var(--paper); }
+  .tab .off { border: 3px solid var(--ink); border-left: 0; }
+  .tab-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 0 0 14px; }
+  .tab-row .aside { font-style: italic; font-size: .95rem; line-height: 1.2; max-width: 22ch; }
 
+  /* The big one: COMING / SOON in the spot red */
+  .soon {
+    font-size: clamp(2.6rem, 14.5vw, 6.2rem);
+    margin: 22px 0 6px;
+    transform: rotate(-2.5deg);
+    transform-origin: left center;
+    width: max-content;
+    max-width: 100%;
+  }
+  .soon .on { background: var(--red); color: var(--paper); box-shadow: 5px 5px 0 var(--ink); }
+  .soon .off { border-width: 5px; background: var(--paper); }
   @media (prefers-reduced-motion: no-preference) {
-    .ransom .k { animation: slap .32s cubic-bezier(.2, 1.6, .4, 1) both; animation-delay: calc(var(--i) * 70ms + 150ms); }
+    .soon { animation: slap .4s cubic-bezier(.2, 1.5, .4, 1) .15s both; }
     @keyframes slap {
-      from { opacity: 0; transform: translateY(-30px) rotate(calc(var(--r, 0deg) * -3)) scale(1.5); }
-      to   { opacity: 1; transform: translateY(var(--y, 0)) rotate(var(--r, 0deg)) scale(1); }
+      from { opacity: 0; transform: rotate(-14deg) scale(1.5); }
+      to   { opacity: 1; transform: rotate(-2.5deg) scale(1); }
     }
   }
 
-  /* The flyer */
-  .flyer {
-    position: relative;
-    background: var(--paper);
-    color: var(--ink);
-    padding: 34px 20px 24px;
-    transform: rotate(-1.4deg);
-    max-width: 520px;
-    width: 100%;
-    justify-self: center;
+  /* Cover lines + the halftone "photo" */
+  .cover-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px 14px;
+    align-items: start;
+    margin-top: 26px;
   }
-  .flyer::before {
-    content: "";
+  .lines { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  .lines b { display: block; font: 400 1.7rem/.95 var(--gothic); text-transform: uppercase; }
+  .lines span { display: block; font-size: .95rem; line-height: 1.25; margin-top: 3px; }
+  .fig { margin: 0; width: clamp(128px, 36vw, 250px); transform: rotate(3deg); }
+  .fig svg { display: block; width: 100%; height: auto; border-radius: 50%; border: 3px solid var(--ink); background: var(--paper); }
+  .fig figcaption { font-style: italic; font-size: .82rem; line-height: 1.25; margin-top: 8px; }
+  .fig figcaption b { font-style: normal; font-family: var(--gothic); font-weight: 400; letter-spacing: .02em; }
+
+  /* Folio tabs at the outer edge */
+  .folio {
     position: absolute;
-    inset: 0;
-    background: var(--grain);
-    opacity: .28;
-    mix-blend-mode: multiply;
+    bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font: 400 .8rem/1 var(--gothic);
+    letter-spacing: .02em;
+  }
+  .folio .gr { font-family: var(--times); font-size: .78rem; letter-spacing: .5em; text-transform: lowercase; }
+  .folio::before { content: ""; border: 7px solid transparent; }
+  .cover .folio { left: 16px; }
+  .cover .folio::before { border-right-color: var(--ink); border-left-width: 0; }
+  .inside .folio { right: 16px; flex-direction: row-reverse; }
+  .inside .folio::before { border-left-color: var(--ink); border-right-width: 0; }
+
+  /* Mobile: one column, reordered so the coupon sits right under COMING SOON. */
+  @media (max-width: 899.98px) {
+    .spread { display: flex; flex-direction: column; padding: 22px 16px 34px; }
+    .page { display: contents; }
+    .issue { order: 1; }
+    .lockup { order: 2; align-self: flex-start; }
+    .soon { order: 3; }
+    .inside > .tab-row { order: 4; margin-top: 18px; }
+    .coupon { order: 5; }
+    .cover-body { order: 6; margin-top: 0; padding-top: 22px; border-top: 6px double var(--ink); }
+    .contents { order: 7; margin-top: 30px; }
+    .folio { display: none; }
+  }
+
+  /* The coupon */
+  .coupon {
+    position: relative;
+    margin: 6px 4px 30px;
+    padding: 22px 16px 22px;
+    border: 3px dashed var(--ink);
+    background: #ece9df;
+    transform: rotate(-1deg);
+  }
+  .scissors {
+    position: absolute;
+    top: -.78em;
+    left: 18px;
+    font-size: 1.5rem;
+    line-height: 1;
+    background: var(--paper);
+    padding: 0 4px;
+  }
+  .dateline {
+    margin: 0 0 6px;
+    font: 400 1.05rem/1.1 var(--gothic);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+  }
+  .ask { margin: 0 0 22px; font: 400 1.0625rem/1.5 var(--type); max-width: 36ch; }
+
+  form { display: grid; gap: 14px; }
+  .phone-field { display: grid; grid-template-columns: auto 1fr; gap: 6px 10px; align-items: end; }
+  label[for="phone"] { font: 700 1rem/1.2 var(--type); }
+  .scrawl {
+    position: relative;
+    justify-self: end;
+    font: 400 1.05rem/1 var(--marker);
+    color: var(--red);
+    transform: rotate(-6deg);
+    padding-right: 4px;
     pointer-events: none;
   }
-  .tape {
-    position: absolute;
-    top: -14px;
-    width: 92px;
-    height: 28px;
-    background: rgba(236, 228, 207, .55);
-    border-left: 2px dashed rgba(0,0,0,.15);
-    border-right: 2px dashed rgba(0,0,0,.15);
-  }
-  .tape.l { left: -14px; transform: rotate(-32deg); }
-  .tape.r { right: -14px; transform: rotate(28deg); }
-
-  .pitch {
-    margin: 0 0 14px;
-    font-family: var(--display);
-    font-weight: 400;
-    text-transform: uppercase;
-    font-size: clamp(1.9rem, 8.4vw, 2.6rem);
-    line-height: .95;
-  }
-  .ask { margin: 0 0 22px; font-size: 1.05rem; max-width: 34ch; }
-
-  form { position: relative; display: grid; gap: 14px; }
-  label[for="phone"] { font-weight: 700; font-size: 1rem; }
-  .phone-field { display: grid; gap: 6px; }
+  .scrawl svg { position: absolute; right: 18px; top: 1.05em; width: 58px; height: 46px; overflow: visible; }
   input[type="tel"] {
+    grid-column: 1 / -1;
     width: 100%;
     font: 700 1.5rem/1.2 var(--type);
     color: var(--ink);
-    background: #fffaf0;
+    background: #fbfaf5;
     border: 3px solid var(--ink);
     border-radius: 0;
     padding: 12px 14px;
   }
-  input[type="tel"]::placeholder { color: #8d8572; font-weight: 400; }
-  input[type="tel"][aria-invalid="true"] { background: #fff2a6; }
-
-  .fineprint { margin: 0; font-size: .75rem; line-height: 1.4; color: #5c5547; }
+  input[type="tel"]::placeholder { color: #857f70; font-weight: 400; }
+  input[type="tel"][aria-invalid="true"] { background: #fde7e3; }
 
   button[type="submit"] {
-    font-family: var(--display);
-    font-weight: 400;
+    font: 400 clamp(1.4rem, 6.4vw, 1.75rem)/1 var(--gothic);
     text-transform: uppercase;
-    font-size: clamp(1.35rem, 6.2vw, 1.75rem);
     letter-spacing: .01em;
-    line-height: 1;
-    color: var(--ink);
-    background: var(--hot);
+    color: #fffaf0;
+    background: var(--red);
     border: 3px solid var(--ink);
     border-radius: 0;
     padding: 16px 14px 14px;
@@ -228,38 +262,32 @@
     box-shadow: 6px 6px 0 var(--ink);
     margin: 4px 6px 6px 0;
   }
-  button[type="submit"]:hover { background: #ffe14d; }
+  button[type="submit"]:hover { background: #b81d16; }
   button[type="submit"]:active { transform: translate(4px, 4px); box-shadow: 2px 2px 0 var(--ink); }
-  button[type="submit"]:disabled { cursor: progress; background: var(--paper-dark); }
+  button[type="submit"]:disabled { cursor: progress; background: var(--muted); }
 
-  :focus-visible { outline: 3px solid var(--hot); outline-offset: 3px; }
-  .flyer :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; box-shadow: 0 0 0 6px var(--hot); }
+  :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; box-shadow: 0 0 0 7px var(--red); }
 
   .error {
     margin: 0;
     background: var(--ink);
-    color: var(--hot);
-    font-weight: 700;
+    color: #fffaf0;
+    font: 700 .95rem/1.4 var(--type);
     padding: 10px 12px;
-    font-size: .95rem;
   }
 
-  .success { position: relative; }
   .success h3 {
     margin: 0 0 10px;
-    font-family: var(--display);
-    font-weight: 400;
+    font: 400 clamp(2.6rem, 13vw, 3.4rem)/.9 var(--gothic);
     text-transform: uppercase;
-    font-size: clamp(2.6rem, 13vw, 3.6rem);
-    line-height: .9;
-    background: var(--hot);
+    background: var(--ink);
+    color: var(--paper);
     display: inline-block;
-    padding: .06em .15em 0;
+    padding: .08em .15em .02em;
     transform: rotate(-2deg);
-    box-shadow: 0 0 0 3px var(--ink);
   }
   .success h3:focus { outline: none; }
-  .success p { margin: 14px 0 0; font-size: 1.05rem; max-width: 34ch; }
+  .success p { margin: 14px 0 0; font: 400 1.0625rem/1.5 var(--type); max-width: 36ch; }
   .success strong { white-space: nowrap; }
   @media (prefers-reduced-motion: no-preference) {
     .success:not([hidden]) h3 { animation: stamp .35s cubic-bezier(.2, 1.4, .4, 1) both; }
@@ -268,72 +296,145 @@
 
   [hidden] { display: none !important; }
 
+  /* Contents, framed with a pinking-shear edge like the KISS Konvention spread */
+  .contents { position: relative; padding-left: 24px; }
+  .contents::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 12px;
+    background: var(--teeth) 0 0 / 12px 16px repeat-y;
+  }
+  .toc { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .toc li { display: grid; grid-template-columns: 2.2ch 1fr; gap: 10px; align-items: baseline; }
+  .toc .pg { font: 400 1.9rem/1 var(--gothic); text-align: right; }
+  .toc b { font: 400 1.15rem/1 var(--gothic); text-transform: uppercase; letter-spacing: .02em; margin-right: .35em; }
+  .toc span { font-size: 1rem; line-height: 1.3; }
+
   footer {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-width: 1280px;
+    max-width: 1240px;
     margin: 0 auto;
-    padding: 18px 16px 28px;
+    padding: 14px 16px 26px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 4px 24px;
-    font-size: .85rem;
-    color: var(--paper);
-    border-top: 2px dashed rgba(236, 228, 207, .35);
+    font: 400 .9rem/1.4 var(--type);
   }
   footer p { margin: 0; }
-  footer a { color: inherit; text-decoration-color: var(--hot); text-underline-offset: 3px; }
+  footer a { color: inherit; text-decoration-thickness: 2px; text-underline-offset: 3px; }
 
   @media (min-width: 900px) {
-    .wall {
-      grid-template-columns: minmax(0, 1.25fr) minmax(380px, 470px);
-      gap: 56px;
-      align-items: center;
-      padding: 56px 40px;
+    body { padding-top: 0; }
+    .spread {
+      grid-template-columns: 1fr 1fr;
+      margin: 28px auto 0;
+      width: calc(100% - 64px);
+      box-shadow: 0 1px 0 #8a8473, 0 18px 40px -18px rgba(0,0,0,.45);
+      /* the fold */
+      background-image: linear-gradient(90deg, transparent calc(50% - 26px), rgba(0,0,0,.09) calc(50% - 2px), rgba(0,0,0,.22) 50%, rgba(0,0,0,.07) calc(50% + 3px), transparent calc(50% + 22px));
     }
-    .wordmark { font-size: clamp(5.4rem, 8.6vw, 7.4rem); }
-    .ransom { font-size: clamp(3.4rem, 5.4vw, 5rem); margin-top: 28px; }
-    .flyer { padding: 44px 34px 32px; transform: rotate(1.6deg); justify-self: end; }
-    footer { padding: 20px 40px 32px; }
+    .page { padding: 34px 48px 60px; }
+    .inside { border-top: 0; }
+    .cover .folio { left: 24px; bottom: 20px; }
+    .inside .folio { right: 24px; bottom: 20px; }
+    .wordmark { font-size: clamp(3.2rem, calc(7.9vw - 20px), 5.6rem); }
+    .soon { margin-top: 30px; }
+    .cover-body { margin-top: 38px; gap: 18px 26px; }
+    .lines b { font-size: 2.1rem; }
+    .coupon { padding: 28px 28px 28px; margin: 10px 0 34px; transform: rotate(1.2deg); }
+    .tab-row { margin-top: 4px; }
+    footer { width: calc(100% - 64px); padding: 14px 0 28px; }
   }
 </style>
 </head>
 <body>
-<main class="wall">
-  <header class="brand">
+<p class="teasers">Hot pies<b>&bull;</b>Pickup in Petoskey<b>&bull;</b>Text alert inside</p>
+
+<main class="spread">
+  <header class="page cover">
+    <p class="issue"><span class="vol">Vol. 1 No. 0 · Coming soon · Free</span><span class="joke">The &ldquo;We&rsquo;re Not Open Yet&rdquo; Issue</span></p>
+
     <h1 class="lockup" aria-label="Grand Royale Pizza">
       <svg class="crown" viewBox="0 0 80 50" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"><path d="M10 40 L6 14 L24 28 L40 6 L56 28 L74 14 L70 40 Z"/><path d="M10 46 H70"/></g><g fill="currentColor"><circle cx="6" cy="11" r="3.4"/><circle cx="40" cy="4" r="3.6"/><circle cx="74" cy="11" r="3.4"/><circle cx="26" cy="36" r="2.6"/><circle cx="40" cy="34" r="3.2"/><circle cx="54" cy="36" r="2.6"/></g></svg>
       <span class="wordmark">Grand Royale</span>
       <span class="trade">Pizza</span>
     </h1>
-    <h2 class="ransom" aria-label="Coming soon">
-      <span class="word" aria-hidden="true"><span class="k a" style="--i:0;--r:-5deg;--y:2px">C</span><span class="k b" style="--i:1;--r:3deg;--y:-3px">o</span><span class="k c" style="--i:2;--r:-2deg;--y:4px">M</span><span class="k d" style="--i:3;--r:6deg;--y:-1px">i</span><span class="k e" style="--i:4;--r:-4deg;--y:3px">N</span><span class="k f" style="--i:5;--r:2deg;--y:-4px">g</span></span>
-      <span class="word" aria-hidden="true"><span class="k g" style="--i:6;--r:4deg;--y:-2px">S</span><span class="k a" style="--i:7;--r:-3deg;--y:3px">O</span><span class="k b" style="--i:8;--r:5deg;--y:-1px">o</span><span class="k e" style="--i:9;--r:-6deg;--y:2px">N</span></span>
-    </h2>
+
+    <h2 class="tab soon" aria-label="Coming soon"><span class="on" aria-hidden="true">Coming</span><span class="off" aria-hidden="true">Soon</span></h2>
+
+    <div class="cover-body">
+      <ul class="lines">
+        <li><b>Hot pies!</b><span>Round, hot, self-explanatory.</span></li>
+        <li><b>Pickup</b><span>You come to us. We text first.</span></li>
+        <li><b>The oven</b><span>Very hot. Do not lick.</span></li>
+      </ul>
+      <figure class="fig">
+        <svg viewBox="0 0 200 200" role="img" aria-label="Halftone drawing of a pizza">
+          <defs>
+            <pattern id="dots" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><circle cx="3" cy="3" r="1.25" fill="#000"/></pattern>
+            <pattern id="dots-heavy" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><circle cx="2.5" cy="2.5" r="2" fill="#000"/></pattern>
+            <clipPath id="crop"><circle cx="100" cy="100" r="100"/></clipPath>
+          </defs>
+          <g clip-path="url(#crop)">
+            <rect width="200" height="200" fill="url(#dots)" opacity=".35"/>
+            <circle cx="100" cy="102" r="82" fill="#e4e0d3" stroke="#000" stroke-width="4"/>
+            <circle cx="100" cy="102" r="70" fill="url(#dots)" stroke="#000" stroke-width="2" stroke-dasharray="6 4"/>
+            <g stroke="#000" stroke-width="2.5" stroke-linecap="round"><path d="M100 32 V172"/><path d="M30 102 H170"/><path d="M50 52 L150 152"/><path d="M150 52 L50 152"/></g>
+            <g fill="url(#dots-heavy)" stroke="#000" stroke-width="2.5"><circle cx="76" cy="70" r="11"/><circle cx="132" cy="80" r="10"/><circle cx="64" cy="124" r="10"/><circle cx="118" cy="136" r="12"/><circle cx="100" cy="100" r="8"/><circle cx="142" cy="118" r="7"/></g>
+            <g fill="#e4e0d3" stroke="#000" stroke-width="1.5"><ellipse cx="96" cy="58" rx="7" ry="4" transform="rotate(-20 96 58)"/><ellipse cx="54" cy="96" rx="6" ry="3.5" transform="rotate(30 54 96)"/><ellipse cx="146" cy="100" rx="6" ry="3.5"/><ellipse cx="90" cy="150" rx="7" ry="4" transform="rotate(15 90 150)"/></g>
+          </g>
+        </svg>
+        <figcaption><b>Fig. 1.</b> A pizza, artist&rsquo;s impression. The real one is hotter.</figcaption>
+      </figure>
+    </div>
+
+    <p class="folio" aria-hidden="true">1 <span class="gr">grand royale</span></p>
   </header>
 
-  <section class="flyer" aria-labelledby="pitch">
-    <span class="tape l" aria-hidden="true"></span>
-    <span class="tape r" aria-hidden="true"></span>
-    <p class="pitch" id="pitch">Blistered crust, real char, Brooklyn manners.</p>
-    <p class="ask">Drop your number and we'll send a text when the pies are hot and ready for pickup.</p>
-
-    <form id="signup" novalidate>
-      <div class="phone-field">
-        <label for="phone">Your phone number</label>
-        <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(231) 555-0199" required aria-describedby="signup-error">
-      </div>
-      <p class="error" id="signup-error" role="alert" hidden></p>
-      <button type="submit">Text me when they're hot</button>
-      <p class="fineprint">Msg &amp; data rates may apply. Text STOP to walk the plank.</p>
-    </form>
-
-    <div class="success" id="signup-success" hidden>
-      <h3 tabindex="-1">You're on the list</h3>
-      <p>We'll text <strong id="signup-number"></strong> when the pies are hot and ready for pickup.</p>
+  <section class="page inside" aria-labelledby="dateline">
+    <div class="tab-row">
+      <p class="tab" aria-hidden="true"><span class="on">Intro</span><span class="off">Page</span></p>
+      <p class="aside">A sign-up form and some sweat. Cleverly titled, but that&rsquo;s not the point.</p>
     </div>
+
+    <div class="coupon">
+      <span class="scissors" aria-hidden="true">&#9986;</span>
+      <p class="dateline" id="dateline">Petoskey, MI</p>
+      <p class="ask">Drop your number and we'll send a text when the pies are hot and ready for pickup.</p>
+
+      <form id="signup" novalidate>
+        <div class="phone-field">
+          <label for="phone">Your phone number</label>
+          <span class="scrawl" aria-hidden="true">yr digits!
+            <svg viewBox="0 0 58 46"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M50 2 C 52 20, 38 34, 10 40"/><path d="M20 30 L 9 40 L 22 45"/></g></svg>
+          </span>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(231) 555-0199" required aria-describedby="signup-error">
+        </div>
+        <p class="error" id="signup-error" role="alert" hidden></p>
+        <button type="submit">Text me when they're hot</button>
+      </form>
+
+      <div class="success" id="signup-success" hidden>
+        <h3 tabindex="-1">You're on the list</h3>
+        <p>We'll text <strong id="signup-number"></strong> when the pies are hot and ready for pickup.</p>
+      </div>
+    </div>
+
+    <div class="contents">
+      <div class="tab-row">
+        <h2 class="tab"><span class="on">In</span><span class="off">side</span></h2>
+        <p class="aside">Abbreviated by magazine personnel as the TOC.</p>
+      </div>
+      <ol class="toc">
+        <li><span class="pg">2</span><span><b>Intro page</b>You&rsquo;re on it. Hi.</span></li>
+        <li><span class="pg">4</span><span><b>The pies</b>Still in the oven. Do not open the oven.</span></li>
+        <li><span class="pg">9</span><span><b>Pickup</b>We text, you show up, everybody eats.</span></li>
+        <li><span class="pg">17</span><span><b>The back page</b>Toppings we&rsquo;d like to see.</span></li>
+      </ol>
+    </div>
+
+    <p class="folio" aria-hidden="true">2 <span class="gr">grand royale</span></p>
   </section>
 </main>
 
