@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Grand Royale Pizza</title>
-<meta name="description" content="Grand Royale Pizza: wood-fired pizza, coming soon. Get a text when the pies are hot and ready for pickup.">
+<meta name="description" content="Grand Royale Pizza, coming soon. Get a text when the pies are hot and ready for pickup.">
 <meta name="theme-color" content="#000000">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:wght@400;700&family=Sancreek&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #000000;
@@ -16,6 +16,7 @@
     --paper-dark: #d6cbb0;
     --hot: #ffd400;
     --dot: #262626;
+    --royal: "Sancreek", "Rye", Georgia, serif;
     --display: "Anton", Impact, "Haettenschweiler", "Arial Narrow Bold", sans-serif;
     --type: "Courier Prime", "Courier New", Courier, monospace;
     --cutout: Georgia, "Times New Roman", serif;
@@ -74,39 +75,47 @@
     align-content: center;
   }
 
-  /* Wordmark */
+  /* Wordmark: a Victorian label lockup, crown over a swashy serif, trade line under. */
   .brand { position: relative; margin: 0; }
-  .brand h1 {
+  .lockup {
     margin: 0;
+    display: inline-grid;
+    justify-items: center;
+    font-weight: 400;
+    color: var(--paper);
+  }
+  .crown {
+    display: block;
+    width: clamp(46px, 13vw, 78px);
+    height: auto;
+    margin-bottom: -.1em;
+    overflow: visible;
+  }
+  .wordmark {
+    display: block;
+    font-family: var(--royal);
+    font-weight: 400;
+    font-size: clamp(2.2rem, 14.6vw, 7rem);
+    line-height: 1.05;
+    letter-spacing: .005em;
+    white-space: nowrap;
+  }
+  /* PIZZA as the small spaced trade line, the way RECORDS sits under Grand Royal. */
+  .trade {
     font-family: var(--display);
     font-weight: 400;
     text-transform: uppercase;
-    font-size: clamp(4.25rem, 29vw, 11.5rem);
-    line-height: .8;
-    letter-spacing: -.01em;
-    color: var(--paper);
+    display: flex;
+    align-items: center;
+    gap: .7em;
+    font-size: clamp(1.05rem, 4.6vw, 1.7rem);
+    letter-spacing: .55em;
+    margin: .1em 0 0 .55em;
+    line-height: 1;
   }
-  .brand h1 span { display: block; }
-  .brand h1 .r2 { margin-left: .18em; }
-  .sticker {
-    position: absolute;
-    right: 2%;
-    top: -6px;
-    width: clamp(88px, 26vw, 150px);
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background: var(--hot);
-    color: var(--ink);
-    display: grid;
-    place-items: center;
-    text-align: center;
-    font-family: var(--display);
-    text-transform: uppercase;
-    font-size: clamp(1rem, 5vw, 1.7rem);
-    line-height: .9;
-    transform: rotate(14deg);
-    box-shadow: 0 0 0 3px var(--ink), 0 0 0 6px var(--hot);
-  }
+  .trade::before,
+  .trade::after { content: ""; width: 1.6em; height: 2px; background: currentColor; }
+  .trade::after { margin-left: -.55em; }
 
   /* Ransom-note headline */
   .ransom {
@@ -297,8 +306,7 @@
       align-items: center;
       padding: 56px 40px;
     }
-    .brand h1 { font-size: clamp(8rem, 13.5vw, 12.5rem); }
-    .sticker { right: 6%; top: 4px; }
+    .wordmark { font-size: clamp(5.4rem, 8.6vw, 7.4rem); }
     .ransom { font-size: clamp(3.4rem, 5.4vw, 5rem); margin-top: 28px; }
     .flyer { padding: 44px 34px 32px; transform: rotate(1.6deg); justify-self: end; }
     footer { padding: 20px 40px 32px; }
@@ -308,8 +316,11 @@
 <body>
 <main class="wall">
   <header class="brand">
-    <h1><span>Grand</span><span class="r2">Royale</span><span>Pizza</span></h1>
-    <div class="sticker" aria-hidden="true">Wood<br>fired</div>
+    <h1 class="lockup" aria-label="Grand Royale Pizza">
+      <svg class="crown" viewBox="0 0 80 50" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"><path d="M10 40 L6 14 L24 28 L40 6 L56 28 L74 14 L70 40 Z"/><path d="M10 46 H70"/></g><g fill="currentColor"><circle cx="6" cy="11" r="3.4"/><circle cx="40" cy="4" r="3.6"/><circle cx="74" cy="11" r="3.4"/><circle cx="26" cy="36" r="2.6"/><circle cx="40" cy="34" r="3.2"/><circle cx="54" cy="36" r="2.6"/></g></svg>
+      <span class="wordmark">Grand Royale</span>
+      <span class="trade">Pizza</span>
+    </h1>
     <h2 class="ransom" aria-label="Coming soon">
       <span class="word" aria-hidden="true"><span class="k a" style="--i:0;--r:-5deg;--y:2px">C</span><span class="k b" style="--i:1;--r:3deg;--y:-3px">o</span><span class="k c" style="--i:2;--r:-2deg;--y:4px">M</span><span class="k d" style="--i:3;--r:6deg;--y:-1px">i</span><span class="k e" style="--i:4;--r:-4deg;--y:3px">N</span><span class="k f" style="--i:5;--r:2deg;--y:-4px">g</span></span>
       <span class="word" aria-hidden="true"><span class="k g" style="--i:6;--r:4deg;--y:-2px">S</span><span class="k a" style="--i:7;--r:-3deg;--y:3px">O</span><span class="k b" style="--i:8;--r:5deg;--y:-1px">o</span><span class="k e" style="--i:9;--r:-6deg;--y:2px">N</span></span>
@@ -319,7 +330,7 @@
   <section class="flyer" aria-labelledby="pitch">
     <span class="tape l" aria-hidden="true"></span>
     <span class="tape r" aria-hidden="true"></span>
-    <p class="pitch" id="pitch">Wood-fired pizza. Blistered crust, real char, Brooklyn manners.</p>
+    <p class="pitch" id="pitch">Blistered crust, real char, Brooklyn manners.</p>
     <p class="ask">Drop your number and we'll send a text when the pies are hot and ready for pickup.</p>
 
     <form id="signup" novalidate>

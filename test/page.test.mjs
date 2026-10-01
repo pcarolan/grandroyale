@@ -23,3 +23,22 @@ test('loads config.js and signup.js', () => {
 test('has a viewport meta', () => assert.match(html, /<meta name="viewport"/));
 test('has a title', () => assert.match(html, /<title>[^<]+<\/title>/));
 test('does not name Roberta', () => assert.ok(!html.includes('Roberta')));
+
+// Wordmark: Grand Royal Records-style serif + crown (bees-vo70.15)
+test('Google Fonts link loads Sancreek', () => {
+  const link = html.match(/<link[^>]*href="https:\/\/fonts\.googleapis\.com\/css2\?[^"]*"[^>]*>/);
+  assert.ok(link, 'no Google Fonts stylesheet link');
+  assert.match(link[0], /family=Sancreek/);
+});
+test('wordmark element uses Sancreek', () => {
+  assert.match(html, /class="wordmark"/);
+  const rule = html.match(/\.wordmark\s*\{[^}]*\}/);
+  assert.ok(rule, 'no .wordmark CSS rule');
+  assert.match(rule[0], /font-family:[^;]*(Sancreek|var\(--royal\))/);
+  assert.match(html, /--royal:\s*"Sancreek"/);
+});
+test('says "Grand Royale" in mixed case', () => {
+  assert.match(html, /class="wordmark"[^>]*>Grand Royale</);
+  assert.ok(!/text-transform:\s*uppercase/.test(html.match(/\.wordmark\s*\{[^}]*\}/)?.[0] ?? ''));
+});
+test('has a crown SVG', () => assert.match(html, /<svg\b[^>]*(class|id)="[^"]*crown[^"]*"/));
