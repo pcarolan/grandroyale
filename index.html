@@ -5,444 +5,411 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Grand Royale Pizza</title>
 <meta name="description" content="Grand Royale Pizza, coming soon to Petoskey, MI. Get a text when the pies are hot and ready for pickup.">
-<meta name="theme-color" content="#e4e0d3">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:wght@400;700&family=Permanent+Marker&family=Sancreek&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#c9a77a">
 <style>
-  /* After Grand Royal magazine, issue #1 (1993). See DESIGN.md. */
+  /* A bathroom wall, not a page. See DESIGN.md and the grand-royal-raw skill. */
   :root {
-    --paper: #e4e0d3;      /* cheap newsprint */
-    --bed: #b9b3a2;        /* the table the magazine is lying on */
-    --ink: #000;
-    --red: #d7261e;        /* the one spot color */
-    --muted: #4a463c;
-    --royal: "Sancreek", "Rye", Georgia, serif;
-    --gothic: "Anton", Impact, "Haettenschweiler", "Arial Narrow Bold", sans-serif;
-    --type: "Courier Prime", "Courier New", Courier, monospace;
-    --marker: "Permanent Marker", "Comic Sans MS", cursive;
-    --times: "Times New Roman", Times, serif;
-    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    --teeth: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='16'%3E%3Cpath d='M0 0L12 8L0 16Z'/%3E%3C/svg%3E");
+    --kraft: #c9a77a;   /* the wall (3:140) */
+    --paper: #f1ede3;   /* copy paper, index card, receipt */
+    --ink: #1a1a1a;     /* toner, sharpie, gaffer tape */
+    --red: #d62718;     /* the one spot color */
+    --tape: rgba(238, 229, 200, .78);
+    --type: "Courier New", Courier, monospace;
   }
-
-  *, *::before, *::after { box-sizing: border-box; }
-  html { background: var(--bed); overflow-x: clip; }
+  * { box-sizing: border-box; }
+  html { overflow-x: clip; }
   body {
-    margin: 0;
-    min-height: 100vh;
-    background: var(--bed);
+    margin: 0; overflow-x: clip;
+    background: var(--kraft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .08 0 0 0 0 .05 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
     color: var(--ink);
-    font-family: var(--times);
-    font-size: 1.0625rem;
-    line-height: 1.45;
-    overflow-x: clip;
+    font: 16px/1.4 var(--type);
+    -webkit-text-size-adjust: 100%;
   }
-  /* Xerox grain over everything. */
-  body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: var(--grain);
-    opacity: .3;
-    mix-blend-mode: multiply;
-    pointer-events: none;
-    z-index: 10;
-  }
+  a { color: var(--ink); }
 
-  /* Cover teaser strip */
-  .teasers {
-    margin: 0;
-    background: var(--ink);
-    color: var(--paper);
-    font: 400 .95rem/1.2 var(--gothic);
-    text-transform: uppercase;
-    letter-spacing: .02em;
-    text-align: center;
-    padding: 8px 16px 7px;
-  }
-  .teasers b { font-weight: 400; padding: 0 .45em; }
+  #wall { position: relative; min-height: 100vh; overflow: hidden; }
 
-  .spread {
-    position: relative;
-    background: var(--paper);
-    max-width: 1240px;
-    margin: 0 auto;
-    display: grid;
-  }
-  .page { position: relative; padding: 22px 16px 34px; min-width: 0; }
+  /* every thing stuck to the wall */
+  .it { position: absolute; margin: 0; transform-origin: 50% 40%; }
+  .it img { display: block; }
+  .sheet { background: var(--paper); }
+  .sheet img { width: 100%; height: auto; }
+  .print .sheet { padding: 9px 9px 0; }
+  .cap { position: absolute; left: 12px; bottom: 7px; height: 22px; width: auto; }
 
-  /* Issue line */
-  .issue {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 2px 16px;
-    margin: 0 0 18px;
-    padding-bottom: 6px;
-    border-bottom: 3px solid var(--ink);
-  }
-  .issue .vol { font: 400 1rem/1.2 var(--gothic); text-transform: uppercase; letter-spacing: .03em; }
-  .issue .joke { font-style: italic; font-size: .95rem; }
+  /* tape and staples hold things up; they never catch a tap */
+  .tape, .staple { position: absolute; pointer-events: none; }
+  .tape { width: 92px; height: 26px; background: var(--tape); }
+  .tape.gaffer { background: var(--ink); opacity: .93; }
+  .staple { width: 16px; height: 3px; background: var(--ink); opacity: .75; }
 
-  /* Wordmark: Sancreek only here. */
-  .lockup {
-    margin: 0;
-    display: inline-grid;
-    justify-items: center;
-    font-weight: 400;
-  }
-  .crown { display: block; width: clamp(46px, 13vw, 72px); height: auto; margin-bottom: -.1em; overflow: visible; }
-  .wordmark {
-    display: block;
-    font-family: var(--royal);
-    font-weight: 400;
-    font-size: clamp(2.2rem, 14.6vw, 6.2rem);
-    line-height: 1.05;
-    white-space: nowrap;
-  }
-  .trade {
-    font-family: var(--gothic);
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: .7em;
-    font-size: clamp(1.05rem, 4.6vw, 1.6rem);
-    letter-spacing: .55em;
-    margin: .1em 0 0 .55em;
-    line-height: 1;
-  }
-  .trade::before, .trade::after { content: ""; width: 1.6em; height: 3px; background: currentColor; }
-  .trade::after { margin-left: -.55em; }
+  /* name, sprayed through a stencil over whatever was already up */
+  h1.spray { position: absolute; margin: 0; z-index: 60; pointer-events: none; }
+  h1.spray img { width: 100%; height: auto; }
 
-  /* Half-knockout section tab: IN|SIDE, INTRO|PAGE */
-  .tab {
-    display: flex;
-    align-items: stretch;
-    margin: 0;
-    font: 400 1.9rem/1 var(--gothic);
-    text-transform: uppercase;
-    letter-spacing: .01em;
+  /* the one thing to tap: an index card, taped up, on top of everything */
+  #card {
+    position: relative; z-index: 1000;
+    width: min(400px, 88vw);
+    margin: 330px 0 0 6vw;
+    padding: 30px 24px 26px;
+    background: var(--paper)
+      repeating-linear-gradient(transparent 0 29px, rgba(26, 26, 26, .12) 29px 30px) 0 58px / 100% calc(100% - 58px) no-repeat;
+    border-top: 3px solid var(--red);
+    transform: rotate(-1.5deg);
+    clip-path: polygon(0 -30px, 100% -30px, 100% 97%, 93% 100%, 81% 98%, 66% 100%, 52% 98.5%, 37% 100%, 22% 98%, 9% 100%, 0 98%);
   }
-  .tab > span { padding: .12em .14em .04em; }
-  .tab .on { background: var(--ink); color: var(--paper); }
-  .tab .off { border: 3px solid var(--ink); border-left: 0; }
-  .tab-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 0 0 14px; }
-  .tab-row .aside { font-style: italic; font-size: .95rem; line-height: 1.2; max-width: 22ch; }
+  #card .tape { top: -12px; left: 50%; transform: translateX(-50%) rotate(3deg); width: 110px; }
+  #card p.lede { margin: 0 0 18px; font-size: 18px; font-weight: 700; line-height: 1.45; }
+  #card label { display: block; margin: 0 0 6px; font-size: 16px; }
+  #card input {
+    display: block; width: 100%; min-height: 52px; padding: 10px 12px;
+    font: 700 20px/1.2 var(--type); color: var(--ink);
+    background: var(--paper); border: 2px solid var(--ink); border-radius: 0;
+  }
+  #card input::placeholder { color: rgba(26, 26, 26, .5); }
+  #card input:focus, #card button:focus { outline: 3px solid var(--red); outline-offset: 3px; }
+  #card input[aria-invalid="true"] { border-color: var(--red); border-width: 3px; }
+  #card .error { margin: 10px 0 0; padding-left: 10px; border-left: 4px solid var(--red); font-weight: 700; }
+  #card button {
+    display: block; width: 100%; min-height: 58px; margin-top: 16px; padding: 10px 14px;
+    font: 900 22px/1.1 "Arial Black", "Helvetica Neue", Arial, sans-serif; letter-spacing: -.01em;
+    color: var(--ink); background: var(--red); border: 0; border-radius: 0; cursor: pointer;
+    transform: rotate(.6deg);
+  }
+  #card button:active { transform: rotate(.6deg) translateY(2px); }
+  #card button:disabled { opacity: .7; }
+  #card .stamp { display: block; width: 150px; height: auto; margin: 18px 0 0 auto; transform: rotate(-7deg); opacity: .9; pointer-events: none; }
+  #card .success h3 { margin: 0 0 10px; font: 900 26px/1.1 "Arial Black", Arial, sans-serif; }
+  #card .success h3:focus { outline: none; }
+  #card .success p { margin: 0; font-size: 18px; font-weight: 700; }
 
-  /* The big one: COMING / SOON in the spot red */
-  .soon {
-    font-size: clamp(2.6rem, 14.5vw, 6.2rem);
-    margin: 22px 0 6px;
-    transform: rotate(-2.5deg);
-    transform-origin: left center;
-    width: max-content;
-    max-width: 100%;
-  }
-  .soon .on { background: var(--red); color: var(--paper); box-shadow: 5px 5px 0 var(--ink); }
-  .soon .off { border-width: 5px; background: var(--paper); }
-  @media (prefers-reduced-motion: no-preference) {
-    .soon { animation: slap .4s cubic-bezier(.2, 1.5, .4, 1) .15s both; }
-    @keyframes slap {
-      from { opacity: 0; transform: rotate(-14deg) scale(1.5); }
-      to   { opacity: 1; transform: rotate(-2.5deg) scale(1); }
-    }
-  }
+  .arrow { width: 190px; height: auto; z-index: 90; pointer-events: none; }
 
-  /* Cover lines + the halftone "photo" */
-  .cover-body {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 12px 14px;
-    align-items: start;
-    margin-top: 26px;
-  }
-  .lines { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
-  .lines b { display: block; font: 400 1.7rem/.95 var(--gothic); text-transform: uppercase; }
-  .lines span { display: block; font-size: .95rem; line-height: 1.25; margin-top: 3px; }
-  .fig { margin: 0; width: clamp(128px, 36vw, 250px); transform: rotate(3deg); }
-  .fig svg { display: block; width: 100%; height: auto; border-radius: 50%; border: 3px solid var(--ink); background: var(--paper); }
-  .fig figcaption { font-style: italic; font-size: .82rem; line-height: 1.25; margin-top: 8px; }
-  .fig figcaption b { font-style: normal; font-family: var(--gothic); font-weight: 400; letter-spacing: .02em; }
+  /* tear-off flyer */
+  .flyer { width: 228px; padding: 18px 16px 0; background: var(--paper); }
+  .flyer p { margin: 0 0 4px; font-size: 17px; font-weight: 700; }
+  .flyer p.big { font: 900 40px/0.95 "Arial Black", Arial, sans-serif; margin-bottom: 10px; }
+  .flyer .stamp { display: block; width: 170px; height: auto; margin: 10px 0 12px -6px; transform: rotate(-9deg); }
+  .tabs { display: flex; margin: 0 -16px; border-top: 1px dashed var(--ink); }
+  .tabs span { flex: 1; height: 128px; padding: 6px 0; writing-mode: vertical-rl; font-size: 11px; border-left: 1px dashed var(--ink); white-space: nowrap; }
+  .tabs span:first-child { border-left: 0; }
+  .tabs span.gone { visibility: hidden; }
 
-  /* Folio tabs at the outer edge */
-  .folio {
-    position: absolute;
-    bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font: 400 .8rem/1 var(--gothic);
-    letter-spacing: .02em;
+  /* sticker sheet: one sticker, over and over (2:006) */
+  .stickers {
+    width: 312px; height: 300px; padding: 0;
+    background: url("lettering/sticker.svg") 8px 8px / 98px auto repeat, var(--paper);
+    border: 8px solid var(--paper);
   }
-  .folio .gr { font-family: var(--times); font-size: .78rem; letter-spacing: .5em; text-transform: lowercase; }
-  .folio::before { content: ""; border: 7px solid transparent; }
-  .cover .folio { left: 16px; }
-  .cover .folio::before { border-right-color: var(--ink); border-left-width: 0; }
-  .inside .folio { right: 16px; flex-direction: row-reverse; }
-  .inside .folio::before { border-left-color: var(--ink); border-right-width: 0; }
+  .stickers .peeled { position: absolute; top: 72px; left: 98px; width: 94px; height: 66px; background: var(--paper); border: 1px dashed rgba(26, 26, 26, .35); border-radius: 9px; }
+  .sticker1 { width: 120px; height: auto; }
 
-  /* Mobile: one column, reordered so the coupon sits right under COMING SOON. */
-  @media (max-width: 899.98px) {
-    .spread { display: flex; flex-direction: column; padding: 22px 16px 34px; }
-    .page { display: contents; }
-    .issue { order: 1; }
-    .lockup { order: 2; align-self: flex-start; }
-    .soon { order: 3; }
-    .inside > .tab-row { order: 4; margin-top: 18px; }
-    .coupon { order: 5; }
-    .cover-body { order: 6; margin-top: 0; padding-top: 22px; border-top: 6px double var(--ink); }
-    .contents { order: 7; margin-top: 30px; }
-    .folio { display: none; }
+  /* contact strip, 6 frames */
+  .strip { display: flex; gap: 7px; padding: 16px 10px; background: var(--ink); }
+  .strip::before, .strip::after {
+    content: ""; position: absolute; left: 0; right: 0; height: 7px;
+    background: repeating-linear-gradient(90deg, transparent 0 7px, var(--kraft) 7px 15px, transparent 15px 22px);
   }
+  .strip::before { top: 4px; } .strip::after { bottom: 4px; }
+  .strip img { width: 96px; height: 72px; object-fit: cover; filter: grayscale(1) contrast(1.1); }
 
-  /* The coupon */
-  .coupon {
-    position: relative;
-    margin: 6px 4px 30px;
-    padding: 22px 16px 22px;
-    border: 3px dashed var(--ink);
-    background: #ece9df;
-    transform: rotate(-1deg);
-  }
-  .scissors {
-    position: absolute;
-    top: -.78em;
-    left: 18px;
-    font-size: 1.5rem;
-    line-height: 1;
-    background: var(--paper);
-    padding: 0 4px;
-  }
-  .dateline {
-    margin: 0 0 6px;
-    font: 400 1.05rem/1.1 var(--gothic);
-    text-transform: uppercase;
-    letter-spacing: .08em;
-  }
-  .ask { margin: 0 0 22px; font: 400 1.0625rem/1.5 var(--type); max-width: 36ch; }
+  .label { height: auto; }
+  .label.petoskey { width: 200px; } .label.names { width: 330px; }
+  .who { width: 190px; height: auto; }
 
-  form { display: grid; gap: 14px; }
-  .phone-field { display: grid; grid-template-columns: auto 1fr; gap: 6px 10px; align-items: end; }
-  label[for="phone"] { font: 700 1rem/1.2 var(--type); }
-  .scrawl {
-    position: relative;
-    justify-self: end;
-    font: 400 1.05rem/1 var(--marker);
-    color: var(--red);
-    transform: rotate(-6deg);
-    padding-right: 4px;
-    pointer-events: none;
-  }
-  .scrawl svg { position: absolute; right: 18px; top: 1.05em; width: 58px; height: 46px; overflow: visible; }
-  input[type="tel"] {
-    grid-column: 1 / -1;
-    width: 100%;
-    font: 700 1.5rem/1.2 var(--type);
-    color: var(--ink);
-    background: #fbfaf5;
-    border: 3px solid var(--ink);
-    border-radius: 0;
-    padding: 12px 14px;
-  }
-  input[type="tel"]::placeholder { color: #857f70; font-weight: 400; }
-  input[type="tel"][aria-invalid="true"] { background: #fde7e3; }
+  /* receipt: the photo credits */
+  .receipt { width: 500px; padding: 20px 18px 26px; background: var(--paper); font-size: 12.5px; line-height: 1.4; }
+  .receipt h2 { margin: 0 0 4px; font: 700 15px/1.2 var(--type); text-align: center; }
+  .receipt p { margin: 0 0 6px; text-align: center; }
+  .receipt .credits { margin: 10px 0; padding: 10px 0; border-top: 1px dashed var(--ink); border-bottom: 1px dashed var(--ink); text-align: left; }
+  .receipt .credits a { font-weight: 700; }
+  .receipt a { overflow-wrap: anywhere; }
 
-  button[type="submit"] {
-    font: 400 clamp(1.4rem, 6.4vw, 1.75rem)/1 var(--gothic);
-    text-transform: uppercase;
-    letter-spacing: .01em;
-    color: #fffaf0;
-    background: var(--red);
-    border: 3px solid var(--ink);
-    border-radius: 0;
-    padding: 16px 14px 14px;
-    cursor: pointer;
-    box-shadow: 6px 6px 0 var(--ink);
-    margin: 4px 6px 6px 0;
+  @media (min-width: 600px) {
+    #card { margin: 300px 0 0 38vw; }
   }
-  button[type="submit"]:hover { background: #b81d16; }
-  button[type="submit"]:active { transform: translate(4px, 4px); box-shadow: 2px 2px 0 var(--ink); }
-  button[type="submit"]:disabled { cursor: progress; background: var(--muted); }
-
-  :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; box-shadow: 0 0 0 7px var(--red); }
-
-  .error {
-    margin: 0;
-    background: var(--ink);
-    color: #fffaf0;
-    font: 700 .95rem/1.4 var(--type);
-    padding: 10px 12px;
+  @media (min-width: 1000px) {
+    #card { margin: 170px 0 0 55vw; }
   }
-
-  .success h3 {
-    margin: 0 0 10px;
-    font: 400 clamp(2.6rem, 13vw, 3.4rem)/.9 var(--gothic);
-    text-transform: uppercase;
-    background: var(--ink);
-    color: var(--paper);
-    display: inline-block;
-    padding: .08em .15em .02em;
-    transform: rotate(-2deg);
+  @media (max-width: 599px) {
+    #card { margin-top: 400px; }
+    .receipt { font-size: 12px; }
+    .flyer { width: 196px; }
+    .flyer p.big { font-size: 34px; }
+    .stickers { width: 214px; height: 176px; background-size: 66px auto, auto; background-position: 6px 6px, 0 0; }
+    .stickers .peeled { top: 49px; left: 72px; width: 62px; height: 44px; }
+    .strip img { width: 58px; height: 46px; } .strip { gap: 5px; padding: 14px 8px; }
+    .label.names { width: 250px; } .label.petoskey { width: 160px; }
+    .who { width: 150px; } .arrow { width: 150px; }
+    .receipt { width: min(340px, 86vw); }
+    .cap { height: 18px; left: 9px; bottom: 6px; }
   }
-  .success h3:focus { outline: none; }
-  .success p { margin: 14px 0 0; font: 400 1.0625rem/1.5 var(--type); max-width: 36ch; }
-  .success strong { white-space: nowrap; }
-  @media (prefers-reduced-motion: no-preference) {
-    .success:not([hidden]) h3 { animation: stamp .35s cubic-bezier(.2, 1.4, .4, 1) both; }
-    @keyframes stamp { from { opacity: 0; transform: rotate(-12deg) scale(1.8); } to { opacity: 1; transform: rotate(-2deg) scale(1); } }
-  }
-
-  [hidden] { display: none !important; }
-
-  /* Contents, framed with a pinking-shear edge like the KISS Konvention spread */
-  .contents { position: relative; padding-left: 24px; }
-  .contents::before {
-    content: "";
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 12px;
-    background: var(--teeth) 0 0 / 12px 16px repeat-y;
-  }
-  .toc { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-  .toc li { display: grid; grid-template-columns: 2.2ch 1fr; gap: 10px; align-items: baseline; }
-  .toc .pg { font: 400 1.9rem/1 var(--gothic); text-align: right; }
-  .toc b { font: 400 1.15rem/1 var(--gothic); text-transform: uppercase; letter-spacing: .02em; margin-right: .35em; }
-  .toc span { font-size: 1rem; line-height: 1.3; }
-
-  footer {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 14px 16px 26px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 4px 24px;
-    font: 400 .9rem/1.4 var(--type);
-  }
-  footer p { margin: 0; }
-  footer a { color: inherit; text-decoration-thickness: 2px; text-underline-offset: 3px; }
-
-  @media (min-width: 900px) {
-    body { padding-top: 0; }
-    .spread {
-      grid-template-columns: 1fr 1fr;
-      margin: 28px auto 0;
-      width: calc(100% - 64px);
-      box-shadow: 0 1px 0 #8a8473, 0 18px 40px -18px rgba(0,0,0,.45);
-      /* the fold */
-      background-image: linear-gradient(90deg, transparent calc(50% - 26px), rgba(0,0,0,.09) calc(50% - 2px), rgba(0,0,0,.22) 50%, rgba(0,0,0,.07) calc(50% + 3px), transparent calc(50% + 22px));
-    }
-    .page { padding: 34px 48px 60px; }
-    .inside { border-top: 0; }
-    .cover .folio { left: 24px; bottom: 20px; }
-    .inside .folio { right: 24px; bottom: 20px; }
-    .wordmark { font-size: clamp(3.2rem, calc(7.9vw - 20px), 5.6rem); }
-    .soon { margin-top: 30px; }
-    .cover-body { margin-top: 38px; gap: 18px 26px; }
-    .lines b { font-size: 2.1rem; }
-    .coupon { padding: 28px 28px 28px; margin: 10px 0 34px; transform: rotate(1.2deg); }
-    .tab-row { margin-top: 4px; }
-    footer { width: calc(100% - 64px); padding: 14px 0 28px; }
+  @media (prefers-reduced-motion: reduce) {
+    #card button:active { transform: rotate(.6deg); }
   }
 </style>
 </head>
 <body>
-<p class="teasers">Hot pies<b>&bull;</b>Pickup in Petoskey<b>&bull;</b>Text alert inside</p>
+<main id="wall">
 
-<main class="spread">
-  <header class="page cover">
-    <p class="issue"><span class="vol">Vol. 1 No. 0 · Coming soon · Free</span><span class="joke">The &ldquo;We&rsquo;re Not Open Yet&rdquo; Issue</span></p>
+  <h1 class="spray" id="spray"><img src="lettering/stencil-grand-royale.png" width="1256" height="169" alt="Grand Royale Pizza"></h1>
 
-    <h1 class="lockup" aria-label="Grand Royale Pizza">
-      <svg class="crown" viewBox="0 0 80 50" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"><path d="M10 40 L6 14 L24 28 L40 6 L56 28 L74 14 L70 40 Z"/><path d="M10 46 H70"/></g><g fill="currentColor"><circle cx="6" cy="11" r="3.4"/><circle cx="40" cy="4" r="3.6"/><circle cx="74" cy="11" r="3.4"/><circle cx="26" cy="36" r="2.6"/><circle cx="40" cy="34" r="3.2"/><circle cx="54" cy="36" r="2.6"/></g></svg>
-      <span class="wordmark">Grand Royale</span>
-      <span class="trade">Pizza</span>
-    </h1>
+  <img class="it arrow" id="arrow" src="lettering/scrawl-arrow.svg" width="382" height="280" alt="">
 
-    <h2 class="tab soon" aria-label="Coming soon"><span class="on" aria-hidden="true">Coming</span><span class="off" aria-hidden="true">Soon</span></h2>
-
-    <div class="cover-body">
-      <ul class="lines">
-        <li><b>Hot pies!</b><span>Round, hot, self-explanatory.</span></li>
-        <li><b>Pickup</b><span>You come to us. We text first.</span></li>
-        <li><b>The oven</b><span>Very hot. Do not lick.</span></li>
-      </ul>
-      <figure class="fig">
-        <svg viewBox="0 0 200 200" role="img" aria-label="Halftone drawing of a pizza">
-          <defs>
-            <pattern id="dots" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><circle cx="3" cy="3" r="1.25" fill="#000"/></pattern>
-            <pattern id="dots-heavy" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><circle cx="2.5" cy="2.5" r="2" fill="#000"/></pattern>
-            <clipPath id="crop"><circle cx="100" cy="100" r="100"/></clipPath>
-          </defs>
-          <g clip-path="url(#crop)">
-            <rect width="200" height="200" fill="url(#dots)" opacity=".35"/>
-            <circle cx="100" cy="102" r="82" fill="#e4e0d3" stroke="#000" stroke-width="4"/>
-            <circle cx="100" cy="102" r="70" fill="url(#dots)" stroke="#000" stroke-width="2" stroke-dasharray="6 4"/>
-            <g stroke="#000" stroke-width="2.5" stroke-linecap="round"><path d="M100 32 V172"/><path d="M30 102 H170"/><path d="M50 52 L150 152"/><path d="M150 52 L50 152"/></g>
-            <g fill="url(#dots-heavy)" stroke="#000" stroke-width="2.5"><circle cx="76" cy="70" r="11"/><circle cx="132" cy="80" r="10"/><circle cx="64" cy="124" r="10"/><circle cx="118" cy="136" r="12"/><circle cx="100" cy="100" r="8"/><circle cx="142" cy="118" r="7"/></g>
-            <g fill="#e4e0d3" stroke="#000" stroke-width="1.5"><ellipse cx="96" cy="58" rx="7" ry="4" transform="rotate(-20 96 58)"/><ellipse cx="54" cy="96" rx="6" ry="3.5" transform="rotate(30 54 96)"/><ellipse cx="146" cy="100" rx="6" ry="3.5"/><ellipse cx="90" cy="150" rx="7" ry="4" transform="rotate(15 90 150)"/></g>
-          </g>
-        </svg>
-        <figcaption><b>Fig. 1.</b> A pizza, artist&rsquo;s impression. The real one is hotter.</figcaption>
-      </figure>
+  <div id="card">
+    <i class="tape gaffer" aria-hidden="true"></i>
+    <form id="signup" novalidate>
+      <p class="lede">Drop your number and we'll send a text when the pies are hot and ready for pickup.</p>
+      <label for="phone">Your phone number</label>
+      <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(231) 555-0199" required aria-describedby="signup-error">
+      <p class="error" id="signup-error" role="alert" hidden></p>
+      <button type="submit">Text me when they're hot</button>
+    </form>
+    <div class="success" id="signup-success" hidden>
+      <h3 tabindex="-1">You're on the list</h3>
+      <p>We'll text <strong id="signup-number"></strong> when the pies are hot and ready for pickup.</p>
     </div>
+    <img class="stamp" src="lettering/stamp-pickup-only.png" width="323" height="86" alt="Pickup only">
+  </div>
 
-    <p class="folio" aria-hidden="true">1 <span class="gr">grand royale</span></p>
-  </header>
-
-  <section class="page inside" aria-labelledby="dateline">
-    <div class="tab-row">
-      <p class="tab" aria-hidden="true"><span class="on">Intro</span><span class="off">Page</span></p>
-      <p class="aside">A sign-up form and some sweat. Cleverly titled, but that&rsquo;s not the point.</p>
+  <!-- scraps: placed by the scatter below; data-w = weight, data-m = also on phones -->
+  <div class="it flyer" data-scrap data-w="8" data-m data-tape="masking" data-tilt="4" data-z="40" data-clear>
+    <p class="big">PIZZA.</p>
+    <p>Petoskey, MI</p>
+    <p>pickup only</p>
+    <img class="stamp" src="lettering/stamp-coming-soon.png" width="343" height="86" alt="Coming soon">
+    <div class="tabs" aria-hidden="true">
+      <span>grandroyalepizza.com</span><span class="gone">grandroyalepizza.com</span><span>grandroyalepizza.com</span><span>grandroyalepizza.com</span><span class="gone">grandroyalepizza.com</span><span>grandroyalepizza.com</span><span>grandroyalepizza.com</span>
     </div>
+  </div>
 
-    <div class="coupon">
-      <span class="scissors" aria-hidden="true">&#9986;</span>
-      <p class="dateline" id="dateline">Petoskey, MI</p>
-      <p class="ask">Drop your number and we'll send a text when the pies are hot and ready for pickup.</p>
+  <div class="it stickers" data-clear data-scrap data-w="7" data-m data-tape="staple" role="img" aria-label="A sheet of red Grand Royale stickers, one peeled off">
+    <i class="peeled"></i>
+  </div>
+  <img class="it sticker1" data-scrap data-w="5" src="lettering/sticker.svg" width="281" height="204" alt="">
 
-      <form id="signup" novalidate>
-        <div class="phone-field">
-          <label for="phone">Your phone number</label>
-          <span class="scrawl" aria-hidden="true">yr digits!
-            <svg viewBox="0 0 58 46"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M50 2 C 52 20, 38 34, 10 40"/><path d="M20 30 L 9 40 L 22 45"/></g></svg>
-          </span>
-          <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(231) 555-0199" required aria-describedby="signup-error">
-        </div>
-        <p class="error" id="signup-error" role="alert" hidden></p>
-        <button type="submit">Text me when they're hot</button>
-      </form>
+  <div class="it strip" data-scrap data-w="6" data-m data-tape="masking" id="strip" role="img" aria-label="A contact strip of six frames from the photos on this wall"></div>
 
-      <div class="success" id="signup-success" hidden>
-        <h3 tabindex="-1">You're on the list</h3>
-        <p>We'll text <strong id="signup-number"></strong> when the pies are hot and ready for pickup.</p>
-      </div>
-    </div>
+  <img class="it label petoskey" data-z="45" data-clear data-scrap data-w="7" data-m src="lettering/label-petoskey.png" width="386" height="64" alt="Petoskey, MI">
+  <img class="it label names" data-z="45" data-clear data-scrap data-w="6" data-m src="lettering/label-names.png" width="694" height="64" alt="Todd Webb + Pat Carolan">
+  <img class="it who" data-z="50" data-clear data-scrap data-w="5" src="lettering/scrawl-who.svg" width="387" height="170" alt="Who ordered the pie?">
 
-    <div class="contents">
-      <div class="tab-row">
-        <h2 class="tab"><span class="on">In</span><span class="off">side</span></h2>
-        <p class="aside">Abbreviated by magazine personnel as the TOC.</p>
-      </div>
-      <ol class="toc">
-        <li><span class="pg">2</span><span><b>Intro page</b>You&rsquo;re on it. Hi.</span></li>
-        <li><span class="pg">4</span><span><b>The pies</b>Still in the oven. Do not open the oven.</span></li>
-        <li><span class="pg">9</span><span><b>Pickup</b>We text, you show up, everybody eats.</span></li>
-        <li><span class="pg">17</span><span><b>The back page</b>Toppings we&rsquo;d like to see.</span></li>
-      </ol>
-    </div>
+  <div class="it receipt" id="receipt" data-tape="masking">
+    <h2>PHOTOS ON THIS WALL</h2>
+    <p>none of them are ours.<br>borrowed, with thanks:</p>
+    <p class="credits" id="credits"></p>
+    <p id="credit-count"></p>
+    <p>full list with links<br><a href="photos/ATTRIBUTION.md">photos/ATTRIBUTION.md</a></p>
+    <p>THANK YOU COME AGAIN</p>
+  </div>
 
-    <p class="folio" aria-hidden="true">2 <span class="gr">grand royale</span></p>
-  </section>
 </main>
 
-<footer>
-  <p>Todd Webb + Pat Carolan</p>
-  <p><a href="https://grandroyalepizza.com">grandroyalepizza.com</a></p>
-</footer>
+<script type="application/json" id="manifest">[{"file":"slice-paper-plate.jpg","alt":"Photocopy of a cheese slice on a paper plate on a stone counter","source_url":"https://commons.wikimedia.org/wiki/File:Brozinni_Pizzeria_Speedway_-_June_2022_-_Sarah_Stierch_08.jpg","title":"Brozinni Pizzeria Speedway - June 2022 - Sarah Stierch 08.jpg","author":"Missvain","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0","treatment":"xerox","weight":8,"w":720,"h":540,"caption":"not ours yet"},{"file":"dollar-slice-sign.jpg","alt":"Red photocopy of a hand holding a slice under a sign for $1.50 slices","source_url":"https://commons.wikimedia.org/wiki/File:1.50_dollar_pizza_(3).jpg","title":"1.50 dollar pizza (3).jpg","author":"Ferfive","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0","treatment":"red","weight":7,"w":542,"h":720},{"file":"two-slices.jpg","alt":"Photocopy of two big thin slices on a paper plate","source_url":"https://commons.wikimedia.org/wiki/File:NewYorkSlices.jpg","title":"NewYorkSlices.jpg","author":"Lizard10979","license":"CC BY 2.0","license_url":"https://creativecommons.org/licenses/by/2.0","treatment":"xerox","weight":4,"w":560,"h":498},{"file":"square-slice.jpg","alt":"Snapshot of a square Brooklyn slice on a paper plate on a red metal table","source_url":"https://commons.wikimedia.org/wiki/File:L%26B_Spumoni_Gardens_pizza_(41436).jpg","title":"L&B Spumoni Gardens pizza (41436).jpg","author":"Rhododendrites","license":"CC BY-SA 4.0","license_url":"https://creativecommons.org/licenses/by-sa/4.0","treatment":"color","weight":9,"w":720,"h":534,"caption":"brooklyn"},{"file":"upside-down-box.jpg","alt":"Photocopy of a pizza box lid printed: if you are reading this your pizza is upside down","source_url":"https://commons.wikimedia.org/wiki/File:Pizza_Box_(49522718298).jpg","title":"Pizza Box (49522718298).jpg","author":"Mike Licht from Washington, DC, USA","license":"CC BY 2.0","license_url":"https://creativecommons.org/licenses/by/2.0","treatment":"xerox","weight":6,"w":645,"h":720},{"file":"box-in-the-grass.jpg","alt":"Photocopy of a crushed, empty pizza box lying in wet grass","source_url":"https://commons.wikimedia.org/wiki/File:Discarded_pizza_box,_Cregganconroe_-_geograph.org.uk_-_3579577.jpg","title":"Discarded pizza box, Cregganconroe - geograph.org.uk - 3579577.jpg","author":"Kenneth Allen","license":"CC BY-SA 2.0","license_url":"https://creativecommons.org/licenses/by-sa/2.0","treatment":"xerox","weight":3,"w":560,"h":420},{"file":"sticker-wall.jpg","alt":"Snapshot of a wall completely covered in band and skate stickers","source_url":"https://commons.wikimedia.org/wiki/File:Stickerwalls1.jpg","title":"Stickerwalls1.jpg","author":"Stevelopian","license":"Public domain","license_url":"","treatment":"color","weight":8,"w":720,"h":540},{"file":"red-stools.jpg","alt":"Photocopy of a dark bar with a row of chrome stools","source_url":"https://commons.wikimedia.org/wiki/File:Slim_Jims_Liquor_Store,_Islington,_N1_(3590013603).jpg","title":"Slim Jims Liquor Store, Islington, N1 (3590013603).jpg","author":"Ewan Munro from London, UK","license":"CC BY-SA 2.0","license_url":"https://creativecommons.org/licenses/by-sa/2.0","treatment":"xerox","weight":4,"w":560,"h":374},{"file":"bar-sink.jpg","alt":"Flash photocopy of a grimy bar bathroom sink","source_url":"https://commons.wikimedia.org/wiki/File:MollysTardSink.jpg","title":"MollysTardSink.jpg","author":"Infrogmation of New Orleans","license":"CC BY-SA 3.0","license_url":"https://creativecommons.org/licenses/by-sa/3.0","treatment":"xerox","weight":6,"w":720,"h":540,"caption":"wash yr hands"},{"file":"rheingold-neon.jpg","alt":"Photocopy of a Rheingold Extra Dry neon beer sign in a window","source_url":"https://commons.wikimedia.org/wiki/File:Little_Italy,_Manhattan,_New_York_(3936792597).jpg","title":"Little Italy, Manhattan, New York (3936792597).jpg","author":"Jazz Guy from New Jersey, United States","license":"CC BY 2.0","license_url":"https://creativecommons.org/licenses/by/2.0","treatment":"xerox","weight":3,"w":560,"h":373},{"file":"donuts-cold-beer.jpg","alt":"Snapshot of red and blue neon signs reading Do-Nuts and Cold Beer","source_url":"https://commons.wikimedia.org/wiki/File:Homer_simpson_heaven_(16121420046).jpg","title":"Homer simpson heaven (16121420046).jpg","author":"Christian Collins","license":"CC BY-SA 2.0","license_url":"https://creativecommons.org/licenses/by-sa/2.0","treatment":"color","weight":5,"w":560,"h":263},{"file":"payphone-fence.jpg","alt":"Photocopy of a beat-up New York payphone covered in stickers next to a chain-link fence","source_url":"https://commons.wikimedia.org/wiki/File:Telefonautomat_New_York_2018.jpg","title":"Telefonautomat New York 2018.jpg","author":"Johan Jönsson (Julle)","license":"CC BY-SA 4.0","license_url":"https://creativecommons.org/licenses/by-sa/4.0","treatment":"xerox","weight":7,"w":720,"h":720,"caption":"call us (no)"},{"file":"payphones-snow.jpg","alt":"Photocopy of street payphones at night with snow piled at the base","source_url":"https://commons.wikimedia.org/wiki/File:Phone_Booth_(12686386395).jpg","title":"Phone Booth (12686386395).jpg","author":"Paul Sableman","license":"CC BY 2.0","license_url":"https://creativecommons.org/licenses/by/2.0","treatment":"xerox","weight":3,"w":560,"h":373},{"file":"smiley-payphone.jpg","alt":"Photocopy of a payphone on a tiled wall with a smiley-face sticker","source_url":"https://commons.wikimedia.org/wiki/File:Happy_Pay_Phone,_Manhattan_April_2025.jpg","title":"Happy Pay Phone, Manhattan April 2025.jpg","author":"Paul Lowry","license":"CC BY 2.0","license_url":"https://creativecommons.org/licenses/by/2.0","treatment":"xerox","weight":4,"w":420,"h":560},{"file":"boombox-shoulder.jpg","alt":"Red photocopy of a guy carrying a boombox on his shoulder through a crowd, 1985","source_url":"https://commons.wikimedia.org/wiki/File:Chicago_Pride_Parade_1985_033.jpg","title":"Chicago Pride Parade 1985 033.jpg","author":"Alan Light","license":"CC BY 2.0","license_url":"https://creativecommons.org/licenses/by/2.0","treatment":"red","weight":7,"w":720,"h":480},{"file":"boombox.jpg","alt":"Photocopy of a giant silver boombox with two antennas up","source_url":"https://commons.wikimedia.org/wiki/File:Sharp_GF-777_Boombox_-_Ghettoblaster_(edited_and_cropped).jpg","title":"Sharp GF-777 Boombox - Ghettoblaster (edited and cropped).jpg","author":"Sharpoff at Russian Wikipedia","license":"Public domain","license_url":"","treatment":"xerox","weight":4,"w":560,"h":448},{"file":"loose-tape.jpg","alt":"Photocopy of a cassette with its tape pulled out in loops","source_url":"https://commons.wikimedia.org/wiki/File:Noname_blank_compact_cassette,_loose_tape_(1).jpg","title":"Noname blank compact cassette, loose tape (1).jpg","author":"Tim Reckmann","license":"CC BY 2.0","license_url":"https://creativecommons.org/licenses/by/2.0","treatment":"xerox","weight":3,"w":560,"h":373},{"file":"mixtape-notes.jpg","alt":"Photocopy of a mixtape case with the song list written by hand","source_url":"https://commons.wikimedia.org/wiki/File:Mix_tape_sleeve_notes.jpg","title":"Mix tape sleeve notes.jpg","author":"antony_mayfield","license":"CC BY 2.0","license_url":"https://creativecommons.org/licenses/by/2.0","treatment":"xerox","weight":5,"w":560,"h":368},{"file":"old-skateboard.jpg","alt":"Snapshot of a worn 1990s skateboard leaning on a porch deck","source_url":"https://commons.wikimedia.org/wiki/File:1990s_skateboard_in_Tornio_20190608_001.jpg","title":"1990s skateboard in Tornio 20190608 001.jpg","author":"Methem (Mikko J. Putkonen)","license":"CC BY 4.0","license_url":"https://creativecommons.org/licenses/by/4.0","treatment":"color","weight":5,"w":560,"h":435},{"file":"night-ollie.jpg","alt":"Flash photocopy of a skater flying over a bollard at night","source_url":"https://commons.wikimedia.org/wiki/File:Ollie_monster_by_Olivier_Bareau.jpg","title":"Ollie monster by Olivier Bareau.jpg","author":"olivier bareau","license":"CC BY-SA 2.0","license_url":"https://creativecommons.org/licenses/by-sa/2.0","treatment":"xerox","weight":6,"w":517,"h":720},{"file":"dirt-ollie.jpg","alt":"Photocopy of a skater popping an ollie, shadow on the dirt","source_url":"https://commons.wikimedia.org/wiki/File:Proceso_de_Ollie.jpg","title":"Proceso de Ollie.jpg","author":"Tatiana BZ","license":"CC BY-SA 3.0","license_url":"https://creativecommons.org/licenses/by-sa/3.0","treatment":"xerox","weight":3,"w":560,"h":375},{"file":"ollie-sequence.jpg","alt":"Photocopied sequence of four frames of a kid doing an ollie","source_url":"https://commons.wikimedia.org/wiki/File:Ollie_skateboarding_trick.jpg","title":"Ollie skateboarding trick.jpg","author":"TobiasK","license":"CC BY-SA 3.0","license_url":"https://creativecommons.org/licenses/by-sa/3.0","treatment":"xerox","weight":4,"w":560,"h":210},{"file":"crowd-surf.jpg","alt":"Black and white photocopy of a crowd surfer held up over a packed show","source_url":"https://commons.wikimedia.org/wiki/File:Mosh_(1428617892).jpg","title":"Mosh (1428617892).jpg","author":"Rodrigo Bertolino","license":"CC BY-SA 2.0","license_url":"https://creativecommons.org/licenses/by-sa/2.0","treatment":"xerox","weight":9,"w":720,"h":480},{"file":"red-pit.jpg","alt":"Red photocopy of a blurry mosh pit under stage lights","source_url":"https://commons.wikimedia.org/wiki/File:TH_-_Mosh_Pit_(5370149877).jpg","title":"TH - Mosh Pit (5370149877).jpg","author":"vxla from Chicago, US","license":"CC BY 2.0","license_url":"https://creativecommons.org/licenses/by/2.0","treatment":"red","weight":5,"w":560,"h":372},{"file":"pit-bw.jpg","alt":"Photocopy of kids slamming in a mosh pit","source_url":"https://commons.wikimedia.org/wiki/File:TH_-_Mosh_Pit_(5370150223).jpg","title":"TH - Mosh Pit (5370150223).jpg","author":"vxla from Chicago, US","license":"CC BY 2.0","license_url":"https://creativecommons.org/licenses/by/2.0","treatment":"xerox","weight":3,"w":560,"h":372},{"file":"no-moshing-sign.jpg","alt":"Photocopy of a venue sign: moshing and crowd surfing prohibited","source_url":"https://commons.wikimedia.org/wiki/File:No_moshing_sign,_Bumbershoot_2010.jpg","title":"No moshing sign, Bumbershoot 2010.jpg","author":"Joe Mabel","license":"CC BY-SA 3.0","license_url":"https://creativecommons.org/licenses/by-sa/3.0","treatment":"xerox","weight":6,"w":720,"h":478},{"file":"club-shutter.jpg","alt":"Photocopy of a club's metal shutter covered in hand-painted band names","source_url":"https://commons.wikimedia.org/wiki/File:CBGB_the_day_after.JPG","title":"CBGB the day after.JPG","author":"Romanontheprowl","license":"CC BY-SA 3.0","license_url":"http://creativecommons.org/licenses/by-sa/3.0/","treatment":"xerox","weight":5,"w":560,"h":373},{"file":"subway-bikes.jpg","alt":"Photocopy of kids with bikes on a graffiti-covered subway car","source_url":"https://commons.wikimedia.org/wiki/File:Alfred_Gonzalez_%22A_Ride_on_the_6%22.jpg","title":"Alfred Gonzalez \"A Ride on the 6\".jpg","author":"Alfred Gonzalez","license":"CC BY 2.5","license_url":"https://creativecommons.org/licenses/by/2.5","treatment":"xerox","weight":6,"w":720,"h":514},{"file":"subway-riders.jpg","alt":"Photocopy of subway riders reading newspapers in front of graffiti","source_url":"https://commons.wikimedia.org/wiki/File:Alfred_Gonzalez_%22People%22.jpg","title":"Alfred Gonzalez \"People\".jpg","author":"Alfred Gonzalez","license":"CC BY 2.5","license_url":"https://creativecommons.org/licenses/by/2.5","treatment":"xerox","weight":3,"w":560,"h":397},{"file":"brooklyn-stoops.jpg","alt":"Photocopy of people on brownstone stoops behind iron fences in Brooklyn, 1970s","source_url":"https://commons.wikimedia.org/wiki/File:SMALL,_WELL-CARED-FOR_GARDENS_WITH_WROUGHT-IRON_FENCES_ADORN_THESE_HOUSES_ON_3RD_STREET_NEAR_PROSPECT_PARK,_BROOKLYN_-_NARA_-_551729.jpg","title":"SMALL, WELL-CARED-FOR GARDENS WITH WROUGHT-IRON FENCES ADORN THESE HOUSES ON 3RD STREET NEAR PROSPECT PARK, BROOKLYN - NARA - 551729.jpg","author":"Suzanne Szasz","license":"Public domain","license_url":"","treatment":"xerox","weight":4,"w":560,"h":378},{"file":"bodega-ice.jpg","alt":"Photocopy of a bodega ice freezer covered in graffiti on a Brooklyn sidewalk","source_url":"https://commons.wikimedia.org/wiki/File:McKibbin_Street_bodega_ice_fridge_Brooklyn_2022.jpg","title":"McKibbin Street bodega ice fridge Brooklyn 2022.jpg","author":"wil540","license":"CC BY-SA 4.0","license_url":"https://creativecommons.org/licenses/by-sa/4.0","treatment":"xerox","weight":4,"w":420,"h":560},{"file":"east-village-1998.jpg","alt":"Photocopy of a woman on a payphone next to a cartoon mural, East Village 1998","source_url":"https://commons.wikimedia.org/wiki/File:East_Village,_New_York_City,_1998.jpg","title":"East Village, New York City, 1998.jpg","author":"Edwardwexler","license":"CC BY-SA 3.0","license_url":"https://creativecommons.org/licenses/by-sa/3.0","treatment":"xerox","weight":5,"w":560,"h":378},{"file":"petoskey-stone.jpg","alt":"Snapshot of a polished Petoskey stone on a paper towel","source_url":"https://commons.wikimedia.org/wiki/File:Petoskey_stone_Hexagonaria_percarinata_2.jpg","title":"Petoskey stone Hexagonaria percarinata 2.jpg","author":"Jtmichcock at English Wikipedia","license":"CC BY-SA 3.0","license_url":"http://creativecommons.org/licenses/by-sa/3.0/","treatment":"color","weight":6,"w":384,"h":273,"caption":"petoskey stone"},{"file":"stone-hunting.jpg","alt":"Photocopy of beach pebbles and two sneakers, looking for Petoskey stones","source_url":"https://commons.wikimedia.org/wiki/File:Looking_For_Petoskey_Stones.jpg","title":"Looking For Petoskey Stones.jpg","author":"Debchristiansen","license":"CC BY-SA 4.0","license_url":"https://creativecommons.org/licenses/by-sa/4.0","treatment":"xerox","weight":5,"w":560,"h":492},{"file":"lake-ice-1911.jpg","alt":"Photocopy of ice piled on the Lake Michigan shore, 1911","source_url":"https://commons.wikimedia.org/wiki/File:342._C._Ice_Formations_on_shoreline_of_Lake_Michigan,_Muskegon,_Michigan,_1911_(26801547200).jpg","title":"342. C. Ice Formations on shoreline of Lake Michigan, Muskegon, Michigan, 1911 (26801547200).jpg","author":"Community Archives","license":"Public domain","license_url":"","treatment":"xerox","weight":4,"w":560,"h":357},{"file":"lake-in-january.jpg","alt":"Photocopy of frozen Lake Michigan with a lighthouse far out on the ice","source_url":"https://commons.wikimedia.org/wiki/File:Winter_on_Lake_Michigan_(16662112762).jpg","title":"Winter on Lake Michigan (16662112762).jpg","author":"U.S. Fish and Wildlife Service - Midwest Region","license":"Public domain","license_url":"","treatment":"xerox","weight":7,"w":720,"h":540,"caption":"the lake in january"},{"file":"petoskey-postcard.jpg","alt":"Old Greetings from Petoskey, Michigan large-letter postcard","source_url":"https://commons.wikimedia.org/wiki/File:Greetings_from_Petoskey,_Michigan_-_Large_Letter_Postcard_(8046722768).jpg","title":"Greetings from Petoskey, Michigan - Large Letter Postcard (8046722768).jpg","author":"Steve Shook from Moscow, Idaho, USA","license":"CC BY 2.0","license_url":"https://creativecommons.org/licenses/by/2.0","treatment":"color","weight":8,"w":720,"h":467},{"file":"petoskey-light.jpg","alt":"Red photocopy of the Petoskey pier light on Little Traverse Bay","source_url":"https://commons.wikimedia.org/wiki/File:Petoskey_Light.jpg","title":"Petoskey Light.jpg","author":"abarndweller","license":"CC BY 2.0","license_url":"https://creativecommons.org/licenses/by/2.0","treatment":"red","weight":4,"w":560,"h":372}]</script>
+<script>
+(function () {
+  'use strict';
+  function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; var t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
 
+  var wall = document.getElementById('wall');
+  var card = document.getElementById('card');
+  var spray = document.getElementById('spray');
+  var arrow = document.getElementById('arrow');
+  var receipt = document.getElementById('receipt');
+  var scraps = Array.prototype.slice.call(wall.querySelectorAll('[data-scrap]'));
+  var STRIP = ['crowd-surf.jpg', 'night-ollie.jpg', 'payphone-fence.jpg', 'slice-paper-plate.jpg', 'boombox.jpg', 'lake-in-january.jpg'];
+  var photos = [];
+
+  function tear(r, torn) {
+    // a ragged top and/or bottom edge, different on every sheet
+    var top = [], bot = [], i, x;
+    for (i = 0, x = 0; x < 100; i++) { top.push(x.toFixed(1) + '% ' + (torn.top ? r() * 3.2 : 0).toFixed(1) + '%'); x += 4 + r() * 9; }
+    top.push('100% ' + (torn.top ? r() * 3 : 0).toFixed(1) + '%');
+    for (i = 0, x = 100; x > 0; i++) { bot.push(x.toFixed(1) + '% ' + (100 - (torn.bot ? r() * 3.2 : 0)).toFixed(1) + '%'); x -= 4 + r() * 9; }
+    bot.push('0% ' + (100 - (torn.bot ? r() * 3 : 0)).toFixed(1) + '%');
+    return 'polygon(' + top.concat(bot).join(',') + ')';
+  }
+
+  function hold(el, kind, r, w) {
+    // tape or staples that actually hold the thing up
+    function strip(cls, css) { var t = document.createElement('i'); t.className = cls; t.setAttribute('aria-hidden', 'true'); t.style.cssText = css; el.appendChild(t); }
+    var rot = function () { return ((r() - 0.5) * 14).toFixed(1); };
+    if (kind === 'staple') {
+      strip('staple', 'top:7px;left:' + (8 + r() * 10).toFixed(0) + 'px;transform:rotate(' + rot() + 'deg)');
+      strip('staple', 'top:' + (6 + r() * 5).toFixed(0) + 'px;right:' + (8 + r() * 10).toFixed(0) + 'px;transform:rotate(' + rot() + 'deg)');
+    } else if (kind === 'corners' || kind === 'gaffer2') {
+      var c = kind === 'gaffer2' ? 'tape gaffer' : 'tape';
+      strip(c, 'width:70px;top:-9px;left:-22px;transform:rotate(' + (-38 + r() * 12).toFixed(0) + 'deg)');
+      strip(c, 'width:70px;top:-9px;right:-22px;transform:rotate(' + (38 - r() * 12).toFixed(0) + 'deg)');
+    } else {
+      var tw = Math.min(110, Math.max(64, w * (0.3 + r() * 0.15)));
+      strip(kind === 'gaffer' ? 'tape gaffer' : 'tape', 'width:' + tw.toFixed(0) + 'px;top:-13px;left:' + (w / 2 - tw / 2 + (r() - 0.5) * w * 0.3).toFixed(0) + 'px;transform:rotate(' + rot() + 'deg)');
+    }
+  }
+
+  function makePhoto(p, r, imgW, mobile) {
+    var fig = document.createElement('figure');
+    fig.className = 'it ph ' + (p.treatment === 'color' ? 'print' : 'xerox');
+    var sheet = document.createElement('div');
+    sheet.className = 'sheet';
+    var pad = [0, 0, 0, 0];
+    if (p.treatment === 'color') pad = [9, 9, p.caption ? (mobile ? 30 : 38) : 22, 9];
+    else if (r() < 0.55 || p.caption) { var m = 4 + r() * 12; pad = [m, m * (0.6 + r()), p.caption ? (mobile ? 30 : 36) : m * (0.8 + r()), m * (0.6 + r())]; }
+    sheet.style.padding = pad.map(function (n) { return n.toFixed(0) + 'px'; }).join(' ');
+    if (p.treatment !== 'color') sheet.style.clipPath = tear(r, { top: r() < 0.5, bot: r() < 0.6 });
+    var img = document.createElement('img');
+    img.alt = p.alt; img.width = p.w; img.height = p.h;
+    sheet.appendChild(img);
+    fig.appendChild(sheet);
+    if (p.caption) {
+      var cap = document.createElement('img');
+      cap.className = 'cap'; cap.alt = p.caption; cap.src = 'lettering/cap-' + p.file.replace(/\.jpg$/, '') + '.svg';
+      fig.appendChild(cap);
+    }
+    var w = imgW + pad[1] + pad[3], h = imgW * p.h / p.w + pad[0] + pad[2];
+    fig.style.width = w.toFixed(0) + 'px';
+    var t = r();
+    hold(fig, p.treatment === 'color' ? (t < 0.6 ? 'gaffer' : 'gaffer2') : (t < 0.55 ? 'masking' : t < 0.75 ? 'corners' : 'staple'), r, w);
+    return { el: fig, img: img, src: 'photos/' + p.file, w: w, h: h, weight: p.weight, tilt: 8, clear: p.treatment !== 'xerox' };
+  }
+
+  function overlaps(a, b) { return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y; }
+
+  function build() {
+    var W = wall.clientWidth, VH = window.innerHeight || 800;
+    var mobile = W < 600;
+    var r = mulberry32(1993);
+    fill(mobile);
+    Array.prototype.forEach.call(wall.querySelectorAll('.ph'), function (n) { n.remove(); });
+    wall.style.height = '';
+
+    // pinned: the stencil over the top, the arrow pointing at the card
+    var c = { x: card.offsetLeft - 20, y: card.offsetTop - 26, w: card.offsetWidth + 40, h: card.offsetHeight + 46 };
+    var sw = mobile ? W * 1.02 : Math.min(W * 0.62, 900, c.x - W * 0.03 - 10);
+    spray.style.cssText = 'width:' + sw.toFixed(0) + 'px;left:' + (mobile ? -W * 0.03 : W * 0.03).toFixed(0) + 'px;top:' + (mobile ? 54 : 74) + 'px;transform:rotate(' + (mobile ? -7 : -5) + 'deg)';
+    var aw = arrow.offsetWidth, ah = aw * 280 / 382;
+    var ax = mobile ? Math.max(4, c.x + c.w - aw - 30) : c.x - aw, ay = mobile ? c.y - ah - 34 : c.y + 70;
+    arrow.style.cssText = 'left:' + ax.toFixed(0) + 'px;top:' + ay.toFixed(0) + 'px;transform:rotate(' + (mobile ? 24 : -4) + 'deg)';
+    var keepOut = [c];
+    // text scraps and busy color prints stay out from under the spray paint so both stay readable
+    var sb = spray.getBoundingClientRect(), wb = wall.getBoundingClientRect();
+    var sprayBox = { x: sb.left - wb.left, y: sb.top - wb.top + sb.height * 0.1, w: sb.width, h: sb.height * 0.8 };
+    if (mobile) keepOut.push({ x: ax + aw * 0.35, y: ay + ah * 0.35, w: aw * 0.65, h: ah * 0.65 });   // keep the arrowhead end clear
+
+    // the things to stick up
+    var items = [];
+    photos.forEach(function (p) {
+      if (mobile && p.weight < 7) return;
+      var base = mobile ? (W / 390) * (150 + p.weight * 8 + r() * 40) : (W >= 1100 ? 1 : 0.82) * (128 + p.weight * 21 + r() * 70);
+      var odd = r();
+      if (!mobile) base *= odd < 0.2 ? 0.6 : odd > 0.85 ? 1.35 : 1;   // some cut small, some blown up
+      items.push(makePhoto(p, r, base, mobile));
+    });
+    scraps.forEach(function (s) {
+      var show = !mobile || s.hasAttribute('data-m');
+      s.style.display = show ? '' : 'none';
+      if (!show) return;
+      s.style.transform = 'none';
+      items.push({ el: s, w: s.offsetWidth, h: s.offsetHeight, weight: +s.getAttribute('data-w'), tilt: +(s.getAttribute('data-tilt') || 8), clear: s.hasAttribute('data-clear'), tape: s.getAttribute('data-tape') });
+    });
+    items.forEach(function (it) { it.order = it.weight + r() * 4; });
+    items.sort(function (a, b) { return b.order - a.order; });
+
+    // dart-throwing scatter over a coarse occupancy grid: fill holes, overlap 10-40%, bleed off the edges
+    var area = items.reduce(function (n, it) { return n + it.w * it.h; }, 0);
+    // the receipt (credits) is stuck up first, low on the wall; nothing covers it
+    var rw = receipt.offsetWidth, rh = receipt.offsetHeight;
+    var H = Math.max(c.y + c.h + 120, (area + rw * rh) * (mobile ? 0.95 : 0.74) / W);
+    var rx = mobile ? W * 0.06 + r() * W * 0.06 : W * (r() < 0.5 ? 0.03 + r() * 0.15 : 0.52 + r() * 0.12), ry = Math.max(c.y + c.h + 40, H - rh * (mobile ? 0.3 : 0.8));
+    if (!receipt.querySelector('.tape')) hold(receipt, 'masking', r, rw);
+    receipt.style.cssText = 'left:' + rx.toFixed(0) + 'px;top:' + ry.toFixed(0) + 'px;z-index:45;transform:rotate(' + ((r() - 0.5) * 5).toFixed(1) + 'deg)';
+    keepOut.push({ x: rx - 10, y: ry - 10, w: rw + 20, h: rh + 20 });
+    var CELL = 20, cols = Math.ceil(W / CELL), rows = Math.ceil((H + 900) / CELL), occ = new Uint8Array(cols * rows);
+    var placed = [], bottom = c.y + c.h;
+    items.forEach(function (it) {
+      var best = null, bestScore = -1e9;
+      for (var k = 0; k < 160 && !(best && k >= 48); k++) {
+        if (k && k % 48 === 0) H += it.h * 0.5;   // no room that leaves the card alone: the wall grows down
+        var x = -0.2 * it.w + r() * (W - 0.6 * it.w);
+        var y = (r() < 0.12 ? -0.25 * it.h : 0) + r() * Math.max(10, H - 0.6 * it.h);
+        var slop = 0.09 * Math.max(it.w, it.h);
+        var box = { x: x - slop, y: y - slop, w: it.w + 2 * slop, h: it.h + 2 * slop };
+        if (keepOut.some(function (o) { return overlaps(box, o); })) continue;
+        if (it.clear && (overlaps(box, sprayBox) || overlaps(box, { x: ax, y: ay, w: aw, h: ah }))) continue;
+        var empty = 0, full = 0;
+        var c0 = Math.max(0, Math.floor(x / CELL)), c1 = Math.min(cols - 1, Math.floor((x + it.w) / CELL));
+        var r0 = Math.max(0, Math.floor(y / CELL)), r1 = Math.min(rows - 1, Math.floor((y + it.h) / CELL));
+        for (var i = r0; i <= r1; i++) for (var j = c0; j <= c1; j++) { if (occ[i * cols + j]) full++; else empty++; }
+        var total = empty + full || 1, frac = full / total;
+        var score = empty - Math.max(0, frac - 0.38) * total * 5 - (frac < 0.08 && placed.length > 3 ? total * 0.15 : 0) - y * 0.01 * it.weight + r() * 6;
+        if (score > bestScore) { bestScore = score; best = { x: x, y: y }; }
+      }
+      if (!best) return;
+      var c0 = Math.max(0, Math.floor(best.x / CELL)), c1 = Math.min(cols - 1, Math.floor((best.x + it.w) / CELL));
+      var r0 = Math.max(0, Math.floor(best.y / CELL)), r1 = Math.min(rows - 1, Math.floor((best.y + it.h) / CELL));
+      for (var i = r0; i <= r1; i++) for (var j = c0; j <= c1; j++) occ[i * cols + j] = Math.min(255, occ[i * cols + j] + 1);
+      var tilt = it.tilt;
+      it.el.style.left = best.x.toFixed(0) + 'px';
+      it.el.style.top = best.y.toFixed(0) + 'px';
+      it.el.style.transform = 'rotate(' + ((r() - 0.5) * 2 * tilt).toFixed(1) + 'deg)';
+      it.el.style.zIndex = (+it.el.getAttribute('data-z') || 0) + 1 + Math.floor(r() * 40);
+      if (it.tape && !it.el.querySelector('.tape,.staple')) hold(it.el, it.tape, r, it.w);
+      if (it.img) {
+        if (best.y > VH * 1.2) it.img.loading = 'lazy';
+        it.img.src = it.src;
+        wall.appendChild(it.el);
+      }
+      placed.push(it);
+      bottom = Math.max(bottom, best.y + it.h);
+    });
+
+    wall.style.height = Math.ceil(Math.max(ry + rh + 50, bottom + 40)) + 'px';
+  }
+
+  function fill(mobile) {
+    var byFile = {};
+    photos.forEach(function (p) { byFile[p.file] = p; });
+    var strip = document.getElementById('strip');
+    strip.innerHTML = '';
+    STRIP.forEach(function (f) {
+      if (!byFile[f]) return;
+      var i = document.createElement('img'); i.alt = ''; i.width = 96; i.height = 72; i.loading = 'lazy'; i.src = 'photos/' + f;
+      strip.appendChild(i);
+    });
+    // credits for what is actually on this wall (phones get fewer photos)
+    var shown = photos.filter(function (p) { return !mobile || p.weight >= 7 || STRIP.indexOf(p.file) >= 0; });
+    var ol = document.getElementById('credits');
+    ol.innerHTML = '';
+    shown.forEach(function (p, i) {
+      var a = document.createElement('a'); a.href = p.source_url; a.textContent = p.file.replace(/\.jpg$/, '').replace(/-/g, ' ');
+      ol.appendChild(a);
+      ol.appendChild(document.createTextNode(' ' + p.author + ', ' + p.license + (i < shown.length - 1 ? ' / ' : '.')));
+    });
+    document.getElementById('credit-count').textContent = shown.length + ' PHOTOS ..... $0.00';
+  }
+
+  function start(list) {
+    photos = Array.isArray(list) ? list : [];
+    build();
+    // re-stick the wall when the width really changes (rotation, resize); same seed, same wall
+    var lastW = wall.clientWidth, queued = false;
+    function check() {
+      queued = false;
+      if (Math.abs(wall.clientWidth - lastW) > 40) { lastW = wall.clientWidth; build(); }
+    }
+    function later() { if (!queued) { queued = true; requestAnimationFrame(check); } }
+    if (window.ResizeObserver) new ResizeObserver(later).observe(wall);
+    window.addEventListener('resize', later);
+    window.addEventListener('load', later);
+  }
+
+  var inline = [];
+  try { inline = JSON.parse(document.getElementById('manifest').textContent); } catch (e) { inline = []; }
+  if (inline.length) start(inline);
+  else fetch('photos/manifest.json').then(function (r) { return r.json(); }).then(start, function () { start([]); });
+})();
+</script>
 <script src="assets/config.js"></script>
 <script type="module" src="assets/signup.js"></script>
 </body>

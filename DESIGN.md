@@ -1,34 +1,21 @@
-# Design notes: after Grand Royal magazine
+# Design notes: the bathroom wall
 
-Grand Royal was the Beastie Boys' magazine: six issues, 1993 to 1997, out of the Grand Royal office in Los Angeles, edited mostly by Mike D with Bob Mack, Spike Jonze and friends. Issue #2's layout was produced by Steven J. Knezevich, with the Lee Perry cover by Knezevich and Craig Yamashita. The notes below come from paging through the full scan of issue #1 (Fall/Winter 1993, 75 PDF pages) on archive.org, plus the write-ups linked on each point. "p." means the PDF page of that scan.
+The spec is the `grand-royal-raw` skill in the bees repo (`.claude/skills/grand-royal-raw/`), built from reading
+Grand Royal issues 1-5. The owner's brief: "i just want a bunch of cool photos like the wall in a bathroom,
+polish is the enemy, it should be raw like a 90s zine" and "dont make it look like a magazine though thats too
+literal". The earlier two-page magazine spread (masthead, TOC, folios) was rejected and is gone.
 
-## Observations
+What the page takes from Grand Royal is its materials, not its structure:
 
-1. **One spot color, used like a stamp.** The issue #1 cover runs the masthead as white heavy condensed caps knocked out of a flat red box. Inside, almost every page is black ink only. Red is the brand; black does the work. Source: https://archive.org/details/grand-royal-01-1993-dregs-ia (p.1)
-2. **Heavy condensed gothic for headlines.** The masthead, cover lines ("BRUCE LEE LIVES!", "KISS ALIVE IV") and section heads are set in a tight, black, compressed sans in the Compacta/Impact family, stacked flush left with a light deck line under each. Source: https://archive.org/details/grand-royal-01-1993-dregs-ia (p.1, p.3)
-3. **Half-knockout section tabs.** Section names split across a box edge: "IN" white-on-black, then "SIDE" black-on-white. Same for INTRO/PAGE, UP/FRONT, TOP/TENS and THE/COLUMNS. It is the most repeated device in the issue. Source: https://archive.org/details/grand-royal-01-1993-dregs-ia (p.3, p.4, p.6, p.13, p.61)
-4. **A cover teaser strip.** A thin band across the top of the cover runs three teasers in condensed caps separated by bullets: "WHY THE GAP IS WACK • ADAM YAUCH'S ENDLESS WINTER • THE BEST OF RICKY POWELL". Source: https://archive.org/details/grand-royal-01-1993-dregs-ia (p.1)
-5. **The issue line is a joke.** "FALL/WINTER 1993 $2.95" sits small by the masthead next to "The 'What We Did On Our Winter Vacation' Issue". Later issues kept going: "Long Awaited, Much Anticipated, Grossly Outdated", "Often Wrong, Never In Doubt", "Ignominious And Proud". Source: http://www.beastiemania.com/qa/grand_royal/grand-royal-magazine.php
-6. **Deadpan captions in the table of contents.** Big page numbers butt up against bold condensed titles, then a one-line aside: "Abbreviated by magazine personnel as the TOC", "Cleverly titled, but that's not the point", "Self-explanatory", "Dress nice or be iced". The humor lives in the small type. Source: https://archive.org/details/grand-royal-01-1993-dregs-ia (p.3)
-7. **The letter from the editors is typewritten.** "Dear Patrons, Thank you for buying this first issue..." is set in a typewriter/Courier face, inside a dashed coupon-style border, signed "Sincerely, The Editors", with a P.S. about recycled paper. Source: https://archive.org/details/grand-royal-01-1993-dregs-ia (p.4)
-8. **Dense, cheap, columns everywhere.** Three and four narrow columns of small sans text per page, Q&A interviews with bold run-in speaker initials, almost no white space. A page is a full plate, not a hero. Source: https://archive.org/details/grand-royal-01-1993-dregs-ia (p.6, p.7, p.24)
-9. **Grainy halftone photos, sometimes in a circle.** Black-and-white photos are coarse, high-contrast and often bleed off the page. The Russell Simmons "Up Front" piece crops its photo into a big circle that the text wraps around. Source: https://archive.org/details/grand-royal-01-1993-dregs-ia (p.5, p.6, p.15)
-10. **Hand-drawn bits sit beside type.** Comics pages (R.D. Bone and Lawrence Hubbard's Real Deal), a hand-lettered "COMICS PAGE" caption in marker caps, a crude starburst "HAZE" ad, a scrawled "RECIPE FOR HATE" over a halftone. Hand lettering is treated as just another typeface. Source: https://archive.org/details/grand-royal-01-1993-dregs-ia (p.26, p.29, p.34, p.48); http://darwinscans.blogspot.com/2012/05/rest-in-peace-adam-yauch-grand-royal-1.html
-11. **Faces get mixed inside one headline.** "First KISS of the Day" pairs a light book serif with a heavy sans; "ATOMIC DOGMA" puts condensed caps over a serif quote; "PALJOEY!" is a wide grotesk; "Reviewing the Dragon" is a slab. Nobody kept a type system, and it shows on purpose. Source: https://archive.org/details/grand-royal-01-1993-dregs-ia (p.35, p.41, p.53)
-12. **Edges get abused.** The KISS Konvention spread frames its columns with black saw-tooth (pinking-shear) edges; the contents page runs a column of postage-stamp frames; the intro letter uses dashed cut lines. Borders are cut, not drawn. Source: https://archive.org/details/grand-royal-01-1993-dregs-ia (p.3, p.4, p.57)
-13. **Folio tabs in the margins.** Small black triangles with the page number and a vertical letterspaced "grand royal" sit at the outer edge of most pages, and the contents page runs "g r a n d · r o y a l" spaced out across the top. Source: https://archive.org/details/grand-royal-01-1993-dregs-ia (p.3, p.7)
-14. **Catalog and mail-order energy.** House ads are merch grids with order forms ("Make Your Sushi More Complete"), fill-in coupons ("We! Wa-a-ant! YOU!!") and starburst ad lettering (TAANG!). The page asks you to send something in. Source: https://archive.org/details/grand-royal-01-1993-dregs-ia (p.8, p.60, p.62)
-15. **Cut-and-paste labor, then cleanup.** Issue #2's designer "cut out hundreds of mullet-wearing heads" for the mullet feature, and was hired to keep the "irreverent tone" while improving "legibility and layout consistency". Raw, but somebody made it readable. Sources: http://www.stevek.net/grand-royal-magazine-2-beastie-boys; https://floodmagazine.com/45890/shabby-brilliance-grand-royal-magazine/; https://www.electronicsound.co.uk/features/time-machine/grand-royal/
-
-Note: issue #1's masthead has no crown. The crown in the Grand Royale lockup is this site's own mark and stays.
-
-## Rules for this page
-
-1. **Black ink on newsprint, plus tomato red as the only spot color.** Red goes on the masthead-style tab, the submit button and the hand-drawn arrow, nowhere else.
-2. **Anton is the Compacta stand-in** for every headline, tab and cover line; **Courier Prime** sets the letter from the editors; **Permanent Marker** is the hand lettering; plain system Times is the bad-on-purpose serif. Sancreek is reserved for the "Grand Royale" wordmark.
-3. **Use the half-knockout tab** for section names (COMING / SOON, INTRO / PAGE, IN / SIDE), never a tracked-out eyebrow.
-4. **The form is the coupon.** It sits inside a dashed cut-line border with a scissors, tilted a degree, and the hand-drawn red arrow points at the phone field. Nothing else on the page competes with it.
-5. **Jokes go in the small type**: issue line, contents asides, figure captions. Headlines stay plain.
-6. **Show the seams**: slight rotations, a saw-tooth edge, a halftone circle crop, a fold down the middle of the spread at desktop, xerox grain over everything. Never at the cost of legibility: body text stays straight, at least 16px, high contrast.
-7. **Mobile is a single column read top to bottom**: masthead, wordmark, coupon, contents. At 1280px it opens into a two-page spread: cover on the left, intro page and coupon on the right.
-8. **CSS and inline SVG only.** No external images; the "photo" is an SVG pizza with a halftone dot fill.
+1. **Photos are the layout.** 38 snapshots (pizza counters, dive bars, payphones, boomboxes, skaters, show
+   crowds, Brooklyn, Lake Michigan, Petoskey stones) scattered by a seeded random function with overlap and
+   bleed. No grid, no rows, no sections.
+2. **Photocopies, one ink.** Most photos are xeroxed in black on off-white paper, four in red, six left as
+   color prints (2:068). Black plus red `#d62718` on kraft `#c9a77a` (3:052, 3:140).
+3. **Tape holds things up.** Masking tape, black gaffer tape (2:131, 3:140) and staples, one per item.
+4. **Walls within the wall.** A sheet of one repeated sticker (2:006) and a six-frame contact strip (1:03).
+5. **Lettering is images.** The name is a spray-paint stencil and a sticker, never a header. Marker captions
+   and scrawls are drawn by `tools/hand.mjs`, a single-stroke hand that redraws every letter differently.
+   Stamps and label-maker tape are made in ImageMagick. Typed scraps use plain Courier.
+6. **The form is an index card, taped up, on top.** Nothing may overlap it; the scatter keeps it clear.
+7. **Credits are a receipt** at the bottom of the wall, linking every photo's source and license.
