@@ -44,7 +44,7 @@
   .tape.gaffer { background: var(--ink); opacity: .93; }
   .staple { width: 16px; height: 3px; background: var(--ink); opacity: .75; }
 
-  /* name, sprayed through a stencil over whatever was already up */
+  /* name: crowned Grand Royal-style mark, screen-printed over whatever was already up */
   h1.spray { position: absolute; margin: 0; z-index: 60; pointer-events: none; }
   h1.spray img { width: 100%; height: auto; }
 
@@ -143,7 +143,7 @@
 <body>
 <main id="wall">
 
-  <h1 class="spray" id="spray"><img src="lettering/stencil-grand-royale.png" width="1256" height="169" alt="Grand Royale Pizza"></h1>
+  <h1 class="spray" id="spray"><img src="lettering/wordmark-grand-royale.png" width="1727" height="606" alt="Grand Royale Pizza"></h1>
 
 
   <div id="card">
@@ -260,14 +260,20 @@
     Array.prototype.forEach.call(wall.querySelectorAll('.ph'), function (n) { n.remove(); });
     wall.style.height = '';
 
-    // pinned: the stencil over the top
+    // pinned: the name over the top
     var c = { x: card.offsetLeft - 20, y: card.offsetTop - 26, w: card.offsetWidth + 40, h: card.offsetHeight + 46 };
     var sw = mobile ? W * 1.02 : Math.min(W * 0.62, 900, c.x - W * 0.03 - 10);
     spray.style.cssText = 'width:' + sw.toFixed(0) + 'px;left:' + (mobile ? -W * 0.03 : W * 0.03).toFixed(0) + 'px;top:' + (mobile ? 54 : 74) + 'px;transform:rotate(' + (mobile ? -7 : -5) + 'deg)';
     var keepOut = [c];
-    // text scraps and busy color prints stay out from under the spray paint so both stay readable
+    // text scraps and busy color prints stay out from under the name so both stay readable.
+    // Measured on the old 1256x169 stencil footprint so the rest of the wall stays exactly where it was.
+    var sprayImg = spray.querySelector('img');
+    sprayImg.style.height = (+sw.toFixed(0) * 169 / 1256) + 'px';
     var sb = spray.getBoundingClientRect(), wb = wall.getBoundingClientRect();
     var sprayBox = { x: sb.left - wb.left, y: sb.top - wb.top + sb.height * 0.1, w: sb.width, h: sb.height * 0.8 };
+    sprayImg.style.height = '';
+    // the crowned mark is ~2.6x taller per width than the stencil was: x0.7 keeps about the same footprint
+    spray.style.width = (sw * 0.7).toFixed(0) + 'px';
 
     // the things to stick up
     var items = [];

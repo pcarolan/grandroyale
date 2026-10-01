@@ -14,7 +14,7 @@ What the page takes from Grand Royal is its materials, not its structure:
    color prints (2:068). Black plus red `#d62718` on kraft `#c9a77a` (3:052, 3:140).
 3. **Tape holds things up.** Masking tape, black gaffer tape (2:131, 3:140) and staples, one per item.
 4. **Walls within the wall.** A sheet of one repeated sticker (2:006) and a six-frame contact strip (1:03).
-5. **Lettering is images.** The name is a spray-paint stencil and a sticker, never a header. Marker captions
+5. **Lettering is images.** The name is a crowned Sancreek mark (Grand Royal Records look, screen-printed rough, rendered to PNG by tools/lettering.mjs from the vendored OFL font in tools/fonts/) and a sticker, never a header. Marker captions
    and scrawls are drawn by `tools/hand.mjs`, a single-stroke hand that redraws every letter differently.
    Stamps and label-maker tape are made in ImageMagick. Typed scraps use plain Courier.
 6. **The form is an index card, taped up, on top.** Nothing may overlap it; the scatter keeps it clear.

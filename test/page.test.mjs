@@ -204,3 +204,21 @@ test('the VACANCY bar photo (Pat\'s own) is on the wall', () => {
   assert.ok(existsSync(new URL('photos/vacancy-bar.jpg', root)));
   assert.ok(existsSync(new URL('tools/own.mjs', root)), 'tools/own.mjs should exist');
 });
+
+// ---- Owner 2026-10-01: "make the lettering more regal" (bees-vo70.20) ----
+// The name is the Grand Royal Records look: crown over Sancreek, rendered to an image, screen-print rough.
+test('the spray/h1 is the crowned Sancreek wordmark image', () => {
+  assert.ok(existsSync(new URL('lettering/wordmark-grand-royale.png', root)), 'missing lettering/wordmark-grand-royale.png');
+  assert.match(html, /<h1[^>]*id="spray"[^>]*><img src="lettering\/wordmark-grand-royale\.png"[^>]*alt="Grand Royale Pizza"/);
+});
+test('the old spray stencil is gone', () => {
+  assert.ok(!html.includes('stencil-grand-royale'), 'index.html still references the stencil');
+  assert.ok(!existsSync(new URL('lettering/stencil-grand-royale.png', root)), 'stencil-grand-royale.png should be deleted');
+  assert.doesNotMatch(read('tools/lettering.mjs'), /stencil-grand-royale/);
+});
+test('no Google Fonts link anywhere', () => assert.ok(!html.includes('fonts.googleapis.com')));
+test('Sancreek is vendored with its OFL license', () => {
+  assert.ok(existsSync(new URL('tools/fonts/Sancreek-Regular.ttf', root)));
+  assert.ok(existsSync(new URL('tools/fonts/OFL.txt', root)));
+});
+test('the sticker carries the crown', () => assert.match(read('lettering/sticker.svg'), /class="crown"/));

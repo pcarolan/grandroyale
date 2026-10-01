@@ -17,7 +17,7 @@ nothing is allowed to overlap it.
 | `photos/*.jpg` | The photos, already photocopied. |
 | `photos/manifest.json` | One entry per photo: file, alt, source_url, author, license, treatment, weight (1-10; 7+ also shows on phones), size, optional marker caption. |
 | `photos/ATTRIBUTION.md` | Credits and licenses for every photo. |
-| `lettering/` | Lettering as images: stencil, stamps, label-maker tape, marker scrawls, sticker. |
+| `lettering/` | Lettering as images: crowned wordmark, stamps, label-maker tape, marker scrawls, sticker. |
 | `assets/` | Sign-up form: `config.js` (endpoint), `signup.js`, `phone.js`. |
 
 ## Changing photos
