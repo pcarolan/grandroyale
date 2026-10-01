@@ -4,7 +4,6 @@ window.GR = Object.assign(window.GR || {}, { normalizePhone });
 
 const MSG = {
   phone: 'Enter a 10-digit US number, like (231) 555-0199.',
-  consent: 'Check the box to agree to texts, then try again.',
   offline: "Sign-up isn't connected yet. Try again soon.",
   network: "That didn't go through. Check your connection and try again.",
 };
@@ -16,7 +15,6 @@ function pretty(e164) {
 
 const form = document.getElementById('signup');
 const input = document.getElementById('phone');
-const consent = document.getElementById('consent');
 const error = document.getElementById('signup-error');
 const button = form && form.querySelector('button[type="submit"]');
 const success = document.getElementById('signup-success');
@@ -43,14 +41,13 @@ if (form) {
 
     const phone = normalizePhone(input.value);
     if (!phone) return showError(MSG.phone, input);
-    if (!consent.checked) return showError(MSG.consent, consent);
 
     const endpoint = (window.GR_CONFIG && window.GR_CONFIG.FORM_ENDPOINT) || '';
     if (!endpoint) return showError(MSG.offline, input);
 
     const body = new URLSearchParams({
       phone,
-      consent: 'yes',
+      consent: 'yes', // submitting a number to get the text is the opt-in
       source: 'landing',
       ts: new Date().toISOString(),
     });

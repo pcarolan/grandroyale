@@ -210,20 +210,7 @@
   input[type="tel"]::placeholder { color: #8d8572; font-weight: 400; }
   input[type="tel"][aria-invalid="true"] { background: #fff2a6; }
 
-  .consent {
-    display: grid;
-    grid-template-columns: 24px 1fr;
-    gap: 10px;
-    align-items: start;
-    font-size: .8rem;
-    line-height: 1.45;
-  }
-  .consent input {
-    width: 22px;
-    height: 22px;
-    margin: 1px 0 0;
-    accent-color: var(--ink);
-  }
+  .fineprint { margin: 0; font-size: .75rem; line-height: 1.4; color: #5c5547; }
 
   button[type="submit"] {
     font-family: var(--display);
@@ -338,12 +325,9 @@
         <label for="phone">Your phone number</label>
         <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(231) 555-0199" required aria-describedby="signup-error">
       </div>
-      <label class="consent">
-        <input id="consent" name="consent" type="checkbox" value="yes" required>
-        <span>By signing up you agree to receive text messages from Grand Royale Pizza about pizza pickups. Message and data rates may apply. Message frequency varies. Reply STOP to opt out, HELP for help.</span>
-      </label>
       <p class="error" id="signup-error" role="alert" hidden></p>
       <button type="submit">Text me when they're hot</button>
+      <p class="fineprint">Msg &amp; data rates may apply. Text STOP to walk the plank.</p>
     </form>
 
     <div class="success" id="signup-success" hidden>

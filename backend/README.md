@@ -23,4 +23,4 @@ The landing page posts phone numbers to a Google Apps Script web app, which writ
 
 - The browser posts with `mode: 'no-cors'` because Apps Script does not send CORS headers. The page can't read the response, so any completed request shows the success state; the Sheet is the source of truth.
 - Editing `Code.gs` later requires **Deploy > Manage deployments > Edit > New version**, or the live URL keeps running the old code. Keep the same deployment so the URL in `config.js` doesn't change.
-- The consent text on the page is the opt-in record for the sender. Don't change it without updating whatever the SMS provider registered (e.g. the A2P 10DLC campaign).
+- Submitting a number is the opt-in record (the page always posts `consent=yes`; there is no checkbox). The fine-print line under the button carries the STOP/rates language: "Msg & data rates may apply. Text STOP to walk the plank." Keep whatever the SMS provider registered (e.g. the A2P 10DLC campaign) in step with it.

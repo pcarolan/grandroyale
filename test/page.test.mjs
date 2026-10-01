@@ -3,14 +3,15 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
 const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
-const CONSENT = 'By signing up you agree to receive text messages from Grand Royale Pizza about pizza pickups. Message and data rates may apply. Message frequency varies. Reply STOP to opt out, HELP for help.';
 
 test('has a tel input', () => assert.match(html, /type="tel"/));
-test('has a required checkbox', () => {
-  const inputs = html.match(/<input\b[^>]*>/gi) || [];
-  assert.ok(inputs.some((t) => /type="checkbox"/.test(t) && /\brequired\b/.test(t)));
+// Consent checkbox removed; submitting a number is the opt-in (bees-vo70.16)
+test('has no checkbox', () => assert.ok(!/type="checkbox"/.test(html)));
+test('mentions STOP', () => assert.ok(html.includes('STOP')));
+test('old consent paragraph is gone', () => assert.ok(!html.includes('By signing up you agree')));
+test('has the fineprint line', () => {
+  assert.match(html, /class="fineprint"[^>]*>\s*Msg &amp; data rates may apply\. Text STOP to walk the plank\.\s*</);
 });
-test('has the exact consent copy', () => assert.ok(html.includes(CONSENT)));
 test('says coming soon', () => assert.match(html, /coming soon/i));
 test('mentions hot and pickup', () => {
   assert.match(html, /\bhot\b/);
