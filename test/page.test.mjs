@@ -16,7 +16,8 @@ test('form, error, success and number ids are present', () => {
   assert.match(html, /id="signup-success"[^>]*hidden[\s\S]*?<h3 tabindex="-1">/);
 });
 test('has the submit button with the right words', () => {
-  assert.match(html, /<button type="submit"[^>]*>Text me when they're hot<\/button>/);
+  assert.match(html, /<button type="submit"[^>]*>Text me when the pizza's on<\/button>/);
+  assert.doesNotMatch(html, /when they're hot/);
 });
 test('form copy is the drop-your-number line', () => {
   assert.match(html, /Add your number and we'll send you a text when the pizzas are ready for pickup\./);
