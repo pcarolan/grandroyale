@@ -223,3 +223,12 @@ test('Sancreek is vendored with its OFL license', () => {
   assert.ok(existsSync(new URL('tools/fonts/OFL.txt', root)));
 });
 test('the sticker carries the crown', () => assert.match(read('lettering/sticker.svg'), /class="crown"/));
+
+// ---- Owner copy rule 2026-10-01: no "yr" in captions ----
+test('no caption or lettering says "yr"', () => {
+  const manifest = JSON.parse(readFileSync(new URL('photos/manifest.json', root), 'utf8'));
+  for (const p of manifest) assert.doesNotMatch(p.caption || '', /\byr\b/i, `${p.file}: ${p.caption}`);
+  assert.doesNotMatch(html, /\byr\b/i);
+  assert.doesNotMatch(readFileSync(new URL('tools/photos.mjs', root), 'utf8'), /\byr\b/i);
+  assert.ok(manifest.find((p) => p.file === 'bar-sink.jpg')?.caption === 'wash your hands');
+});

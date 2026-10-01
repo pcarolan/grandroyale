@@ -19,7 +19,7 @@ export const PHOTOS = [
   { slug: 'box-in-the-grass', title: 'File:Discarded pizza box, Cregganconroe - geograph.org.uk - 3579577.jpg', t: 'xerox', w: 3 },
   { slug: 'sticker-wall', title: 'File:Stickerwalls1.jpg', t: 'color', w: 8 },
   { slug: 'red-stools', title: 'File:Slim Jims Liquor Store, Islington, N1 (3590013603).jpg', t: 'xerox', w: 4 },
-  { slug: 'bar-sink', title: 'File:MollysTardSink.jpg', t: 'xerox', w: 6, cap: 'wash yr hands' },
+  { slug: 'bar-sink', title: 'File:MollysTardSink.jpg', t: 'xerox', w: 6, cap: 'wash your hands' },
   { slug: 'rheingold-neon', title: 'File:Little Italy, Manhattan, New York (3936792597).jpg', t: 'xerox', w: 3 },
   { slug: 'donuts-cold-beer', title: 'File:Homer simpson heaven (16121420046).jpg', t: 'color', w: 5 },
   { slug: 'payphone-fence', title: 'File:Telefonautomat New York 2018.jpg', t: 'xerox', w: 7, cap: 'call us (no)' },
