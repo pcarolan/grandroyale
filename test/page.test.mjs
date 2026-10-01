@@ -46,6 +46,10 @@ test('says Petoskey, MI', () => assert.ok(html.includes('Petoskey, MI')));
 test('names the owners', () => assert.ok(html.includes('Todd Webb + Pat Carolan')));
 test('respects reduced motion', () => assert.match(html, /prefers-reduced-motion/));
 test('body has an explicit background', () => assert.match(html.match(/\bbody\s*\{[^}]*\}/)?.[0] ?? '', /background(-color)?:/));
+test('the wall is white, not kraft', () => {
+  assert.match(html, /--wall:\s*#fff(fff)?;/i);
+  assert.match(html.match(/\bbody\s*\{[^}]*\}/)?.[0] ?? '', /background:\s*var\(--wall\)/);
+});
 
 // ---- Forbidden words ----
 test('forbidden strings are absent', () => {

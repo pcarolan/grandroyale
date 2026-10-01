@@ -9,7 +9,8 @@
 <style>
   /* A bathroom wall, not a page. See DESIGN.md and the grand-royal-raw skill. */
   :root {
-    --kraft: #c9a77a;   /* the wall (3:140) */
+    --kraft: #c9a77a;   /* tape stripes */
+    --wall: #ffffff;    /* the wall: white, per Pat 2026-09-30 */
     --paper: #f1ede3;   /* copy paper, index card, receipt */
     --ink: #1a1a1a;     /* toner, sharpie, gaffer tape */
     --red: #d62718;     /* the one spot color */
@@ -20,7 +21,7 @@
   html { overflow-x: clip; }
   body {
     margin: 0; overflow-x: clip;
-    background: var(--kraft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .08 0 0 0 0 .05 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
+    background: var(--wall) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .08 0 0 0 0 .05 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
     color: var(--ink);
     font: 16px/1.4 var(--type);
     -webkit-text-size-adjust: 100%;
