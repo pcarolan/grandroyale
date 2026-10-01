@@ -39,9 +39,9 @@ test('loads config.js and signup.js', () => {
 test('has a viewport meta', () => assert.match(html, /<meta name="viewport"/));
 test('has a title', () => assert.match(html, /<title>[^<]+<\/title>/));
 test('says coming soon', () => assert.match(html, /coming soon/i));
-test('mentions hot and pickup', () => {
-  assert.match(html, /\bhot\b/);
-  assert.match(html, /\bpickup\b/);
+test('mentions pickup (owner removed the word hot on 2026-09-30)', () => {
+  assert.match(html, /\bpickup\b/i);
+  assert.doesNotMatch(html, /\bhot\b/i);
 });
 test('says Petoskey, MI', () => assert.ok(html.includes('Petoskey, MI')));
 test('names the owners', () => assert.ok(html.includes('Todd Webb + Pat Carolan')));
