@@ -3,7 +3,9 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 
 const manifest = JSON.parse(readFileSync('photos/manifest.json', 'utf8'));
-const json = JSON.stringify(manifest).replace(/</g, '\\u003c');
+// only what the page renders; credits (author, license, source) live in photos/ATTRIBUTION.md
+const slim = manifest.map(({ file, alt, treatment, weight, w, h, caption }) => ({ file, alt, treatment, weight, w, h, caption }));
+const json = JSON.stringify(slim).replace(/</g, '\\u003c');
 const html = readFileSync('index.html', 'utf8');
 const re = /(<script type="application\/json" id="manifest">)[\s\S]*?(<\/script>)/;
 if (!re.test(html)) throw new Error('no <script type="application/json" id="manifest"> in index.html');

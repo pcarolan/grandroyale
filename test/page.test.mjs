@@ -122,9 +122,22 @@ test('ATTRIBUTION.md lists every photo with its source and license', () => {
 test('index.html inlines the current manifest (run node build.mjs)', () => {
   const m = html.match(/<script type="application\/json" id="manifest">([\s\S]*?)<\/script>/);
   assert.ok(m, 'no inline manifest');
-  assert.deepEqual(JSON.parse(m[1]), manifest);
+  // the page inlines only what it renders; credits live in ATTRIBUTION.md (bees-vo70.17)
+  const keep = ({ file, alt, treatment, weight, w, h, caption }) => ({ file, alt, treatment, weight, w, h, caption });
+  assert.deepEqual(JSON.parse(m[1]), manifest.map(keep).map((o) => JSON.parse(JSON.stringify(o))));
 });
-test('page links the attribution file', () => assert.match(html, /href="photos\/ATTRIBUTION\.md"/));
+test('no photo-credits receipt on the wall', () => {
+  assert.ok(!html.includes('PHOTOS ON THIS WALL'));
+  assert.ok(!html.includes('THANK YOU COME AGAIN'));
+  assert.ok(!/id="credits"|id="receipt"|class="[^"]*\breceipt\b/.test(html));
+  for (const a of ['Missvain', 'Rhododendrites']) assert.ok(!html.includes(a), `author ${a} still in index.html`);
+});
+test('exactly one link to ATTRIBUTION.md, worded "photo credits"', () => {
+  const links = [...html.matchAll(/<a\b[^>]*href="photos\/ATTRIBUTION\.md"[^>]*>([\s\S]*?)<\/a>/g)];
+  assert.equal(links.length, 1);
+  assert.equal(links[0][1].trim(), 'photo credits');
+  assert.equal((html.match(/photos\/ATTRIBUTION\.md/g) || []).length, 1);
+});
 
 // ---- Lettering is images, not webfonts (skill rule 5) ----
 test('lettering images exist and are used', () => {
