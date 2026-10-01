@@ -82,7 +82,6 @@ function stamp(text, out, color, seed, pt = 110) {
   mk(`${TMP}/stamp-a.png`, '-background', color, '-alpha', 'shape', '-resize', '60%', '-strip', out);
 }
 stamp('COMING SOON', 'lettering/stamp-coming-soon.png', RED, 11);
-stamp('PICKUP ONLY', 'lettering/stamp-pickup-only.png', INK, 23);
 
 // ---- Label-maker tape (embossed white caps on black plastic) ----
 function dymo(text, out, seed) {
