@@ -172,3 +172,8 @@ test('no "pickup only" anywhere on the wall', () => {
   assert.ok(!existsSync(new URL('lettering/stamp-pickup-only.png', root)), 'stamp-pickup-only.png should be deleted');
   assert.doesNotMatch(readFileSync(new URL('tools/lettering.mjs', root), 'utf8'), /pickup only|pickup-only/i);
 });
+
+// ---- Owner removal 2026-09-30: no tape or staples on photos ----
+test('photos are not taped or stapled', () => {
+  assert.doesNotMatch(html, /hold\(fig/);
+});

@@ -247,7 +247,6 @@
     var w = imgW + pad[1] + pad[3], h = imgW * p.h / p.w + pad[0] + pad[2];
     fig.style.width = w.toFixed(0) + 'px';
     var t = r();
-    hold(fig, p.treatment === 'color' ? (t < 0.6 ? 'gaffer' : 'gaffer2') : (t < 0.55 ? 'masking' : t < 0.75 ? 'corners' : 'staple'), r, w);
     return { el: fig, img: img, src: 'photos/' + p.file, w: w, h: h, weight: p.weight, tilt: 8, clear: p.treatment !== 'xerox' };
   }
 
