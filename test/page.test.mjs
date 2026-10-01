@@ -19,7 +19,8 @@ test('has the submit button with the right words', () => {
   assert.match(html, /<button type="submit"[^>]*>Text me when they're hot<\/button>/);
 });
 test('form copy is the drop-your-number line', () => {
-  assert.match(html, /Drop your number and we'll send a text when the pies are hot and ready for pickup\./);
+  assert.match(html, /Add your number and we'll send you a text when the pizzas are ready for pickup\./);
+  assert.doesNotMatch(html, /Drop your number|pies are hot/);
 });
 // Consent checkbox and fine print removed; submitting a number is the opt-in (bees-vo70.16)
 test('has no checkbox', () => assert.ok(!/type="checkbox"/.test(html)));
