@@ -17,16 +17,6 @@ const manifest = JSON.parse(readFileSync('photos/manifest.json', 'utf8'));
 for (const p of manifest.filter((m) => m.caption)) {
   writeFileSync(`lettering/cap-${p.file.replace(/\.jpg$/, '')}.svg`, scrawlSVG(p.caption, { px: 4, stroke: 1.35 }));
 }
-// arrow pointing down-right at the form, with words
-{
-  const words = write('yr number\nhere', { seed: 'arrow', lineGap: 14 });
-  const arrow = `<path d="M${(words.width * 0.55).toFixed(1)} 27 C ${(words.width * 0.6).toFixed(1)} 44, ${(words.width * 0.85).toFixed(1)} 50, ${(words.width + 6).toFixed(1)} 47"/>
-<path d="M${(words.width + 0.5).toFixed(1)} 42.5 L ${(words.width + 6.2).toFixed(1)} 47.2 L ${(words.width + 0.8).toFixed(1)} 51.5"/>`;
-  writeFileSync('lettering/scrawl-arrow.svg', scrawlSVG('yr number\nhere', { seed: 'arrow', lineGap: 14, px: 5, stroke: 1.5, color: RED, extra: arrow, halo: PAPER })
-    .replace(/viewBox="([-\d.]+) ([-\d.]+) ([\d.]+) ([\d.]+)" width="(\d+)" height="(\d+)"/, (m, x, y, w, h) =>
-      `viewBox="${x} ${y} ${(+w + 10).toFixed(1)} ${(+h + 22).toFixed(1)}" width="${Math.round((+w + 10) * 5)}" height="${Math.round((+h + 22) * 5)}"`));
-}
-writeFileSync('lettering/scrawl-who.svg', scrawlSVG('who ordered\nthe pie?', { seed: 'who', px: 5, stroke: 1.3, lineGap: 14, halo: PAPER }));
 
 // ---- Sticker: red die-cut, white marker letters ----
 {

@@ -84,7 +84,6 @@
   #card .success h3:focus { outline: none; }
   #card .success p { margin: 0; font-size: 18px; font-weight: 700; }
 
-  .arrow { width: 190px; height: auto; z-index: 90; pointer-events: none; }
 
   /* tear-off flyer */
   .flyer { width: 228px; padding: 18px 16px 0; background: var(--paper); }
@@ -116,7 +115,6 @@
 
   .label { height: auto; }
   .label.petoskey { width: 200px; } .label.names { width: 330px; }
-  .who { width: 190px; height: auto; }
 
   /* two words, typed, stuck up crooked; the license link */
   .credit { padding: 3px 7px 4px; background: var(--paper); font: 11px/1.2 var(--type); color: var(--ink); text-decoration: underline; }
@@ -135,7 +133,6 @@
     .stickers .peeled { top: 49px; left: 72px; width: 62px; height: 44px; }
     .strip img { width: 58px; height: 46px; } .strip { gap: 5px; padding: 14px 8px; }
     .label.names { width: 250px; } .label.petoskey { width: 160px; }
-    .who { width: 150px; } .arrow { width: 150px; }
     .cap { height: 18px; left: 9px; bottom: 6px; }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -148,7 +145,6 @@
 
   <h1 class="spray" id="spray"><img src="lettering/stencil-grand-royale.png" width="1256" height="169" alt="Grand Royale Pizza"></h1>
 
-  <img class="it arrow" id="arrow" src="lettering/scrawl-arrow.svg" width="382" height="280" alt="">
 
   <div id="card">
     <i class="tape gaffer" aria-hidden="true"></i>
@@ -186,7 +182,6 @@
 
   <img class="it label petoskey" data-z="45" data-clear data-scrap data-w="7" data-m src="lettering/label-petoskey.png" width="386" height="64" alt="Petoskey, MI">
   <img class="it label names" data-z="45" data-clear data-scrap data-w="6" data-m src="lettering/label-names.png" width="694" height="64" alt="Todd Webb + Pat Carolan">
-  <img class="it who" data-z="50" data-clear data-scrap data-w="5" src="lettering/scrawl-who.svg" width="387" height="170" alt="Who ordered the pie?">
 
   <a class="it credit" data-scrap data-w="6" data-m data-tilt="6" data-z="45" href="photos/ATTRIBUTION.md">photo credits</a>
 
@@ -201,7 +196,6 @@
   var wall = document.getElementById('wall');
   var card = document.getElementById('card');
   var spray = document.getElementById('spray');
-  var arrow = document.getElementById('arrow');
   var scraps = Array.prototype.slice.call(wall.querySelectorAll('[data-scrap]'));
   var STRIP = ['crowd-surf.jpg', 'night-ollie.jpg', 'payphone-fence.jpg', 'slice-paper-plate.jpg', 'boombox.jpg', 'lake-in-january.jpg'];
   var photos = [];
@@ -269,18 +263,14 @@
     Array.prototype.forEach.call(wall.querySelectorAll('.ph'), function (n) { n.remove(); });
     wall.style.height = '';
 
-    // pinned: the stencil over the top, the arrow pointing at the card
+    // pinned: the stencil over the top
     var c = { x: card.offsetLeft - 20, y: card.offsetTop - 26, w: card.offsetWidth + 40, h: card.offsetHeight + 46 };
     var sw = mobile ? W * 1.02 : Math.min(W * 0.62, 900, c.x - W * 0.03 - 10);
     spray.style.cssText = 'width:' + sw.toFixed(0) + 'px;left:' + (mobile ? -W * 0.03 : W * 0.03).toFixed(0) + 'px;top:' + (mobile ? 54 : 74) + 'px;transform:rotate(' + (mobile ? -7 : -5) + 'deg)';
-    var aw = arrow.offsetWidth, ah = aw * 280 / 382;
-    var ax = mobile ? Math.max(4, c.x + c.w - aw - 30) : c.x - aw, ay = mobile ? c.y - ah - 34 : c.y + 70;
-    arrow.style.cssText = 'left:' + ax.toFixed(0) + 'px;top:' + ay.toFixed(0) + 'px;transform:rotate(' + (mobile ? 24 : -4) + 'deg)';
     var keepOut = [c];
     // text scraps and busy color prints stay out from under the spray paint so both stay readable
     var sb = spray.getBoundingClientRect(), wb = wall.getBoundingClientRect();
     var sprayBox = { x: sb.left - wb.left, y: sb.top - wb.top + sb.height * 0.1, w: sb.width, h: sb.height * 0.8 };
-    if (mobile) keepOut.push({ x: ax + aw * 0.35, y: ay + ah * 0.35, w: aw * 0.65, h: ah * 0.65 });   // keep the arrowhead end clear
 
     // the things to stick up
     var items = [];

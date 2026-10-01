@@ -146,3 +146,17 @@ test('lettering images exist and are used', () => {
   assert.ok(uniq.length >= 3, `only ${uniq.length} lettering images referenced`);
   for (const f of uniq) assert.ok(existsSync(new URL(f, root)), `missing ${f}`);
 });
+
+// ---- Owner removals 2026-09-30: no "yr number here" arrow, no "who ordered the pie?" ----
+test('no YR NUMBER HERE arrow on the wall', () => {
+  assert.doesNotMatch(html, /scrawl-arrow|id="arrow"|class="it arrow|yr number|yr-number/i);
+  assert.ok(!existsSync(new URL('lettering/scrawl-arrow.svg', root)), 'lettering/scrawl-arrow.svg should be deleted');
+  const gen = readFileSync(new URL('tools/lettering.mjs', root), 'utf8');
+  assert.doesNotMatch(gen, /scrawl-arrow|yr number/i);
+});
+test('no "who ordered the pie?" scrawl on the wall', () => {
+  assert.doesNotMatch(html, /scrawl-who|who ordered/i);
+  assert.ok(!existsSync(new URL('lettering/scrawl-who.svg', root)), 'lettering/scrawl-who.svg should be deleted');
+  const gen = readFileSync(new URL('tools/lettering.mjs', root), 'utf8');
+  assert.doesNotMatch(gen, /scrawl-who|who ordered/i);
+});
