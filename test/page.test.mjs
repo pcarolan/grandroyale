@@ -20,7 +20,8 @@ test('has the submit button with the right words', () => {
   assert.doesNotMatch(html, /when they're hot/);
 });
 test('form copy is the drop-your-number line', () => {
-  assert.match(html, /Add your number and we'll send you a text when the pizzas are ready for pickup\./);
+  assert.match(html, /Send us your number and we'll let you know when we're cooking our next batch/);
+  assert.doesNotMatch(html, /Add your number|ready for pickup/);
   assert.doesNotMatch(html, /Drop your number|pies are hot/);
 });
 // Consent checkbox and fine print removed; submitting a number is the opt-in (bees-vo70.16)
@@ -40,7 +41,7 @@ test('has a viewport meta', () => assert.match(html, /<meta name="viewport"/));
 test('has a title', () => assert.match(html, /<title>[^<]+<\/title>/));
 test('says coming soon', () => assert.match(html, /coming soon/i));
 test('mentions pickup (owner removed the word hot on 2026-09-30)', () => {
-  assert.match(html, /\bpickup\b/i);
+  assert.match(html, /next batch/i);
   assert.doesNotMatch(html, /\bhot\b/i);
 });
 test('says Petoskey, MI', () => assert.ok(html.includes('Petoskey, MI')));
