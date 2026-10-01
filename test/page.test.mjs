@@ -232,3 +232,13 @@ test('no caption or lettering says "yr"', () => {
   assert.doesNotMatch(readFileSync(new URL('tools/photos.mjs', root), 'utf8'), /\byr\b/i);
   assert.ok(manifest.find((p) => p.file === 'bar-sink.jpg')?.caption === 'wash your hands');
 });
+
+// ---- Owner placement 2026-10-01: photo credits pinned bottom right ----
+test('photo credits link is pinned to the bottom right, not scattered', () => {
+  const a = html.match(/<a class="it credit"[^>]*>/)?.[0] ?? '';
+  assert.ok(a, 'credit link missing');
+  assert.ok(!/data-scrap/.test(a), 'credit must not be a scattered scrap');
+  const css = html.match(/\.credit\s*\{[^}]*\}/)?.[0] ?? '';
+  assert.match(css, /right:\s*\d+px/);
+  assert.match(css, /bottom:\s*\d+px/);
+});
