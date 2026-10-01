@@ -242,3 +242,8 @@ test('photo credits link is pinned to the bottom right, not scattered', () => {
   assert.match(css, /right:\s*\d+px/);
   assert.match(css, /bottom:\s*\d+px/);
 });
+test('the Victory Lanes bowling alley photo (Pat\'s own) is on the wall', () => {
+  const manifest = JSON.parse(readFileSync(new URL('photos/manifest.json', root), 'utf8'));
+  assert.ok(manifest.find((p) => p.file === 'victory-lanes.jpg'), 'victory-lanes.jpg missing from manifest');
+  assert.ok(existsSync(new URL('photos/victory-lanes.jpg', root)));
+});
