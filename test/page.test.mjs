@@ -87,7 +87,7 @@ test('no external images', () => {
 
 // ---- Manifest + attribution ----
 const manifest = JSON.parse(read('photos/manifest.json'));
-const LICENSE_OK = /^(Public domain|PD|CC0|CC BY(-SA)? \d\.\d)/i;
+const LICENSE_OK = /^(Public domain|PD|CC0|CC BY(-SA)? \d\.\d|Own photo|Own scan)/i;
 
 test('manifest has 25-40 photos with full metadata', () => {
   assert.ok(Array.isArray(manifest));
@@ -177,4 +177,24 @@ test('no "pickup only" anywhere on the wall', () => {
 // ---- Owner removal 2026-09-30: no tape or staples on photos ----
 test('photos are not taped or stapled', () => {
   assert.doesNotMatch(html, /hold\(fig/);
+});
+
+// ---- Owner's own photos (2026-09-30) ----
+test('the yellow awning photo (Pat\'s own) is on the wall', () => {
+  const manifest = JSON.parse(readFileSync(new URL('photos/manifest.json', root), 'utf8'));
+  const own = manifest.find((p) => p.file === 'yellow-awning.jpg');
+  assert.ok(own, 'yellow-awning.jpg missing from manifest');
+  assert.equal(own.license, 'Own photo');
+  assert.equal(own.author, 'Pat Carolan');
+  assert.ok(own.weight >= 8, 'should be a big one');
+  assert.ok(existsSync(new URL('photos/yellow-awning.jpg', root)));
+  assert.match(readFileSync(new URL('tools/photos.mjs', root), 'utf8'), /Own photo/, 'generator must preserve own photos');
+});
+
+test('the C. Joy\'s arcade clipping (Pat\'s scan) is on the wall', () => {
+  const manifest = JSON.parse(readFileSync(new URL('photos/manifest.json', root), 'utf8'));
+  const own = manifest.find((p) => p.file === 'cjoys-arcade-ad.jpg');
+  assert.ok(own, 'cjoys-arcade-ad.jpg missing from manifest');
+  assert.equal(own.license, 'Own scan');
+  assert.ok(existsSync(new URL('photos/cjoys-arcade-ad.jpg', root)));
 });

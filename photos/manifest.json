@@ -1,5 +1,33 @@
 [
  {
+  "file": "yellow-awning.jpg",
+  "alt": "Snapshot of a white block building with a yellow awning and a painted pin-up figure climbing the wall",
+  "source_url": "https://grandroyalepizza.com",
+  "title": "Yellow awning (Pat's photo)",
+  "author": "Pat Carolan",
+  "license": "Own photo",
+  "license_url": "",
+  "treatment": "color",
+  "weight": 9,
+  "w": 660,
+  "h": 400,
+  "caption": ""
+ },
+ {
+  "file": "cjoys-arcade-ad.jpg",
+  "alt": "Newspaper ad: Grand Opening of C. Joy's family Arcade, 323 W. Mitchell, Petoskey, next to Walenta's; free slush puppies, video games, pinball, pool table",
+  "source_url": "https://grandroyalepizza.com",
+  "title": "C. Joy's Family Arcade grand opening ad, Petoskey (Pat's clipping)",
+  "author": "Petoskey newspaper ad, Pat Carolan's clipping",
+  "license": "Own scan",
+  "license_url": "",
+  "treatment": "xerox",
+  "weight": 9,
+  "w": 638,
+  "h": 480,
+  "caption": ""
+ },
+ {
   "file": "slice-paper-plate.jpg",
   "alt": "Photocopy of a cheese slice on a paper plate on a stone counter",
   "source_url": "https://commons.wikimedia.org/wiki/File:Brozinni_Pizzeria_Speedway_-_June_2022_-_Sarah_Stierch_08.jpg",
@@ -150,7 +178,7 @@
   "alt": "Photocopy of a beat-up New York payphone covered in stickers next to a chain-link fence",
   "source_url": "https://commons.wikimedia.org/wiki/File:Telefonautomat_New_York_2018.jpg",
   "title": "Telefonautomat New York 2018.jpg",
-  "author": "Johan Jönsson (Julle)",
+  "author": "Johan J\u00f6nsson (Julle)",
   "license": "CC BY-SA 4.0",
   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
   "treatment": "xerox",

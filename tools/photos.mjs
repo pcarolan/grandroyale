@@ -103,6 +103,10 @@ for (const p of PHOTOS) {
   });
   await sleep(400);
 }
+// Keep the owner's own photos (license "Own photo") that were added by hand to photos/manifest.json.
+let own = [];
+try { own = JSON.parse(readFileSync('photos/manifest.json', 'utf8')).filter((m) => /^Own (photo|scan)$/.test(m.license)); } catch {}
+manifest.unshift(...own);
 writeFileSync('photos/manifest.json', JSON.stringify(manifest, null, 1) + '\n');
 
 const md = ['# Photo credits', '',
