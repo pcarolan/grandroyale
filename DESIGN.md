@@ -20,11 +20,8 @@ What the page takes from Grand Royal is its materials, not its structure:
 6. **The form is an index card, taped up, on top.** Nothing may overlap it; the scatter keeps it clear.
 7. **Credits are a receipt** at the bottom of the wall, linking every photo's source and license.
 
-**The wall keeps going (2026-10-05).** Under the first wall there is more wall, and nothing says so: no "more",
-no arrow, no footer. An invisible marker sits at the bottom; when you scroll near it, another strip of wall about
-a screen and a half tall gets stuck up below, from the old yearbooks and clippings in `photos/archive/` (inlined by
-`node build.mjs`). Same paper, same tears, same tilt and overlap, same phone rule (weight 7+), placed by the same
-seeded scatter as the first wall (strip k uses seed 1993 + k, the archive reshuffled whenever it runs out), so it
-never ends and never repeats the same way. Now and then a photo gets its year typed on a scrap; every third strip,
-the Petoskey label or the red stamp turns up again. The first strip carries a second typed scrap, "more credits",
-for the archive. Things just appear. Nothing moves.
+**Ten archive photos (2026-10-05).** Ten 80s/90s Petoskey-area archive crops (Petosegan and Rayder yearbooks, a
+Little Traverse Historical Society parade shot, two video-store ads) joined the wall as ordinary photos,
+weights 5-7 so they mix in (three at 7 make the phone cut). Pat picked them from 123 crops ("most of these are cool,
+but are too many"); the rest are held, cut and credited, on his desktop in `~/Desktop/petoskey-80s-90s/crops/`.
+`archive/pick.json` is the knob. There is no infinite scroll: the wall is one wall (Pat: "get rid of infinite scroll").

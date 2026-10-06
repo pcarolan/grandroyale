@@ -88,7 +88,8 @@ test('no external images', () => {
 
 // ---- Manifest + attribution ----
 const manifest = JSON.parse(read('photos/manifest.json'));
-const LICENSE_OK = /^(Public domain|PD|CC0|CC BY(-SA)? \d\.\d|Own photo|Own scan)/i;
+// "Archive scan: <original credit>": 80s/90s Petoskey-area yearbook and museum crops, Pat's call 2026-10-05 (bees-5orh.11)
+const LICENSE_OK = /^(Public domain|PD|CC0|CC BY(-SA)? \d\.\d|Own photo|Own scan|Archive scan: \S)/i;
 
 test('manifest has 25-40 photos with full metadata', () => {
   assert.ok(Array.isArray(manifest));
@@ -100,7 +101,7 @@ test('manifest has 25-40 photos with full metadata', () => {
     assert.match(p.source_url, /^https:\/\//);
   }
 });
-test('licenses are PD, CC0, CC BY or CC BY-SA only (no NC/ND)', () => {
+test('licenses are PD, CC0, CC BY, CC BY-SA, own, or a credited archive scan (no NC/ND)', () => {
   for (const p of manifest) {
     assert.match(p.license, LICENSE_OK, `${p.file}: ${p.license}`);
     assert.ok(!/\b(NC|ND)\b/.test(p.license), `${p.file}: ${p.license}`);
