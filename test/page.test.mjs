@@ -127,6 +127,14 @@ test('ATTRIBUTION.md lists every photo with its source and license', () => {
     assert.ok(md.includes(p.source_url), `ATTRIBUTION missing ${p.source_url}`);
   }
 });
+// Cecilia Carolan's pencil sketch: pizza slice wearing a dice crown (Pat, 2026-10-06; bees-4dqr.1)
+test("Cecilia's crown slice sketch is on the wall, credited to her", () => {
+  const p = manifest.find((m) => m.file === 'crown-slice-sketch.jpg');
+  assert.ok(p, 'crown-slice-sketch.jpg not in manifest');
+  assert.equal(p.author, 'Cecilia Carolan');
+  assert.ok(p.weight >= 7, `weight ${p.weight}`);
+  assert.match(read('photos/ATTRIBUTION.md'), /\| crown-slice-sketch\.jpg \|[^\n]*\| Cecilia Carolan \|/);
+});
 test('index.html inlines the current manifest (run node build.mjs)', () => {
   const m = html.match(/<script type="application\/json" id="manifest">([\s\S]*?)<\/script>/);
   assert.ok(m, 'no inline manifest');
