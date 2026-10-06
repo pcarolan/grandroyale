@@ -1,5 +1,19 @@
 [
  {
+  "file": "crown-slice-sketch.jpg",
+  "alt": "Pencil sketch of a pizza slice wearing a crown topped with three dice, drips running off the crown, signed Cecilia Carolan",
+  "source_url": "https://grandroyalepizza.com",
+  "title": "Crown slice sketch (Cecilia Carolan)",
+  "author": "Cecilia Carolan",
+  "license": "Own scan",
+  "license_url": "",
+  "treatment": "xerox",
+  "weight": 7,
+  "w": 862,
+  "h": 900,
+  "caption": ""
+ },
+ {
   "file": "victory-lanes.jpg",
   "alt": "Snapshot inside Victory Lanes bowling alley: a plastic booth table in the foreground, lanes and overhead score screens behind",
   "source_url": "https://grandroyalepizza.com",
@@ -206,7 +220,7 @@
   "alt": "Photocopy of a beat-up New York payphone covered in stickers next to a chain-link fence",
   "source_url": "https://commons.wikimedia.org/wiki/File:Telefonautomat_New_York_2018.jpg",
   "title": "Telefonautomat New York 2018.jpg",
-  "author": "Johan J\u00f6nsson (Julle)",
+  "author": "Johan Jönsson (Julle)",
   "license": "CC BY-SA 4.0",
   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
   "treatment": "xerox",
