@@ -258,3 +258,10 @@ test('the dirt-ollie skate photo is gone', () => {
   assert.doesNotMatch(readFileSync(new URL('tools/photos.mjs', root), 'utf8'), /dirt-ollie/);
   assert.doesNotMatch(readFileSync(new URL('photos/ATTRIBUTION.md', root), 'utf8'), /dirt-ollie/);
 });
+
+// Pat 2026-10-05: "spread out the photos a bit" (bees-5orh.12). Pinned so the wall doesn't drift back to crowded.
+test('the wall breathes: density 1.0 desktop / 1.3 phone, overlap tolerance 0.25', () => {
+  assert.match(html, /area \* \(mobile \? 1\.3 : 1\.0\) \/ W/, 'wall-height density factor');
+  assert.match(html, /Math\.max\(0, frac - 0\.25\)/, 'overlap tolerance in the scatter score');
+  assert.doesNotMatch(html, /frac - 0\.38|mobile \? 0\.95 : 0\.74/);
+});
