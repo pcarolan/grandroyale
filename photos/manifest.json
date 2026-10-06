@@ -12,7 +12,7 @@
   "place": "top",
   "w": 862,
   "h": 900,
-  "caption": ""
+  "caption": "12. this is our pizza\n(artist's rendering)"
  },
  {
   "file": "victory-lanes.jpg",
@@ -26,7 +26,7 @@
   "weight": 8,
   "w": 168,
   "h": 300,
-  "caption": ""
+  "caption": "2. victory lanes"
  },
  {
   "file": "vacancy-bar.jpg",
@@ -95,7 +95,8 @@
   "treatment": "red",
   "weight": 7,
   "w": 542,
-  "h": 720
+  "h": 720,
+  "caption": "7. also not our pizza"
  },
  {
   "file": "two-slices.jpg",
@@ -108,7 +109,8 @@
   "treatment": "xerox",
   "weight": 4,
   "w": 560,
-  "h": 498
+  "h": 498,
+  "caption": "3. not our pizza"
  },
  {
   "file": "square-slice.jpg",
@@ -133,7 +135,7 @@
   "license": "CC BY 2.0",
   "license_url": "https://creativecommons.org/licenses/by/2.0",
   "treatment": "xerox",
-  "weight": 6,
+  "weight": 7,
   "w": 645,
   "h": 720
  },
@@ -148,7 +150,8 @@
   "treatment": "xerox",
   "weight": 3,
   "w": 560,
-  "h": 420
+  "h": 420,
+  "caption": "31. leftovers"
  },
  {
   "file": "sticker-wall.jpg",
@@ -174,7 +177,8 @@
   "treatment": "xerox",
   "weight": 4,
   "w": 560,
-  "h": 374
+  "h": 374,
+  "caption": "15. seating (not ours)"
  },
  {
   "file": "bar-sink.jpg",
@@ -358,7 +362,8 @@
   "treatment": "xerox",
   "weight": 9,
   "w": 720,
-  "h": 480
+  "h": 480,
+  "caption": "9. delivery (proposed)"
  },
  {
   "file": "red-pit.jpg",
@@ -397,7 +402,8 @@
   "treatment": "xerox",
   "weight": 6,
   "w": 720,
-  "h": 478
+  "h": 478,
+  "caption": "22. house rules"
  },
  {
   "file": "club-shutter.jpg",
@@ -502,7 +508,8 @@
   "treatment": "xerox",
   "weight": 5,
   "w": 560,
-  "h": 492
+  "h": 492,
+  "caption": "33. still looking"
  },
  {
   "file": "lake-ice-1911.jpg",
@@ -569,7 +576,7 @@
   "weight": 6,
   "w": 262,
   "h": 281,
-  "caption": ""
+  "caption": "19. Todd, probably"
  },
  {
   "file": "1980_petosegan_halloween-costumes_01-1.jpg",
@@ -611,7 +618,7 @@
   "weight": 7,
   "w": 592,
   "h": 800,
-  "caption": ""
+  "caption": "40. the line (someday)"
  },
  {
   "file": "1986_rampage-ads-family-video-club_p136-1.jpg",
@@ -681,7 +688,7 @@
   "weight": 7,
   "w": 530,
   "h": 350,
-  "caption": ""
+  "caption": "44. the competition"
  },
  {
   "file": "1976_ltrhs_color-guard-july-4-1976-parade-on-howard-stre_15409-1.jpg",

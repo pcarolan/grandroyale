@@ -113,6 +113,24 @@
   .strip::before { top: 4px; } .strip::after { bottom: 4px; }
   .strip img { width: 96px; height: 72px; object-fit: cover; filter: grayscale(1) contrast(1.1); }
 
+  /* Cecilia's slice turns up near what it's about: scraps cut from her sketch (tools/scraps.mjs) */
+  .resident { height: auto; background: var(--paper); padding: 6px 8px 4px; }
+  .resident.dice { width: 190px; }
+
+  /* the box that says it's upside down: tap it and it is (a state swap; nothing moves in between) */
+  .flip { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .flip:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
+  .flipped .sheet { transform: rotate(180deg); }
+
+  /* the sticker missing from the sheet, stuck crooked on the payphone */
+  .stray { position: absolute; left: 22%; top: 33%; width: 16%; min-width: 46px; height: auto; transform: rotate(-14deg); pointer-events: none; }
+
+  /* a menu that doesn't exist yet, typed */
+  .menu { padding: 16px 18px 20px; background: var(--paper);
+    clip-path: polygon(0 0, 100% 0, 100% 97%, 91% 100%, 78% 97.5%, 63% 100%, 49% 98%, 33% 100%, 18% 97.5%, 6% 100%, 0 98%); }
+  .menu pre { margin: 0; font: 14px/1.45 var(--type); }
+  .menu b { font-size: 16px; }
+
   .label { height: auto; }
   .label.petoskey { width: 200px; } .label.names { width: 330px; }
 
@@ -179,13 +197,27 @@
   <div class="it strip" data-scrap data-w="6" data-m data-tape="masking" id="strip" role="img" aria-label="A contact strip of six frames from the photos on this wall"></div>
 
   <img class="it label petoskey" data-z="45" data-clear data-scrap data-w="7" data-m src="lettering/label-petoskey.png" width="386" height="64" alt="Petoskey, MI">
-  <img class="it label names" data-z="45" data-clear data-scrap data-w="6" data-m src="lettering/label-names.png" width="694" height="64" alt="Todd Webb + Pat Carolan">
+  <img class="it label names" data-z="45" data-clear data-scrap data-w="6" data-m data-below src="lettering/label-names.png" width="694" height="64" alt="Todd Webb + Pat Carolan">
+
+  <div class="it menu" data-scrap data-w="3" data-m data-tape="masking" data-tilt="3">
+<pre><b>MENU (not yet)</b>
+
+cheese ............. soon
+pepperoni .......... soon
+the one Todd keeps
+  talking about
+  ....... when he's ready
+slices after 2am ..... no</pre>
+  </div>
+
+  <!-- Cecilia's dice crown, sat on top of the card (placed by data-near, never on the card) -->
+  <img class="it resident dice" data-near="card" data-tape="masking" src="scraps/cecilia-dice.jpg" width="420" height="180" alt="">
 
   <a class="it credit" href="photos/ATTRIBUTION.md">photo credits</a>
 
 </main>
 
-<script type="application/json" id="manifest">[{"file":"crown-slice-sketch.jpg","alt":"Pencil sketch of a pizza slice wearing a crown topped with three dice, drips running off the crown, signed Cecilia Carolan","treatment":"xerox","weight":7,"w":862,"h":900,"caption":"","place":"top"},{"file":"victory-lanes.jpg","alt":"Snapshot inside Victory Lanes bowling alley: a plastic booth table in the foreground, lanes and overhead score screens behind","treatment":"color","weight":8,"w":168,"h":300,"caption":""},{"file":"vacancy-bar.jpg","alt":"Snapshot of a packed dive bar: a lit VACANCY sign, Budweiser neon, buckets and junk hung from the ceiling, people at the tables","treatment":"color","weight":8,"w":638,"h":480,"caption":""},{"file":"yellow-awning.jpg","alt":"Snapshot of a white block building with a yellow awning and a painted pin-up figure climbing the wall","treatment":"color","weight":9,"w":660,"h":400,"caption":""},{"file":"cjoys-arcade-ad.jpg","alt":"Newspaper ad: Grand Opening of C. Joy's family Arcade, 323 W. Mitchell, Petoskey, next to Walenta's; free slush puppies, video games, pinball, pool table","treatment":"xerox","weight":9,"w":638,"h":480,"caption":""},{"file":"slice-paper-plate.jpg","alt":"Photocopy of a cheese slice on a paper plate on a stone counter","treatment":"xerox","weight":8,"w":720,"h":540,"caption":"royale with cheese"},{"file":"dollar-slice-sign.jpg","alt":"Red photocopy of a hand holding a slice under a sign for $1.50 slices","treatment":"red","weight":7,"w":542,"h":720},{"file":"two-slices.jpg","alt":"Photocopy of two big thin slices on a paper plate","treatment":"xerox","weight":4,"w":560,"h":498},{"file":"square-slice.jpg","alt":"Snapshot of a square Brooklyn slice on a paper plate on a red metal table","treatment":"color","weight":9,"w":720,"h":534,"caption":"brooklyn"},{"file":"upside-down-box.jpg","alt":"Photocopy of a pizza box lid printed: if you are reading this your pizza is upside down","treatment":"xerox","weight":6,"w":645,"h":720},{"file":"box-in-the-grass.jpg","alt":"Photocopy of a crushed, empty pizza box lying in wet grass","treatment":"xerox","weight":3,"w":560,"h":420},{"file":"sticker-wall.jpg","alt":"Snapshot of a wall completely covered in band and skate stickers","treatment":"color","weight":8,"w":720,"h":540},{"file":"red-stools.jpg","alt":"Photocopy of a dark bar with a row of chrome stools","treatment":"xerox","weight":4,"w":560,"h":374},{"file":"bar-sink.jpg","alt":"Flash photocopy of a grimy bar bathroom sink","treatment":"xerox","weight":6,"w":720,"h":540,"caption":"wash your hands"},{"file":"rheingold-neon.jpg","alt":"Photocopy of a Rheingold Extra Dry neon beer sign in a window","treatment":"xerox","weight":3,"w":560,"h":373},{"file":"donuts-cold-beer.jpg","alt":"Snapshot of red and blue neon signs reading Do-Nuts and Cold Beer","treatment":"color","weight":5,"w":560,"h":263},{"file":"payphone-fence.jpg","alt":"Photocopy of a beat-up New York payphone covered in stickers next to a chain-link fence","treatment":"xerox","weight":7,"w":720,"h":720,"caption":"call us (no)"},{"file":"payphones-snow.jpg","alt":"Photocopy of street payphones at night with snow piled at the base","treatment":"xerox","weight":3,"w":560,"h":373},{"file":"smiley-payphone.jpg","alt":"Photocopy of a payphone on a tiled wall with a smiley-face sticker","treatment":"xerox","weight":4,"w":420,"h":560},{"file":"boombox-shoulder.jpg","alt":"Red photocopy of a guy carrying a boombox on his shoulder through a crowd, 1985","treatment":"red","weight":7,"w":720,"h":480},{"file":"boombox.jpg","alt":"Photocopy of a giant silver boombox with two antennas up","treatment":"xerox","weight":4,"w":560,"h":448},{"file":"loose-tape.jpg","alt":"Photocopy of a cassette with its tape pulled out in loops","treatment":"xerox","weight":3,"w":560,"h":373},{"file":"mixtape-notes.jpg","alt":"Photocopy of a mixtape case with the song list written by hand","treatment":"xerox","weight":5,"w":560,"h":368},{"file":"old-skateboard.jpg","alt":"Snapshot of a worn 1990s skateboard leaning on a porch deck","treatment":"color","weight":5,"w":560,"h":435},{"file":"night-ollie.jpg","alt":"Flash photocopy of a skater flying over a bollard at night","treatment":"xerox","weight":6,"w":517,"h":720},{"file":"ollie-sequence.jpg","alt":"Photocopied sequence of four frames of a kid doing an ollie","treatment":"xerox","weight":4,"w":560,"h":210},{"file":"crowd-surf.jpg","alt":"Black and white photocopy of a crowd surfer held up over a packed show","treatment":"xerox","weight":9,"w":720,"h":480},{"file":"red-pit.jpg","alt":"Red photocopy of a blurry mosh pit under stage lights","treatment":"red","weight":5,"w":560,"h":372},{"file":"pit-bw.jpg","alt":"Photocopy of kids slamming in a mosh pit","treatment":"xerox","weight":3,"w":560,"h":372},{"file":"no-moshing-sign.jpg","alt":"Photocopy of a venue sign: moshing and crowd surfing prohibited","treatment":"xerox","weight":6,"w":720,"h":478},{"file":"club-shutter.jpg","alt":"Photocopy of a club's metal shutter covered in hand-painted band names","treatment":"xerox","weight":5,"w":560,"h":373},{"file":"subway-bikes.jpg","alt":"Photocopy of kids with bikes on a graffiti-covered subway car","treatment":"xerox","weight":6,"w":720,"h":514},{"file":"subway-riders.jpg","alt":"Photocopy of subway riders reading newspapers in front of graffiti","treatment":"xerox","weight":3,"w":560,"h":397},{"file":"brooklyn-stoops.jpg","alt":"Photocopy of people on brownstone stoops behind iron fences in Brooklyn, 1970s","treatment":"xerox","weight":4,"w":560,"h":378},{"file":"bodega-ice.jpg","alt":"Photocopy of a bodega ice freezer covered in graffiti on a Brooklyn sidewalk","treatment":"xerox","weight":4,"w":420,"h":560},{"file":"east-village-1998.jpg","alt":"Photocopy of a woman on a payphone next to a cartoon mural, East Village 1998","treatment":"xerox","weight":5,"w":560,"h":378},{"file":"petoskey-stone.jpg","alt":"Snapshot of a polished Petoskey stone on a paper towel","treatment":"color","weight":6,"w":384,"h":273,"caption":"petoskey stone"},{"file":"stone-hunting.jpg","alt":"Photocopy of beach pebbles and two sneakers, looking for Petoskey stones","treatment":"xerox","weight":5,"w":560,"h":492},{"file":"lake-ice-1911.jpg","alt":"Photocopy of ice piled on the Lake Michigan shore, 1911","treatment":"xerox","weight":4,"w":560,"h":357},{"file":"lake-in-january.jpg","alt":"Photocopy of frozen Lake Michigan with a lighthouse far out on the ice","treatment":"xerox","weight":7,"w":720,"h":540,"caption":"the lake in january"},{"file":"petoskey-postcard.jpg","alt":"Old Greetings from Petoskey, Michigan large-letter postcard","treatment":"color","weight":8,"w":720,"h":467},{"file":"petoskey-light.jpg","alt":"Red photocopy of the Petoskey pier light on Little Traverse Bay","treatment":"red","weight":4,"w":560,"h":372},{"file":"1980_petosegan_dance-candids_01-1.jpg","alt":"A guy in a cowboy hat and western shirt boogies to disco at the Sadie Hawkins dance.","treatment":"xerox","weight":6,"w":262,"h":281,"caption":""},{"file":"1980_petosegan_halloween-costumes_01-1.jpg","alt":"Teens in oversized yellow sunglasses and a number 5 football jersey dance close at the Halloween dance.","treatment":"xerox","weight":6,"w":515,"h":355,"caption":""},{"file":"1980_petosegan_mock-elections_01-2.jpg","alt":"Two seniors on a brick-wall floor smile and hold a hand-lettered 'Won't You Be Mine?' sign.","treatment":"xerox","weight":5,"w":455,"h":475,"caption":""},{"file":"1980_petosegan_pep-assembly-crowd_01-1.jpg","alt":"A packed bleacher crowd of teens cheering at a pep assembly, jackets and feathered hair.","treatment":"xerox","weight":7,"w":592,"h":800,"caption":""},{"file":"1986_rampage-ads-family-video-club_p136-1.jpg","alt":"Showbiz Family Video Club ad: marquee-bulb logo, \"Your Full Service Video Centers\", 113 E. Main, Harbor Springs and 212 E. Mitchell, Petoskey","treatment":"xerox","weight":7,"w":520,"h":665,"caption":""},{"file":"1986_rayder-charlevoix_ads-family-video-showcase_p120-1.jpg","alt":"Family Video Showcase Sales and Rentals ad framed by marquee stars and bulbs","treatment":"xerox","weight":6,"w":800,"h":677,"caption":""},{"file":"1990_rayder_super-seniors-candids_p45-1.jpg","alt":"Three seniors in sombreros and serapes, one holding a stuffed bull, in a school hall.","treatment":"xerox","weight":5,"w":415,"h":352,"caption":""},{"file":"1994_rayder-charlevoix_famous-places-candids_01-2.jpg","alt":"Guys in disco-era polyester shirts whooping with arms in the air.","treatment":"xerox","weight":5,"w":442,"h":348,"caption":""},{"file":"1996_rayder-charlevoix_lunchtime-burger-king_p21-1.jpg","alt":"Three seniors in letter jackets posing with the Burger King sign.","treatment":"color","weight":7,"w":530,"h":350,"caption":""},{"file":"1976_ltrhs_color-guard-july-4-1976-parade-on-howard-stre_15409-1.jpg","alt":"Teen drum corps and flag line in green uniforms march past a packed Howard Street sidewalk crowd in the July 4 parade.","treatment":"color","weight":6,"w":800,"h":607,"caption":""}]</script>
+<script type="application/json" id="manifest">[{"file":"crown-slice-sketch.jpg","alt":"Pencil sketch of a pizza slice wearing a crown topped with three dice, drips running off the crown, signed Cecilia Carolan","treatment":"xerox","weight":7,"w":862,"h":900,"caption":"12. this is our pizza\n(artist's rendering)","place":"top"},{"file":"victory-lanes.jpg","alt":"Snapshot inside Victory Lanes bowling alley: a plastic booth table in the foreground, lanes and overhead score screens behind","treatment":"color","weight":8,"w":168,"h":300,"caption":"2. victory lanes"},{"file":"vacancy-bar.jpg","alt":"Snapshot of a packed dive bar: a lit VACANCY sign, Budweiser neon, buckets and junk hung from the ceiling, people at the tables","treatment":"color","weight":8,"w":638,"h":480,"caption":""},{"file":"yellow-awning.jpg","alt":"Snapshot of a white block building with a yellow awning and a painted pin-up figure climbing the wall","treatment":"color","weight":9,"w":660,"h":400,"caption":""},{"file":"cjoys-arcade-ad.jpg","alt":"Newspaper ad: Grand Opening of C. Joy's family Arcade, 323 W. Mitchell, Petoskey, next to Walenta's; free slush puppies, video games, pinball, pool table","treatment":"xerox","weight":9,"w":638,"h":480,"caption":""},{"file":"slice-paper-plate.jpg","alt":"Photocopy of a cheese slice on a paper plate on a stone counter","treatment":"xerox","weight":8,"w":720,"h":540,"caption":"royale with cheese"},{"file":"dollar-slice-sign.jpg","alt":"Red photocopy of a hand holding a slice under a sign for $1.50 slices","treatment":"red","weight":7,"w":542,"h":720,"caption":"7. also not our pizza"},{"file":"two-slices.jpg","alt":"Photocopy of two big thin slices on a paper plate","treatment":"xerox","weight":4,"w":560,"h":498,"caption":"3. not our pizza"},{"file":"square-slice.jpg","alt":"Snapshot of a square Brooklyn slice on a paper plate on a red metal table","treatment":"color","weight":9,"w":720,"h":534,"caption":"brooklyn"},{"file":"upside-down-box.jpg","alt":"Photocopy of a pizza box lid printed: if you are reading this your pizza is upside down","treatment":"xerox","weight":7,"w":645,"h":720},{"file":"box-in-the-grass.jpg","alt":"Photocopy of a crushed, empty pizza box lying in wet grass","treatment":"xerox","weight":3,"w":560,"h":420,"caption":"31. leftovers"},{"file":"sticker-wall.jpg","alt":"Snapshot of a wall completely covered in band and skate stickers","treatment":"color","weight":8,"w":720,"h":540},{"file":"red-stools.jpg","alt":"Photocopy of a dark bar with a row of chrome stools","treatment":"xerox","weight":4,"w":560,"h":374,"caption":"15. seating (not ours)"},{"file":"bar-sink.jpg","alt":"Flash photocopy of a grimy bar bathroom sink","treatment":"xerox","weight":6,"w":720,"h":540,"caption":"wash your hands"},{"file":"rheingold-neon.jpg","alt":"Photocopy of a Rheingold Extra Dry neon beer sign in a window","treatment":"xerox","weight":3,"w":560,"h":373},{"file":"donuts-cold-beer.jpg","alt":"Snapshot of red and blue neon signs reading Do-Nuts and Cold Beer","treatment":"color","weight":5,"w":560,"h":263},{"file":"payphone-fence.jpg","alt":"Photocopy of a beat-up New York payphone covered in stickers next to a chain-link fence","treatment":"xerox","weight":7,"w":720,"h":720,"caption":"call us (no)"},{"file":"payphones-snow.jpg","alt":"Photocopy of street payphones at night with snow piled at the base","treatment":"xerox","weight":3,"w":560,"h":373},{"file":"smiley-payphone.jpg","alt":"Photocopy of a payphone on a tiled wall with a smiley-face sticker","treatment":"xerox","weight":4,"w":420,"h":560},{"file":"boombox-shoulder.jpg","alt":"Red photocopy of a guy carrying a boombox on his shoulder through a crowd, 1985","treatment":"red","weight":7,"w":720,"h":480},{"file":"boombox.jpg","alt":"Photocopy of a giant silver boombox with two antennas up","treatment":"xerox","weight":4,"w":560,"h":448},{"file":"loose-tape.jpg","alt":"Photocopy of a cassette with its tape pulled out in loops","treatment":"xerox","weight":3,"w":560,"h":373},{"file":"mixtape-notes.jpg","alt":"Photocopy of a mixtape case with the song list written by hand","treatment":"xerox","weight":5,"w":560,"h":368},{"file":"old-skateboard.jpg","alt":"Snapshot of a worn 1990s skateboard leaning on a porch deck","treatment":"color","weight":5,"w":560,"h":435},{"file":"night-ollie.jpg","alt":"Flash photocopy of a skater flying over a bollard at night","treatment":"xerox","weight":6,"w":517,"h":720},{"file":"ollie-sequence.jpg","alt":"Photocopied sequence of four frames of a kid doing an ollie","treatment":"xerox","weight":4,"w":560,"h":210},{"file":"crowd-surf.jpg","alt":"Black and white photocopy of a crowd surfer held up over a packed show","treatment":"xerox","weight":9,"w":720,"h":480,"caption":"9. delivery (proposed)"},{"file":"red-pit.jpg","alt":"Red photocopy of a blurry mosh pit under stage lights","treatment":"red","weight":5,"w":560,"h":372},{"file":"pit-bw.jpg","alt":"Photocopy of kids slamming in a mosh pit","treatment":"xerox","weight":3,"w":560,"h":372},{"file":"no-moshing-sign.jpg","alt":"Photocopy of a venue sign: moshing and crowd surfing prohibited","treatment":"xerox","weight":6,"w":720,"h":478,"caption":"22. house rules"},{"file":"club-shutter.jpg","alt":"Photocopy of a club's metal shutter covered in hand-painted band names","treatment":"xerox","weight":5,"w":560,"h":373},{"file":"subway-bikes.jpg","alt":"Photocopy of kids with bikes on a graffiti-covered subway car","treatment":"xerox","weight":6,"w":720,"h":514},{"file":"subway-riders.jpg","alt":"Photocopy of subway riders reading newspapers in front of graffiti","treatment":"xerox","weight":3,"w":560,"h":397},{"file":"brooklyn-stoops.jpg","alt":"Photocopy of people on brownstone stoops behind iron fences in Brooklyn, 1970s","treatment":"xerox","weight":4,"w":560,"h":378},{"file":"bodega-ice.jpg","alt":"Photocopy of a bodega ice freezer covered in graffiti on a Brooklyn sidewalk","treatment":"xerox","weight":4,"w":420,"h":560},{"file":"east-village-1998.jpg","alt":"Photocopy of a woman on a payphone next to a cartoon mural, East Village 1998","treatment":"xerox","weight":5,"w":560,"h":378},{"file":"petoskey-stone.jpg","alt":"Snapshot of a polished Petoskey stone on a paper towel","treatment":"color","weight":6,"w":384,"h":273,"caption":"petoskey stone"},{"file":"stone-hunting.jpg","alt":"Photocopy of beach pebbles and two sneakers, looking for Petoskey stones","treatment":"xerox","weight":5,"w":560,"h":492,"caption":"33. still looking"},{"file":"lake-ice-1911.jpg","alt":"Photocopy of ice piled on the Lake Michigan shore, 1911","treatment":"xerox","weight":4,"w":560,"h":357},{"file":"lake-in-january.jpg","alt":"Photocopy of frozen Lake Michigan with a lighthouse far out on the ice","treatment":"xerox","weight":7,"w":720,"h":540,"caption":"the lake in january"},{"file":"petoskey-postcard.jpg","alt":"Old Greetings from Petoskey, Michigan large-letter postcard","treatment":"color","weight":8,"w":720,"h":467},{"file":"petoskey-light.jpg","alt":"Red photocopy of the Petoskey pier light on Little Traverse Bay","treatment":"red","weight":4,"w":560,"h":372},{"file":"1980_petosegan_dance-candids_01-1.jpg","alt":"A guy in a cowboy hat and western shirt boogies to disco at the Sadie Hawkins dance.","treatment":"xerox","weight":6,"w":262,"h":281,"caption":"19. Todd, probably"},{"file":"1980_petosegan_halloween-costumes_01-1.jpg","alt":"Teens in oversized yellow sunglasses and a number 5 football jersey dance close at the Halloween dance.","treatment":"xerox","weight":6,"w":515,"h":355,"caption":""},{"file":"1980_petosegan_mock-elections_01-2.jpg","alt":"Two seniors on a brick-wall floor smile and hold a hand-lettered 'Won't You Be Mine?' sign.","treatment":"xerox","weight":5,"w":455,"h":475,"caption":""},{"file":"1980_petosegan_pep-assembly-crowd_01-1.jpg","alt":"A packed bleacher crowd of teens cheering at a pep assembly, jackets and feathered hair.","treatment":"xerox","weight":7,"w":592,"h":800,"caption":"40. the line (someday)"},{"file":"1986_rampage-ads-family-video-club_p136-1.jpg","alt":"Showbiz Family Video Club ad: marquee-bulb logo, \"Your Full Service Video Centers\", 113 E. Main, Harbor Springs and 212 E. Mitchell, Petoskey","treatment":"xerox","weight":7,"w":520,"h":665,"caption":""},{"file":"1986_rayder-charlevoix_ads-family-video-showcase_p120-1.jpg","alt":"Family Video Showcase Sales and Rentals ad framed by marquee stars and bulbs","treatment":"xerox","weight":6,"w":800,"h":677,"caption":""},{"file":"1990_rayder_super-seniors-candids_p45-1.jpg","alt":"Three seniors in sombreros and serapes, one holding a stuffed bull, in a school hall.","treatment":"xerox","weight":5,"w":415,"h":352,"caption":""},{"file":"1994_rayder-charlevoix_famous-places-candids_01-2.jpg","alt":"Guys in disco-era polyester shirts whooping with arms in the air.","treatment":"xerox","weight":5,"w":442,"h":348,"caption":""},{"file":"1996_rayder-charlevoix_lunchtime-burger-king_p21-1.jpg","alt":"Three seniors in letter jackets posing with the Burger King sign.","treatment":"color","weight":7,"w":530,"h":350,"caption":"44. the competition"},{"file":"1976_ltrhs_color-guard-july-4-1976-parade-on-howard-stre_15409-1.jpg","alt":"Teen drum corps and flag line in green uniforms march past a packed Howard Street sidewalk crowd in the July 4 parade.","treatment":"color","weight":6,"w":800,"h":607,"caption":""}]</script>
 <script>
 (function () {
   'use strict';
@@ -195,6 +227,7 @@
   var card = document.getElementById('card');
   var spray = document.getElementById('spray');
   var scraps = Array.prototype.slice.call(wall.querySelectorAll('[data-scrap]'));
+  var BELOW = ['petoskey-postcard.jpg'];   // phones: under the fold, so the first screen is name, slice, card (CRIT #9)
   var STRIP = ['crowd-surf.jpg', 'night-ollie.jpg', 'payphone-fence.jpg', 'slice-paper-plate.jpg', 'boombox.jpg', 'lake-in-january.jpg'];
   var photos = [];
 
@@ -231,8 +264,9 @@
     var sheet = document.createElement('div');
     sheet.className = 'sheet';
     var pad = [0, 0, 0, 0];
-    if (p.treatment === 'color') pad = [9, 9, p.caption ? (mobile ? 30 : 38) : 22, 9];
-    else if (r() < 0.55 || p.caption) { var m = 4 + r() * 12; pad = [m, m * (0.6 + r()), p.caption ? (mobile ? 30 : 36) : m * (0.8 + r()), m * (0.6 + r())]; }
+    var lines = p.caption ? p.caption.split('\n').length : 0, more = lines > 1 ? (lines - 1) * (mobile ? 14 : 17) : 0;
+    if (p.treatment === 'color') pad = [9, 9, p.caption ? (mobile ? 30 : 38) + more : 22, 9];
+    else if (r() < 0.55 || p.caption) { var m = 4 + r() * 12; pad = [m, m * (0.6 + r()), p.caption ? (mobile ? 30 : 36) + more : m * (0.8 + r()), m * (0.6 + r())]; }
     sheet.style.padding = pad.map(function (n) { return n.toFixed(0) + 'px'; }).join(' ');
     if (p.treatment !== 'color') sheet.style.clipPath = tear(r, { top: r() < 0.5, bot: r() < 0.6 });
     var img = document.createElement('img');
@@ -241,15 +275,37 @@
     fig.appendChild(sheet);
     if (p.caption) {
       var cap = document.createElement('img');
-      cap.className = 'cap'; cap.alt = p.caption; cap.src = 'lettering/cap-' + p.file.replace(/\.jpg$/, '') + '.svg';
+      cap.className = 'cap'; cap.alt = p.caption.replace(/\n/g, ' ');
+      // a two-line caption is a taller strip of the same marker (svg: 15 units a line + 6)
+      if (lines > 1) cap.style.height = ((mobile ? 18 : 22) * (p.caption.split('\n').length * 15 + 6) / 21).toFixed(0) + 'px';
+      cap.src = 'lettering/cap-' + p.file.replace(/\.jpg$/, '') + '.svg';
       fig.appendChild(cap);
+    }
+    if (p.file === 'payphone-fence.jpg') {
+      // the one peeled off the sticker sheet turned up here
+      var stray = document.createElement('img');
+      stray.className = 'stray'; stray.alt = ''; stray.width = 281; stray.height = 204;
+      stray.src = 'lettering/sticker.svg';
+      fig.appendChild(stray);
+    }
+    var flip = p.file === 'upside-down-box.jpg';
+    if (flip) {
+      // it says it's upside down; tap it and it is (CRIT #5)
+      fig.classList.add('flip');
+      fig.tabIndex = 0;
+      fig.setAttribute('role', 'button');
+      fig.setAttribute('aria-pressed', 'false');
+      var turn = function () { fig.classList.toggle('flipped'); fig.setAttribute('aria-pressed', String(fig.classList.contains('flipped'))); };
+      fig.addEventListener('click', turn);
+      fig.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); turn(); } });
     }
     var w = imgW + pad[1] + pad[3], h = imgW * p.h / p.w + pad[0] + pad[2];
     fig.style.width = w.toFixed(0) + 'px';
     var t = r();
-    return { el: fig, img: img, src: 'photos/' + p.file, w: w, h: h, weight: p.weight, tilt: 8, place: p.place, clear: p.treatment !== 'xerox' };
+    return { el: fig, img: img, src: 'photos/' + p.file, w: w, h: h, padV: pad[0] + pad[2], padH: pad[1] + pad[3], ratio: p.h / p.w, weight: p.weight, tilt: 8, place: p.place, clear: p.treatment !== 'xerox', flip: flip, below: BELOW.indexOf(p.file) >= 0 };
   }
 
+  function grow(b, n) { return { x: b.x - n, y: b.y - n, w: b.w + 2 * n, h: b.h + 2 * n }; }
   function overlaps(a, b) { return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y; }
 
   function build() {
@@ -290,7 +346,35 @@
       s.style.display = show ? '' : 'none';
       if (!show) return;
       s.style.transform = 'none';
-      items.push({ el: s, w: s.offsetWidth, h: s.offsetHeight, weight: +s.getAttribute('data-w'), tilt: +(s.getAttribute('data-tilt') || 8), clear: s.hasAttribute('data-clear'), tape: s.getAttribute('data-tape') });
+      items.push({ el: s, w: s.offsetWidth, h: s.offsetHeight, weight: +s.getAttribute('data-w'), tilt: +(s.getAttribute('data-tilt') || 8), clear: s.hasAttribute('data-clear'), tape: s.getAttribute('data-tape'), below: s.hasAttribute('data-below') });
+    });
+    var sprayBottom = sprayBox.y + sprayBox.h;
+    if (mobile) items.forEach(function (it) {
+      // phones: the pinned sketch shrinks to fit between the name and the card, so all three share the first screen
+      if (it.place !== 'top') return;
+      var room = c.y - sprayBottom - 14;
+      if (it.h <= room) return;
+      var imgW = (room - it.padV) / it.ratio;
+      it.w = imgW + it.padH; it.h = room;
+      it.el.style.width = it.w.toFixed(0) + 'px';
+    });
+
+    // scraps that belong next to something: stuck beside it, then kept clear by the scatter
+    Array.prototype.forEach.call(wall.querySelectorAll('[data-near]'), function (n) {
+      var show = !mobile || n.hasAttribute('data-m');
+      n.style.display = show ? '' : 'none';
+      if (!show) return;
+      n.style.transform = 'none';
+      var w = n.offsetWidth, h = n.offsetHeight;
+      // the dice crown sits on the card's top edge, right of centre, never over it
+      var x = Math.max(6, Math.min(W - w - 6, c.x + c.w - w * 0.95)), y = Math.max(6, c.y - h + 8);
+      n.style.left = x.toFixed(0) + 'px';
+      n.style.top = y.toFixed(0) + 'px';
+      n.style.transform = 'rotate(' + ((rt() - 0.5) * 9).toFixed(1) + 'deg)';
+      n.style.zIndex = 58;
+      if (n.getAttribute('data-tape') && !n.querySelector('.tape')) hold(n, n.getAttribute('data-tape'), rt, w);
+      var nb = grow({ x: x, y: y, w: w, h: h }, 10);
+      keepOut.push(nb);
     });
     items.forEach(function (it) { it.order = it.weight + r() * 4; });
     items.sort(function (a, b) { return b.order - a.order; });
@@ -299,13 +383,17 @@
     var area = items.reduce(function (n, it) { return n + it.w * it.h; }, 0);
     var H = Math.max(c.y + c.h + 120, area * (mobile ? 1.3 : 1.0) / W);
     var CELL = 20, cols = Math.ceil(W / CELL), rows = Math.ceil((H + 900) / CELL), occ = new Uint8Array(cols * rows);
-    var placed = [], bottom = c.y + c.h;
+    var placed = [], pinned = [], bottom = c.y + c.h;
     function dart(it, rr, top) {
       var best = null, bestScore = -1e9;
       for (var k = 0; k < 160 && !(best && k >= 48); k++) {
         if (k && k % 48 === 0 && !top) H += it.h * 0.5;   // no room that leaves the card alone: the wall grows down
         var x, y;
-        if (top && k < 96) {
+        if (top && mobile && k < 48) {
+          // phones: top-left, under the name, pointing down at the card (CRIT #9)
+          x = W * 0.02 + rr() * W * 0.05;
+          y = sprayBottom + 4 + rr() * 6;
+        } else if (top && k < 96) {
           // pinned near the top, whole: in the first screen, or just under the card (phones) within 1.3 screens
           var lo = k < 48 ? 0 : c.y + c.h;
           x = rr() * Math.max(10, W - it.w);
@@ -314,10 +402,13 @@
           x = -0.2 * it.w + rr() * (W - 0.6 * it.w);
           y = (rr() < 0.12 ? -0.25 * it.h : 0) + rr() * Math.max(10, H - 0.6 * it.h);
         }
-        var slop = 0.09 * Math.max(it.w, it.h);
+        if (it.below && mobile && y < VH) y = VH + 10 + (y / H) * Math.max(10, H - VH - it.h);
+        var slop = top && mobile ? 2 : 0.09 * Math.max(it.w, it.h);
         var box = { x: x - slop, y: y - slop, w: it.w + 2 * slop, h: it.h + 2 * slop };
         if (keepOut.some(function (o) { return overlaps(box, o); })) continue;
-        if ((it.clear || top) && overlaps(box, sprayBox)) continue;   // pinned items stay out from under the name too
+        if (overlaps(box, it.flip ? grow(c, 140) : c)) continue;   // the tap surprise never sits near the card's taps
+        if ((it.clear || top) && !(top && mobile) && overlaps(box, sprayBox)) continue;
+        if (it.clear && pinned.some(function (o) { return overlaps(box, o); })) continue;   // labels and scraps never cover Cecilia's slice   // pinned items stay out from under the name too
         var empty = 0, full = 0;
         var c0 = Math.max(0, Math.floor(x / CELL)), c1 = Math.min(cols - 1, Math.floor((x + it.w) / CELL));
         var r0 = Math.max(0, Math.floor(y / CELL)), r1 = Math.min(rows - 1, Math.floor((y + it.h) / CELL));
@@ -338,7 +429,7 @@
       it.el.style.transform = 'rotate(' + ((rr() - 0.5) * 2 * tilt).toFixed(1) + 'deg)';
       var z = Math.floor(rr() * 40);
       // pinned items sit over the other photos (1-40) but under the name (60)
-      it.el.style.zIndex = it.place === 'top' ? 41 + z % 19 : (+it.el.getAttribute('data-z') || 0) + 1 + z;
+      it.el.style.zIndex = it.place === 'top' ? 41 + z % 19 : it.flip ? 41 + z % 17 : (+it.el.getAttribute('data-z') || 0) + 1 + z;
       if (it.tape && !it.el.querySelector('.tape,.staple')) hold(it.el, it.tape, rr, it.w);
       if (it.img) {
         if (best.y > VH * 1.2) it.img.loading = 'lazy';
@@ -352,7 +443,7 @@
     items.forEach(function (it) {
       if (it.place !== 'top') return;
       var best = dart(it, rt, true);
-      if (best) stick(it, best, rt);
+      if (best) { stick(it, best, rt); pinned.push({ x: best.x, y: best.y, w: it.w, h: it.h }); }
     });
     items.forEach(function (it) {
       // a ghost throw in its old slot keeps the rest of the wall's dice, so everything else stays put
