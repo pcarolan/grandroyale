@@ -50,18 +50,13 @@ test('multi-line captions get a taller strip of marker', () => {
   assert.match(html, /p\.caption\.split\('\\n'\)\.length/);
 });
 
-// ---- #1 the resident: Cecilia's slice, in scraps, near what it's about ----
-test('two small scraps are cut from Cecilia\'s sketch by tools/scraps.mjs', () => {
+// ---- #1 the resident: Cecilia's slice. The wall scraps went (Pat 2026-10-06, "dont dupe photos";
+// bees-pyrm.6, see once.test.mjs); one scrap is still cut for the 404 page ----
+test('one small scrap is cut from Cecilia\'s sketch by tools/scraps.mjs, for the 404', () => {
   assert.ok(existsSync(new URL('tools/scraps.mjs', root)));
-  for (const f of ['scraps/cecilia-dice.jpg', 'scraps/cecilia-tip.jpg']) {
-    assert.ok(existsSync(new URL(f, root)), f);
-    assert.ok(statSync(new URL(f, root)).size < 60 * 1024, `${f} too heavy`);
-  }
-});
-test('the dice crown sits by the card, placed next to it and never on it', () => {
-  assert.match(html, /<img class="it resident[^"]*"[^>]*data-near="card"[^>]*src="scraps\/cecilia-dice\.jpg"/);
-  assert.match(html, /data-near/);
-  assert.match(html, /keepOut\.push\(nb\)/);
+  const f = 'scraps/cecilia-tip.jpg';
+  assert.ok(existsSync(new URL(f, root)), f);
+  assert.ok(statSync(new URL(f, root)).size < 60 * 1024, `${f} too heavy`);
 });
 test('no speech bubbles, no handwriting webfont, no faux scrawl', () => {
   assert.doesNotMatch(html, /bubble|speech|says hi/i);
@@ -118,9 +113,9 @@ test('the scatter lazy-loads everything below the first screen and decodes off t
 });
 test('every static image but the name decodes async; the ones low on the wall load lazy', () => {
   const imgs = [...html.matchAll(/<img\b[^>]*>/g)].map((m) => m[0]).filter((t) => !/wordmark-grand-royale/.test(t));
-  assert.ok(imgs.length >= 6);
+  assert.ok(imgs.length >= 4);   // was 6 before the two sketch scraps left the wall (bees-pyrm.6)
   for (const t of imgs) assert.match(t, /decoding="async"/, t);
-  for (const t of imgs.filter((t) => /sticker1|label names|stamp|class="tip"/.test(t))) assert.match(t, /loading="lazy"/, t);
+  for (const t of imgs.filter((t) => /sticker1|label names|stamp/.test(t))) assert.match(t, /loading="lazy"/, t);
 });
 
 // ---- #10 alt text as whispers ----
@@ -153,7 +148,7 @@ test('alt text whispers: the description, then an aside, on 8 photos', () => {
 test('TODO-scans.md says exactly which scans to get from Cecilia, Pat and Todd', () => {
   assert.ok(existsSync(new URL('TODO-scans.md', root)));
   const t = read('TODO-scans.md');
-  for (const s of ['Cecilia', 'Todd', 'Pat', 'pencil', 'scraps/cecilia-dice.jpg', 'scraps/cecilia-tip.jpg', 'dpi']) assert.ok(t.includes(s), s);
+  for (const s of ['Cecilia', 'Todd', 'Pat', 'pencil', 'scraps/cecilia-tip.jpg', 'dpi']) assert.ok(t.includes(s), s);
   assert.ok((t.match(/^\s*[-|] /gm) || []).length >= 8, 'a real list');
 });
 test('DESIGN.md has a dated _why pass section', () => {

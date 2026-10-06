@@ -78,7 +78,7 @@ export function creditsHTML(manifest) {
   <i class="tape gaffer" aria-hidden="true"></i>
   <p class="big">Thank you.</p>
   <p>Almost everything on this wall is someone else's photo. Here's who, and where we found it. Most of them we photocopied, which is a change to the original; none of them show our pizza.</p>
-  <p>The pencil slice is Cecilia Carolan's (crown-slice-sketch.jpg, and the two scraps we cut from it: scraps/cecilia-dice.jpg, scraps/cecilia-tip.jpg).</p>
+  <p>The pencil slice is Cecilia Carolan's (crown-slice-sketch.jpg, and the tip we cut from it for the 404 page: scraps/cecilia-tip.jpg).</p>
   <p><a href="./">back to the wall</a></p>
 </div>
 <ol>

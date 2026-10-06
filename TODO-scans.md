@@ -1,7 +1,8 @@
 # Scans the wall is waiting for
 
 The _why pass (CRIT.md, 2026-10-06) wants real hands on the wall. No new scans existed, so the stand-ins below
-use what we had: two scraps cut from Cecilia's one sketch, and typed Courier where a pencil note should be.
+use what we had: one scrap cut from Cecilia's sketch for the 404 page (the wall shows her sketch once, no
+scraps of it: Pat 2026-10-06, "dont dupe photos"), and typed Courier where a pencil note should be.
 Nothing here is faked handwriting. When a scan arrives, swap it in and delete its line.
 
 **How to scan:** pencil or black marker on plain white paper, 600 dpi, grayscale, flat light, no shadow.
@@ -12,9 +13,9 @@ Send the whole sheet; we crop. One person per scrap (no mixing hands on one shee
 | Drawing | Size on paper | Replaces / goes | Where on the wall |
 |---|---|---|---|
 | - the slice asleep (eyes shut, crown slipping) | about 3 x 3 in | new scrap | low on the wall, near the `MENU (not yet)` scrap |
-| - the slice pointing at something, arm out | about 3 x 4 in | replaces `scraps/cecilia-dice.jpg` | on the sign-up card's top edge (`data-near="card"`); on phones top-left, pointing down at the card |
-| - the slice holding a phone upside down | about 3 x 4 in | replaces `scraps/cecilia-tip.jpg` | beside the thank-you card, bottom right; also on 404.html next to the box |
-| - a small slice, any pose, for the 404 | about 2 x 2 in | new | 404.html, looking at the box in the grass |
+| - the slice pointing at something, arm out | about 3 x 4 in | new (the dice-crown scrap that sat here was cut, bees-pyrm.6) | on the sign-up card's top edge; on phones near the card, pointing down at it |
+| - the slice holding a phone upside down | about 3 x 4 in | new | beside the thank-you card, bottom right |
+| - a small slice, any pose, for the 404 | about 2 x 2 in | replaces `scraps/cecilia-tip.jpg` | 404.html, looking at the box in the grass |
 
 ## From Pat or Todd (pencil or sharpie marginalia; CRIT #3)
 

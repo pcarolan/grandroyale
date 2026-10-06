@@ -54,7 +54,7 @@ test('credits.html exists and lists every photo on the wall: file, author, licen
     assert.ok(p.includes(esc(m.license)), `credits missing license for ${m.file}`);
     assert.ok(p.includes(`href="${esc(m.source_url)}"`), `credits missing source for ${m.file}`);
   }
-  for (const f of ['scraps/cecilia-dice.jpg', 'scraps/cecilia-tip.jpg']) assert.ok(p.includes(f), `credits missing ${f}`);
+  assert.ok(p.includes('scraps/cecilia-tip.jpg'), 'credits missing the 404 scrap');   // the dice scrap is gone (bees-pyrm.6)
   assert.match(p, /Thank you\./);
   assert.match(p, /<a href="\.\/">back to the wall<\/a>/);
 });
@@ -72,7 +72,7 @@ test('a taped thank-you card replaces the tiny "photo credits" link and points a
   assert.match(card, /Almost everything on this wall is someone else's photo\. Thank you\./);
   assert.match(card, /<a href="credits\.html">Here's who &rarr;<\/a>/);
   assert.match(card, /class="tape/);
-  assert.match(card, /src="scraps\/cecilia-tip\.jpg"/, "Cecilia's slice tip by the thank-you");
+  assert.doesNotMatch(card, /scraps\//, 'no second copy of the sketch on the wall (bees-pyrm.6)');
   assert.ok(!/data-scrap/.test(card), 'pinned, not scattered');
   assert.doesNotMatch(html, /photos\/ATTRIBUTION\.md|>photo credits</);
   assert.equal((html.match(/href="credits\.html"/g) || []).length, 1);

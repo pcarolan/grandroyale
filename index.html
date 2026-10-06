@@ -113,10 +113,6 @@
   .strip::before { top: 4px; } .strip::after { bottom: 4px; }
   .strip img { width: 96px; height: 72px; object-fit: cover; filter: grayscale(1) contrast(1.1); }
 
-  /* Cecilia's slice turns up near what it's about: scraps cut from her sketch (tools/scraps.mjs) */
-  .resident { height: auto; background: var(--paper); padding: 6px 8px 4px; }
-  .resident.dice { width: 190px; }
-
   /* the box that says it's upside down: tap it and it is (a state swap; nothing moves in between) */
   .flip { cursor: pointer; -webkit-tap-highlight-color: transparent; }
   .flip:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
@@ -134,12 +130,11 @@
   .label { height: auto; }
   .label.petoskey { width: 200px; } .label.names { width: 330px; }
 
-  /* a thank-you card, taped up at the bottom right; Cecilia's slice tip points at it */
+  /* a thank-you card, taped up at the bottom right */
   .thanks { right: 14px; bottom: 16px; z-index: 95; width: min(260px, 66vw); padding: 22px 16px 16px; background: var(--paper); transform: rotate(-2deg); font: 700 14px/1.4 var(--type); }
   .thanks p { margin: 0 0 8px; }
   .thanks a { font-size: 16px; }
   .thanks .tape { top: -12px; left: 50%; transform: translateX(-50%) rotate(-4deg); }
-  .thanks .tip { position: absolute; left: -64px; top: -58px; width: 74px; height: auto; transform: rotate(-38deg); mix-blend-mode: multiply; pointer-events: none; }
 
   @media (min-width: 600px) {
     #card { margin: 300px 0 0 38vw; }
@@ -214,12 +209,8 @@ the one Todd keeps
 slices after 2am ..... no</pre>
   </div>
 
-  <!-- Cecilia's dice crown, sat on top of the card (placed by data-near, never on the card) -->
-  <img class="it resident dice" data-near="card" data-tape="masking" src="scraps/cecilia-dice.jpg" width="420" height="180" alt="" decoding="async">
-
   <div class="it thanks">
     <i class="tape" aria-hidden="true"></i>
-    <img class="tip" src="scraps/cecilia-tip.jpg" width="217" height="260" alt="" loading="lazy" decoding="async">
     <p>Almost everything on this wall is someone else's photo. Thank you.</p>
     <a href="credits.html">Here's who &rarr;</a>
   </div>
@@ -240,16 +231,6 @@ slices after 2am ..... no</pre>
   var STRIP = ['crowd-surf.jpg', 'night-ollie.jpg', 'payphone-fence.jpg', 'slice-paper-plate.jpg', 'boombox.jpg', 'lake-in-january.jpg'];
   var photos = [];
 
-  function tear(r, torn) {
-    // a ragged top and/or bottom edge, different on every sheet
-    var top = [], bot = [], i, x;
-    for (i = 0, x = 0; x < 100; i++) { top.push(x.toFixed(1) + '% ' + (torn.top ? r() * 3.2 : 0).toFixed(1) + '%'); x += 4 + r() * 9; }
-    top.push('100% ' + (torn.top ? r() * 3 : 0).toFixed(1) + '%');
-    for (i = 0, x = 100; x > 0; i++) { bot.push(x.toFixed(1) + '% ' + (100 - (torn.bot ? r() * 3.2 : 0)).toFixed(1) + '%'); x -= 4 + r() * 9; }
-    bot.push('0% ' + (100 - (torn.bot ? r() * 3 : 0)).toFixed(1) + '%');
-    return 'polygon(' + top.concat(bot).join(',') + ')';
-  }
-
   function hold(el, kind, r, w) {
     // tape or staples that actually hold the thing up
     function strip(cls, css) { var t = document.createElement('i'); t.className = cls; t.setAttribute('aria-hidden', 'true'); t.style.cssText = css; el.appendChild(t); }
@@ -269,15 +250,13 @@ slices after 2am ..... no</pre>
 
   function makePhoto(p, r, imgW, mobile) {
     var fig = document.createElement('figure');
-    fig.className = 'it ph ' + (p.treatment === 'color' ? 'print' : 'xerox');
+    // every photo is a Polaroid print on a paper sheet: 9px top and sides, a fat bottom for the marker (Pat, 2026-10-06)
+    fig.className = 'it ph print ' + p.treatment;
     var sheet = document.createElement('div');
     sheet.className = 'sheet';
-    var pad = [0, 0, 0, 0];
     var lines = p.caption ? p.caption.split('\n').length : 0, more = lines > 1 ? (lines - 1) * (mobile ? 14 : 17) : 0;
-    if (p.treatment === 'color') pad = [9, 9, p.caption ? (mobile ? 30 : 38) + more : 22, 9];
-    else if (r() < 0.55 || p.caption) { var m = 4 + r() * 12; pad = [m, m * (0.6 + r()), p.caption ? (mobile ? 30 : 36) + more : m * (0.8 + r()), m * (0.6 + r())]; }
+    var pad = [9, 9, p.caption ? (mobile ? 30 : 38) + more : 22, 9];
     sheet.style.padding = pad.map(function (n) { return n.toFixed(0) + 'px'; }).join(' ');
-    if (p.treatment !== 'color') sheet.style.clipPath = tear(r, { top: r() < 0.5, bot: r() < 0.6 });
     var img = document.createElement('img');
     img.alt = p.alt; img.width = p.w; img.height = p.h;
     img.decoding = 'async';
@@ -371,23 +350,6 @@ slices after 2am ..... no</pre>
       it.el.style.width = it.w.toFixed(0) + 'px';
     });
 
-    // scraps that belong next to something: stuck beside it, then kept clear by the scatter
-    Array.prototype.forEach.call(wall.querySelectorAll('[data-near]'), function (n) {
-      var show = !mobile || n.hasAttribute('data-m');
-      n.style.display = show ? '' : 'none';
-      if (!show) return;
-      n.style.transform = 'none';
-      var w = n.offsetWidth, h = n.offsetHeight;
-      // the dice crown sits on the card's top edge, right of centre, never over it
-      var x = Math.max(6, Math.min(W - w - 6, c.x + c.w - w * 0.95)), y = Math.max(6, c.y - h + 8);
-      n.style.left = x.toFixed(0) + 'px';
-      n.style.top = y.toFixed(0) + 'px';
-      n.style.transform = 'rotate(' + ((rt() - 0.5) * 9).toFixed(1) + 'deg)';
-      n.style.zIndex = 58;
-      if (n.getAttribute('data-tape') && !n.querySelector('.tape')) hold(n, n.getAttribute('data-tape'), rt, w);
-      var nb = grow({ x: x, y: y, w: w, h: h }, 10);
-      keepOut.push(nb);
-    });
     items.forEach(function (it) { it.order = it.weight + r() * 4; });
     items.sort(function (a, b) { return b.order - a.order; });
 

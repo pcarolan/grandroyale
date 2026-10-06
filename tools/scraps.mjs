@@ -1,14 +1,13 @@
-// Cut small secondary scraps out of Cecilia's crown slice sketch so the slice can turn up near
-// what it's about (_why crit #1, bees-pyrm.2). Stand-ins until Cecilia draws more: see TODO-scans.md.
+// Cut a small scrap out of Cecilia's crown slice sketch for the 404 page (_why crit #1, bees-pyrm.2).
+// Stand-in until Cecilia draws more: see TODO-scans.md.
 // Usage: node tools/scraps.mjs   (ImageMagick 7)
 import { mkdirSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 
 const SRC = 'photos/crown-slice-sketch.jpg';   // 862x900 pencil scan
 export const SCRAPS = [
-  // the three dice on the crown, no slice: sits by the sign-up card
-  { out: 'scraps/cecilia-dice.jpg', crop: '620x265+95+15', px: 420 },
-  // the tip of the slice, drips and all: sits by the thank-you card
+  // the tip of the slice, drips and all: on 404.html only. The wall shows the sketch once and no
+  // scraps of it (Pat 2026-10-06, "dont dupe photos"; bees-pyrm.6), so the dice crop is gone.
   { out: 'scraps/cecilia-tip.jpg', crop: '250x300+275+590', px: 260 },
 ];
 

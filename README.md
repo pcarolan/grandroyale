@@ -20,7 +20,7 @@ nothing is allowed to overlap it.
 | `lettering/` | Lettering as images: crowned wordmark, stamps, label-maker tape, marker scrawls, sticker. |
 | `assets/` | Sign-up form: `config.js` (endpoint), `signup.js`, `phone.js`. |
 | `credits.html`, `404.html` | Thank-you note with every photo's credit, and the not-found page; written by `node build.mjs` from `tools/pages.mjs`. |
-| `scraps/` | Small scraps cut from Cecilia's sketch by `node tools/scraps.mjs`; stand-ins until the scans in `TODO-scans.md` arrive. |
+| `scraps/` | The slice tip cut from Cecilia's sketch for 404.html by `node tools/scraps.mjs` (the wall itself shows each photo once); a stand-in until the scans in `TODO-scans.md` arrive. |
 
 ## Changing photos
 
