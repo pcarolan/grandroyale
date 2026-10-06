@@ -32,6 +32,7 @@ npm test
 Edit the `PHOTOS` list in `tools/photos.mjs` (Commons file title, treatment `xerox`/`red`/`color`, weight,
 optional caption) and the alt text in `tools/alts.json`. Only public domain, CC0, CC BY and CC BY-SA images.
 Originals are cached in `photos/src/` (gitignored). Needs ImageMagick 7 and `rsvg-convert`.
+The archive wall lives in `photos/archive/` (own `manifest.json` + `ATTRIBUTION.md`): `node tools/archive.mjs` rebuilds it from the crops in `archive/crops-*.jsonl` cut out of `~/Desktop/petoskey-80s-90s` (override with `ARCHIVE_SRC`/`ARCHIVE_CROPS`/`ARCHIVE_OUT`).
 
 `build.mjs` exists because the page reads its manifest from an inline
 `<script type="application/json" id="manifest">`, so it renders from `file://` (headless screenshots) as well as
