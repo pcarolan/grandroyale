@@ -106,3 +106,56 @@ test('on phones the postcard and the names label go below the fold', () => {
   assert.match(html, /BELOW = \['petoskey-postcard\.jpg'\]/);
   assert.match(html, /it\.below && mobile/);
 });
+
+// ---- #11 cheap is a courtesy to bar Wi-Fi ----
+test('the scatter lazy-loads everything below the first screen and decodes off the main thread', () => {
+  assert.match(html, /if \(best\.y > VH\) it\.img\.loading = 'lazy';/);
+  assert.doesNotMatch(html, /best\.y > VH \* 1\.2/);
+  assert.match(html, /img\.decoding = 'async';/);       // every wall photo
+  assert.match(html, /cap\.decoding = 'async'; cap\.loading = 'lazy';/);   // marker captions
+  assert.match(html, /i\.loading = 'lazy'; i\.decoding = 'async';/);       // contact strip
+  assert.match(html, /stray\.loading = 'lazy'; stray\.decoding = 'async';/);
+});
+test('every static image but the name decodes async; the ones low on the wall load lazy', () => {
+  const imgs = [...html.matchAll(/<img\b[^>]*>/g)].map((m) => m[0]).filter((t) => !/wordmark-grand-royale/.test(t));
+  assert.ok(imgs.length >= 6);
+  for (const t of imgs) assert.match(t, /decoding="async"/, t);
+  for (const t of imgs.filter((t) => /sticker1|label names|stamp|class="tip"/.test(t))) assert.match(t, /loading="lazy"/, t);
+});
+
+// ---- #10 alt text as whispers ----
+const ASIDES = {
+  'upside-down-box.jpg': '(It is.)',
+  'petoskey-stone.jpg': "It's a 350-million-year-old coral and it's sitting on a napkin.",
+  'crown-slice-sketch.jpg': "So far she's the only one of us who has made a pizza.",
+  'payphone-fence.jpg': 'One of our stickers ended up on it.',
+  'box-in-the-grass.jpg': 'Somebody liked it.',
+  'no-moshing-sign.jpg': "We'll put one up too and mean it about as much.",
+  'bar-sink.jpg': "Ours will be cleaner. That's not a high bar.",
+  '1996_rayder-charlevoix_lunchtime-burger-king_p21-1.jpg': "We'd like to be the other option.",
+};
+test('alt text whispers: the description, then an aside, on 8 photos', () => {
+  for (const [f, aside] of Object.entries(ASIDES)) {
+    const alt = byFile(f).alt;
+    assert.ok(alt.endsWith(aside), `${f}: ${alt}`);
+    assert.ok(alt.length > aside.length + 20, `${f}: the description stays`);
+    assert.doesNotMatch(alt, /\b(hot|yr)\b|wood/i, f);
+  }
+  const alts = JSON.parse(read('tools/alts.json'));
+  for (const slug of ['upside-down-box', 'petoskey-stone', 'payphone-fence', 'box-in-the-grass', 'no-moshing-sign', 'bar-sink']) {
+    assert.equal(alts[slug], byFile(`${slug}.jpg`).alt, `tools/alts.json ${slug} matches the manifest`);
+  }
+  const bk = JSON.parse(read('archive/pick.json')).find((p) => p.id === '1996_rayder-charlevoix_lunchtime-burger-king_p21-1');
+  assert.equal(bk.alt, byFile('1996_rayder-charlevoix_lunchtime-burger-king_p21-1.jpg').alt);
+});
+
+// ---- what waits on scans ----
+test('TODO-scans.md says exactly which scans to get from Cecilia, Pat and Todd', () => {
+  assert.ok(existsSync(new URL('TODO-scans.md', root)));
+  const t = read('TODO-scans.md');
+  for (const s of ['Cecilia', 'Todd', 'Pat', 'pencil', 'scraps/cecilia-dice.jpg', 'scraps/cecilia-tip.jpg', 'dpi']) assert.ok(t.includes(s), s);
+  assert.ok((t.match(/^\s*[-|] /gm) || []).length >= 8, 'a real list');
+});
+test('DESIGN.md has a dated _why pass section', () => {
+  assert.match(read('DESIGN.md'), /## _why pass \(2026-10-06\)/);
+});
