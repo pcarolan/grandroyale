@@ -265,3 +265,19 @@ test('the wall breathes: density 1.0 desktop / 1.3 phone, overlap tolerance 0.25
   assert.match(html, /Math\.max\(0, frac - 0\.25\)/, 'overlap tolerance in the scatter score');
   assert.doesNotMatch(html, /frac - 0\.38|mobile \? 0\.95 : 0\.74/);
 });
+
+// Pat 2026-10-06: slice-paper-plate marker caption is "royale with cheese" (bees-5orh.13).
+test('the paper-plate caption reads "royale with cheese"', () => {
+  assert.match(html, /"caption":\s*"royale with cheese"/);
+  assert.doesNotMatch(html, /not ours yet/);
+  assert.doesNotMatch(read('tools/photos.mjs'), /not ours yet/);
+  const m = JSON.parse(read('photos/manifest.json')).find((p) => p.file === 'slice-paper-plate.jpg');
+  assert.equal(m.caption, 'royale with cheese');
+  assert.ok(existsSync(new URL('lettering/cap-slice-paper-plate.svg', root)));
+});
+test('attribution header no longer claims one blanket free license', () => {
+  const a = read('photos/ATTRIBUTION.md');
+  assert.doesNotMatch(a, /used under a free license/);
+  assert.match(a, /public domain or Creative Commons/);
+  assert.match(a, /Archive scan:/);
+});
