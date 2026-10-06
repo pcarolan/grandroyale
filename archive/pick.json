@@ -1,12 +1,12 @@
 [
- { "id": "1980_petosegan_dance-candids_01-1", "weight": 6 },
+ { "id": "1980_petosegan_dance-candids_01-1", "weight": 6, "caption": "19. Todd, probably" },
  { "id": "1980_petosegan_halloween-costumes_01-1", "weight": 6 },
  { "id": "1980_petosegan_mock-elections_01-2", "weight": 5 },
- { "id": "1980_petosegan_pep-assembly-crowd_01-1", "weight": 7 },
+ { "id": "1980_petosegan_pep-assembly-crowd_01-1", "weight": 7, "caption": "40. the line (someday)" },
  { "id": "1986_rampage-ads-family-video-club_p136-1", "weight": 7 },
  { "id": "1986_rayder-charlevoix_ads-family-video-showcase_p120-1", "weight": 6 },
  { "id": "1990_rayder_super-seniors-candids_p45-1", "weight": 5 },
  { "id": "1994_rayder-charlevoix_famous-places-candids_01-2", "weight": 5 },
- { "id": "1996_rayder-charlevoix_lunchtime-burger-king_p21-1", "weight": 7 },
+ { "id": "1996_rayder-charlevoix_lunchtime-burger-king_p21-1", "weight": 7, "caption": "44. the competition", "alt": "Three seniors in letter jackets posing with the Burger King sign. We'd like to be the other option." },
  { "id": "1976_ltrhs_color-guard-july-4-1976-parade-on-howard-stre_15409-1", "weight": 6 }
 ]

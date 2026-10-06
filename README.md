@@ -19,13 +19,15 @@ nothing is allowed to overlap it.
 | `photos/ATTRIBUTION.md` | Credits and licenses for every photo. |
 | `lettering/` | Lettering as images: crowned wordmark, stamps, label-maker tape, marker scrawls, sticker. |
 | `assets/` | Sign-up form: `config.js` (endpoint), `signup.js`, `phone.js`. |
+| `credits.html`, `404.html` | Thank-you note with every photo's credit, and the not-found page; written by `node build.mjs` from `tools/pages.mjs`. |
+| `scraps/` | The slice tip cut from Cecilia's sketch for 404.html by `node tools/scraps.mjs` (the wall itself shows each photo once); a stand-in until the scans in `TODO-scans.md` arrive. |
 
 ## Changing photos
 
 ```bash
 node tools/photos.mjs     # fetch from Wikimedia Commons + license metadata, photocopy them, write manifest + ATTRIBUTION
 node tools/lettering.mjs  # redraw lettering (marker captions come from the manifest's "caption")
-node build.mjs            # inline photos/manifest.json into index.html
+node build.mjs            # inline photos/manifest.json into index.html, write credits.html + 404.html
 npm test
 ```
 

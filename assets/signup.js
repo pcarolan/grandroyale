@@ -3,9 +3,9 @@ import { normalizePhone } from './phone.js';
 window.GR = Object.assign(window.GR || {}, { normalizePhone });
 
 const MSG = {
-  phone: 'Enter a 10-digit US number, like (231) 555-0199.',
-  offline: "Sign-up isn't connected yet. Try again soon.",
-  network: "That didn't go through. Check your connection and try again.",
+  phone: "That's not ten digits. Try again, we'll wait.",
+  offline: "Our phone isn't plugged in yet. Come back in a day.",
+  network: "Didn't go through. Bad signal or bad luck; try once more.",
 };
 
 function pretty(e164) {

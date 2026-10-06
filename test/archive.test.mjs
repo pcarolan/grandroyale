@@ -176,3 +176,14 @@ test('existing entries keep their exact bytes (non-ASCII stays \\u-escaped like 
   assert.ok(after.startsWith(text.slice(0, text.lastIndexOf('}') + 1)), 'existing entry bytes changed');
   assert.match(after, /J\\u00f6nsson/);
 });
+
+// _why pass (bees-pyrm.2): a pick can carry a numbered caption and an alt aside, and reruns keep them
+test('a pick\'s caption and alt win over the crop\'s', () => {
+  const f = fixture([{ id: 'video-club', caption: '19. Todd, probably', alt: 'Family Video Club ad. Late fees were the real business.' }, 'strip']);
+  run(f);
+  const m = manifestOf(f.out);
+  assert.equal(m[1].caption, '19. Todd, probably');
+  assert.equal(m[1].alt, 'Family Video Club ad. Late fees were the real business.');
+  assert.equal(m[2].caption, '');
+  assert.equal(m[2].alt, 'A thin strip');
+});

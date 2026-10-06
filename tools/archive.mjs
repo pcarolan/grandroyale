@@ -68,7 +68,7 @@ function writeHeld(dir, manifest) {
   ].join('\n'));
 }
 
-// the knob: archive/pick.json, crop ids (or {id, weight}) to put on the wall; null when there is none
+// the knob: archive/pick.json, crop ids (or {id, weight, caption?, alt?}) to put on the wall; null when there is none
 export function readPick(crops, list) {
   const file = join(crops, 'pick.json');
   if (!existsSync(file)) return null;
@@ -121,9 +121,9 @@ export function buildArchive({ src, crops, out, held, attribution, quality = 78,
   const entries = pick.filter((p) => cut.has(p.id)).map((p) => {
     const m = cut.get(p.id);
     if (keepAll) copyFileSync(join(held, m.file), join(out, m.file));
-    return { file: m.file, alt: m.alt, source_url: m.source_url, title: m.title, author: m.author,
+    return { file: m.file, alt: p.alt ?? m.alt, source_url: m.source_url, title: m.title, author: m.author,
       license: m.license ? `Archive scan: ${m.license}` : 'Archive scan', license_url: '', treatment: m.treatment,
-      weight: p.weight ?? clamp(m.weight), w: m.w, h: m.h, caption: '' };
+      weight: p.weight ?? clamp(m.weight), w: m.w, h: m.h, caption: p.caption ?? '' };
   });
   const mfile = join(out, 'manifest.json');
   const manifest = (existsSync(mfile) ? JSON.parse(readFileSync(mfile, 'utf8')) : []).filter((m) => !own.has(m.file)).concat(entries);
