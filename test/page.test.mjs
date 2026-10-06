@@ -19,10 +19,32 @@ test('has the submit button with the right words', () => {
   assert.match(html, /<button type="submit"[^>]*>Text me when the pizza's on<\/button>/);
   assert.doesNotMatch(html, /when they're hot/);
 });
-test('form copy is the drop-your-number line', () => {
-  assert.match(html, /Send us your number and we'll let you know when we're cooking our next batch/);
+// _why crit (CRIT.md #2, bees-pyrm.2): the card talks like the person who wrote "PIZZA." on the flyer
+test('the card asks like a friend, not an intake form', () => {
+  assert.match(html, /<p class="lede">We're not open yet\. Leave your number and we'll text you the first night we fire the oven\.<\/p>/);
+  assert.match(html, /<label for="phone">your number<\/label>/);
+  assert.match(html, /placeholder="231 and the rest"/);
+  assert.doesNotMatch(html, /555-0199/, 'no fake phone number on a wall of true things');
+  assert.doesNotMatch(html, /next batch|Your phone number|Send us your number/);
   assert.doesNotMatch(html, /Add your number|ready for pickup/);
   assert.doesNotMatch(html, /Drop your number|pies are hot/);
+});
+test('success says "Got it" and is quiet: no list, no newsletter, no confetti', () => {
+  const ok = html.match(/<div class="success" id="signup-success" hidden>[\s\S]*?<\/div>/)?.[0] ?? '';
+  assert.match(ok, /<h3 tabindex="-1">Got it\.<\/h3>/);
+  assert.match(ok, /<p>We'll text <strong id="signup-number"><\/strong> once, when the pizza's on\. No newsletter, we promise\.<\/p>/);
+  assert.doesNotMatch(ok, /on the list|Yay|!/);
+  assert.doesNotMatch(ok, /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u, 'no emoji');
+});
+test('signup.js errors are said by a person', () => {
+  const js = read('assets/signup.js');
+  assert.match(js, /phone: "That's not ten digits\. Try again, we'll wait\."/);
+  assert.match(js, /offline: "Our phone isn't plugged in yet\. Come back in a day\."/);
+  assert.match(js, /network: "Didn't go through\. Bad signal or bad luck; try once more\."/);
+  assert.doesNotMatch(js, /Enter a 10-digit|555-0199|isn't connected yet|Check your connection/);
+});
+test('the meta description matches the card', () => {
+  assert.match(html, /<meta name="description" content="[^"]*first night we fire the oven[^"]*">/);
 });
 // Consent checkbox and fine print removed; submitting a number is the opt-in (bees-vo70.16)
 test('has no checkbox', () => assert.ok(!/type="checkbox"/.test(html)));
@@ -40,9 +62,9 @@ test('loads config.js and signup.js', () => {
 test('has a viewport meta', () => assert.match(html, /<meta name="viewport"/));
 test('has a title', () => assert.match(html, /<title>[^<]+<\/title>/));
 test('says coming soon', () => assert.match(html, /coming soon/i));
-test('mentions pickup (owner removed the word hot on 2026-09-30)', () => {
-  assert.match(html, /next batch/i);
+test('never says hot (owner removed the word on 2026-09-30)', () => {
   assert.doesNotMatch(html, /\bhot\b/i);
+  assert.doesNotMatch(read('assets/signup.js'), /\bhot\b/i);
 });
 test('says Petoskey, MI', () => assert.ok(html.includes('Petoskey, MI')));
 test('names the owners', () => assert.ok(html.includes('Todd Webb + Pat Carolan')));

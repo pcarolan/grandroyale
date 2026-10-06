@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Grand Royale Pizza</title>
-<meta name="description" content="Grand Royale Pizza, coming soon to Petoskey, MI. Get a text when we're cooking our next batch.">
+<meta name="description" content="Grand Royale Pizza, coming soon to Petoskey, MI. Leave your number and we'll text you the first night we fire the oven.">
 <meta name="theme-color" content="#ffffff">
 <style>
   /* A bathroom wall, not a page. See DESIGN.md and the grand-royal-raw skill. */
@@ -149,15 +149,15 @@
   <div id="card">
     <i class="tape gaffer" aria-hidden="true"></i>
     <form id="signup" novalidate>
-      <p class="lede">Send us your number and we'll let you know when we're cooking our next batch.</p>
-      <label for="phone">Your phone number</label>
-      <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(231) 555-0199" required aria-describedby="signup-error">
+      <p class="lede">We're not open yet. Leave your number and we'll text you the first night we fire the oven.</p>
+      <label for="phone">your number</label>
+      <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="231 and the rest" required aria-describedby="signup-error">
       <p class="error" id="signup-error" role="alert" hidden></p>
       <button type="submit">Text me when the pizza's on</button>
     </form>
     <div class="success" id="signup-success" hidden>
-      <h3 tabindex="-1">You're on the list</h3>
-      <p>We'll text <strong id="signup-number"></strong> when we're cooking our next batch.</p>
+      <h3 tabindex="-1">Got it.</h3>
+      <p>We'll text <strong id="signup-number"></strong> once, when the pizza's on. No newsletter, we promise.</p>
     </div>
   </div>
 
