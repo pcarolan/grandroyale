@@ -139,7 +139,7 @@ test('index.html inlines the current manifest (run node build.mjs)', () => {
   const m = html.match(/<script type="application\/json" id="manifest">([\s\S]*?)<\/script>/);
   assert.ok(m, 'no inline manifest');
   // the page inlines only what it renders; credits live in ATTRIBUTION.md (bees-vo70.17)
-  const keep = ({ file, alt, treatment, weight, w, h, caption }) => ({ file, alt, treatment, weight, w, h, caption });
+  const keep = ({ file, alt, treatment, weight, w, h, caption, place }) => ({ file, alt, treatment, weight, w, h, caption, place });
   assert.deepEqual(JSON.parse(m[1]), manifest.map(keep).map((o) => JSON.parse(JSON.stringify(o))));
 });
 test('no photo-credits receipt on the wall', () => {
@@ -288,4 +288,21 @@ test('attribution header no longer claims one blanket free license', () => {
   assert.doesNotMatch(a, /used under a free license/);
   assert.match(a, /public domain or Creative Commons/);
   assert.match(a, /Archive scan:/);
+});
+
+// Pat: "put it near the top" -- Cecilia's sketch is pinned into the first screen (bees-4dqr.5)
+test("Cecilia's sketch is pinned to the top of the wall", () => {
+  const p = manifest.find((m) => m.file === 'crown-slice-sketch.jpg');
+  assert.equal(p.place, 'top');
+  assert.ok(p.weight >= 7, 'weight >= 7 so it also shows on phones');
+});
+test('build.mjs keeps the place field in the slim manifest', () => {
+  assert.match(read('build.mjs'), /\(\{[^)]*\bplace\b[^)]*\}\) => \(\{[^)]*\bplace\b/);
+});
+test("the scatter honours place: 'top' within the first screen", () => {
+  assert.match(html, /place === 'top'/);
+  assert.match(html, /VH \* 0\.85 - it\.h/);
+});
+test('pinned items stack over the other photos but under the name', () => {
+  assert.match(html, /it\.place === 'top' \? 41 \+ z % 19/);
 });
