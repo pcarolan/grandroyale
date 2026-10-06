@@ -32,6 +32,7 @@ npm test
 Edit the `PHOTOS` list in `tools/photos.mjs` (Commons file title, treatment `xerox`/`red`/`color`, weight,
 optional caption) and the alt text in `tools/alts.json`. Only public domain, CC0, CC BY and CC BY-SA images.
 Originals are cached in `photos/src/` (gitignored). Needs ImageMagick 7 and `rsvg-convert`.
+Ten 80s/90s Petoskey-area archive crops are ordinary wall photos too: `node tools/archive.mjs && node build.mjs` cuts the crops listed in `archive/pick.json` (crop ids from `archive/crops-*.jsonl`, with a weight 5-7) out of `~/Desktop/petoskey-80s-90s` into `photos/`, and replaces its own entries in `photos/manifest.json` + `ATTRIBUTION.md` (license `Archive scan: <original credit>`); unpicked crops are removed from `photos/`. All 123 crops are also cut into `~/Desktop/petoskey-80s-90s/crops/` (own manifest + credits), held for later: edit `pick.json` to swap. `tools/photos.mjs` keeps only `Own` entries when it rewrites the manifest, so rerun `tools/archive.mjs` after it. Env overrides: `ARCHIVE_SRC`/`ARCHIVE_CROPS`/`ARCHIVE_OUT`/`ARCHIVE_HELD`.
 
 `build.mjs` exists because the page reads its manifest from an inline
 `<script type="application/json" id="manifest">`, so it renders from `file://` (headless screenshots) as well as
