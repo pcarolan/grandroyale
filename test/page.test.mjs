@@ -170,12 +170,7 @@ test('no photo-credits receipt on the wall', () => {
   assert.ok(!/id="credits"|id="receipt"|class="[^"]*\breceipt\b/.test(html));
   for (const a of ['Missvain', 'Rhododendrites']) assert.ok(!html.includes(a), `author ${a} still in index.html`);
 });
-test('exactly one link to ATTRIBUTION.md, worded "photo credits"', () => {
-  const links = [...html.matchAll(/<a\b[^>]*href="photos\/ATTRIBUTION\.md"[^>]*>([\s\S]*?)<\/a>/g)];
-  assert.equal(links.length, 1);
-  assert.equal(links[0][1].trim(), 'photo credits');
-  assert.equal((html.match(/photos\/ATTRIBUTION\.md/g) || []).length, 1);
-});
+// (the ATTRIBUTION.md link became the thank-you card + credits.html: test/pages.test.mjs, bees-pyrm.2)
 
 // ---- Lettering is images, not webfonts (skill rule 5) ----
 test('lettering images exist and are used', () => {
@@ -264,15 +259,7 @@ test('no caption or lettering says "yr"', () => {
   assert.ok(manifest.find((p) => p.file === 'bar-sink.jpg')?.caption === 'wash your hands');
 });
 
-// ---- Owner placement 2026-10-01: photo credits pinned bottom right ----
-test('photo credits link is pinned to the bottom right, not scattered', () => {
-  const a = html.match(/<a class="it credit"[^>]*>/)?.[0] ?? '';
-  assert.ok(a, 'credit link missing');
-  assert.ok(!/data-scrap/.test(a), 'credit must not be a scattered scrap');
-  const css = html.match(/\.credit\s*\{[^}]*\}/)?.[0] ?? '';
-  assert.match(css, /right:\s*\d+px/);
-  assert.match(css, /bottom:\s*\d+px/);
-});
+// ---- Owner placement 2026-10-01: credits pinned bottom right -> now the thank-you card (test/pages.test.mjs) ----
 test('the Victory Lanes bowling alley photo (Pat\'s own) is on the wall', () => {
   const manifest = JSON.parse(readFileSync(new URL('photos/manifest.json', root), 'utf8'));
   assert.ok(manifest.find((p) => p.file === 'victory-lanes.jpg'), 'victory-lanes.jpg missing from manifest');

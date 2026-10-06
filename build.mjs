@@ -11,3 +11,9 @@ const re = /(<script type="application\/json" id="manifest">)[\s\S]*?(<\/script>
 if (!re.test(html)) throw new Error('no <script type="application/json" id="manifest"> in index.html');
 writeFileSync('index.html', html.replace(re, (m, a, b) => a + json + b));
 console.log(`inlined ${manifest.length} photos into index.html`);
+
+// the other doors in the house, on the same wall (tools/pages.mjs; bees-pyrm.2)
+const { creditsHTML, notFoundHTML } = await import('./tools/pages.mjs');
+writeFileSync('credits.html', creditsHTML(manifest));
+writeFileSync('404.html', notFoundHTML());
+console.log('wrote credits.html and 404.html');

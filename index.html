@@ -134,8 +134,12 @@
   .label { height: auto; }
   .label.petoskey { width: 200px; } .label.names { width: 330px; }
 
-  /* two words, typed, stuck up crooked; the license link */
-  .credit { right: 14px; bottom: 12px; z-index: 95; transform: rotate(-2deg); padding: 3px 7px 4px; background: var(--paper); font: 11px/1.2 var(--type); color: var(--ink); text-decoration: underline; }
+  /* a thank-you card, taped up at the bottom right; Cecilia's slice tip points at it */
+  .thanks { right: 14px; bottom: 16px; z-index: 95; width: min(260px, 66vw); padding: 22px 16px 16px; background: var(--paper); transform: rotate(-2deg); font: 700 14px/1.4 var(--type); }
+  .thanks p { margin: 0 0 8px; }
+  .thanks a { font-size: 16px; }
+  .thanks .tape { top: -12px; left: 50%; transform: translateX(-50%) rotate(-4deg); }
+  .thanks .tip { position: absolute; left: -64px; top: -58px; width: 74px; height: auto; transform: rotate(-38deg); mix-blend-mode: multiply; pointer-events: none; }
 
   @media (min-width: 600px) {
     #card { margin: 300px 0 0 38vw; }
@@ -213,7 +217,12 @@ slices after 2am ..... no</pre>
   <!-- Cecilia's dice crown, sat on top of the card (placed by data-near, never on the card) -->
   <img class="it resident dice" data-near="card" data-tape="masking" src="scraps/cecilia-dice.jpg" width="420" height="180" alt="">
 
-  <a class="it credit" href="photos/ATTRIBUTION.md">photo credits</a>
+  <div class="it thanks">
+    <i class="tape" aria-hidden="true"></i>
+    <img class="tip" src="scraps/cecilia-tip.jpg" width="217" height="260" alt="" loading="lazy" decoding="async">
+    <p>Almost everything on this wall is someone else's photo. Thank you.</p>
+    <a href="credits.html">Here's who &rarr;</a>
+  </div>
 
 </main>
 
@@ -452,7 +461,9 @@ slices after 2am ..... no</pre>
       if (best) stick(it, best, r);
     });
 
-    wall.style.height = Math.ceil(bottom + 40) + 'px';
+    // room at the bottom for the thank-you card, half on the wall, half below the last photos
+    var thanks = wall.querySelector('.thanks');
+    wall.style.height = Math.ceil(bottom + 40 + (thanks ? thanks.offsetHeight * 0.6 : 0)) + 'px';
   }
 
   function fill(mobile) {
