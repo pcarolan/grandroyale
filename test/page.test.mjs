@@ -315,3 +315,12 @@ test("the scatter honours place: 'top' within the first screen", () => {
 test('pinned items stack over the other photos but under the name', () => {
   assert.match(html, /it\.place === 'top' \? 41 \+ z % 19/);
 });
+
+// Pat 2026-10-06: card is a tropical pink post-it (bees-xzb4.1). --red stays the one spot colour for stripe/button.
+test('the card is a tropical pink post-it; inputs stay cream', () => {
+  const root = html.match(/:root\s*\{[^}]*\}/)?.[0] ?? '';
+  assert.match(root, /--postit:\s*#ff7eb9/i);
+  assert.match(html.match(/#card\s*\{[^}]*\}/)?.[0] ?? '', /background:\s*var\(--postit\)/);
+  assert.match(html.match(/#card input\s*\{[^}]*\}/)?.[0] ?? '', /background:\s*var\(--paper\)/);
+  assert.match(html.match(/#card \.error\s*\{[^}]*\}/)?.[0] ?? '', /border-left:\s*4px solid var\(--ink\)/);
+});
