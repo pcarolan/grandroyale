@@ -13,6 +13,7 @@
     --wall: #ffffff;    /* the wall: white, per Pat 2026-09-30 */
     --paper: #f1ede3;   /* copy paper, index card, receipt */
     --ink: #1a1a1a;     /* toner, sharpie, gaffer tape */
+    --postit: #ff7eb9;  /* Post-it tropical pink: the sign-up card (Pat 2026-10-06) */
     --red: #d62718;     /* the one spot color */
     --tape: rgba(238, 229, 200, .78);
     --type: "Courier New", Courier, monospace;
@@ -54,8 +55,8 @@
     width: min(400px, 88vw);
     margin: 330px 0 0 6vw;
     padding: 30px 24px 26px;
-    background: var(--paper)
-      repeating-linear-gradient(transparent 0 29px, rgba(26, 26, 26, .12) 29px 30px) 0 58px / 100% calc(100% - 58px) no-repeat;
+    background: var(--postit)
+      repeating-linear-gradient(transparent 0 29px, rgba(140, 20, 80, .3) 29px 30px) 0 58px / 100% calc(100% - 58px) no-repeat;
     border-top: 3px solid var(--red);
     transform: rotate(-1.5deg);
     clip-path: polygon(0 -30px, 100% -30px, 100% 97%, 93% 100%, 81% 98%, 66% 100%, 52% 98.5%, 37% 100%, 22% 98%, 9% 100%, 0 98%);
@@ -71,7 +72,7 @@
   #card input::placeholder { color: rgba(26, 26, 26, .5); }
   #card input:focus, #card button:focus { outline: 3px solid var(--red); outline-offset: 3px; }
   #card input[aria-invalid="true"] { border-color: var(--red); border-width: 3px; }
-  #card .error { margin: 10px 0 0; padding-left: 10px; border-left: 4px solid var(--red); font-weight: 700; }
+  #card .error { margin: 10px 0 0; padding-left: 10px; border-left: 4px solid var(--ink); font-weight: 700; }
   #card button {
     display: block; width: 100%; min-height: 58px; margin-top: 16px; padding: 10px 14px;
     font: 900 22px/1.1 "Arial Black", "Helvetica Neue", Arial, sans-serif; letter-spacing: -.01em;

@@ -68,3 +68,4 @@ unwritten rather than faked; the jokes live in typed captions and alt text until
 phone-only crops (CRIT #11, second half).
 
 Don'ts honoured: no speech bubbles, no handwriting webfont or faux scrawl or coffee rings, no confetti, emoji or "Yay!".
+- 2026-10-06 (Pat): sign-up card is a tropical pink post-it (--postit #ff7eb9, ink on pink ~8:1); inputs stay cream, button stays red, error rule is ink.
