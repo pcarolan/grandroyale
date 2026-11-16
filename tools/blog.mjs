@@ -85,7 +85,7 @@ function postHTML(post, i, { link = true } = {}) {
 <i class="${tape}" aria-hidden="true" style="left:${(30 + r() * 40).toFixed(0)}%"></i>
 ${post.photos.length ? photoset(post) + '\n' : ''}<h2>${title}</h2>
 ${post.big ? `<p class="big">${esc(post.big)}</p>\n` : ''}${post.stamp ? `<span class="stamp">${esc(post.stamp)}</span>\n` : ''}${post.body.map((p) => `<p>${esc(p)}</p>`).join('\n')}
-<div class="meta"><span class="tags">${post.tags.map((t) => `<a href="${link ? '' : './'}#${esc(t.replace(/\s+/g, '-'))}">#${esc(t)}</a>`).join('')}</span><span class="when"><a href="${post.slug}.html">${day(post.date)}</a> &middot; Petoskey, MI</span></div>
+<div class="meta"><span class="tags">${post.tags.map((t) => `<a href="${link ? '' : './'}#${esc(t.replace(/\s+/g, '-'))}">#${esc(t)}</a>`).join('')}</span><span class="when"><a href="${post.slug}.html">${day(post.date)}</a> &middot; ${esc(post.place || 'Petoskey, MI')}</span></div>
 </li>`;
 }
 
