@@ -36,16 +36,8 @@
     "alt": "Wide shot of a log cabin kitchen: copper pans hung from the ceiling, a red tile counter, bowls of dough, two guys at work."
    },
    {
-    "file": "deer-camp-kitchen-peel.jpg",
-    "alt": "In the cabin kitchen, a guy in a tan cap holds a pepperoni pie on the peel and a speckled enamel plate."
-   },
-   {
     "file": "deer-camp-kitchen-topping.jpg",
     "alt": "Two guys at the red tile counter, one topping a pie, bowls of dough waiting."
-   },
-   {
-    "file": "deer-camp-kitchen-out.jpg",
-    "alt": "A pie on the peel on its way out of the kitchen, a bowl of floured dough in front."
    },
    {
     "file": "deer-camp-kitchen-pepperoni.jpg",
@@ -65,7 +57,6 @@
    }
   ],
   "rows": [
-   2,
    3,
    3
   ],
