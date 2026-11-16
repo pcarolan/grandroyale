@@ -63,7 +63,7 @@ test('has a viewport meta', () => assert.match(html, /<meta name="viewport"/));
 test('has a title', () => assert.match(html, /<title>[^<]+<\/title>/));
 test('says coming soon', () => assert.match(html, /coming soon/i));
 test('never says hot (owner removed the word on 2026-09-30)', () => {
-  assert.doesNotMatch(html, /\bhot\b/i);
+  assert.doesNotMatch(html.replace(/hot[ -]honey/gi, ''), /\bhot\b/i);   // except the hot honey pie's name, now in the blog on this page (Pat 2026-11-16)
   assert.doesNotMatch(read('assets/signup.js'), /\bhot\b/i);
 });
 test('says Petoskey, MI', () => assert.ok(html.includes('Petoskey, MI')));

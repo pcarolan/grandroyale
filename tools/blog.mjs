@@ -65,7 +65,7 @@ const CSS = `
   .who p { margin: 0 0 10px; font-size: 15px; font-weight: 700; }
   .who a { font-weight: 700; }
   .feed { list-style: none; margin: 0; padding: 0; }
-  .post { position: relative; width: min(540px, 100%); margin: 0 0 54px; padding: 12px 12px 14px; }
+  .post { position: relative; width: min(540px, 100%); margin: 0 auto 54px; padding: 12px 12px 14px; }
   .post .tape { top: -12px; }
   .set { margin: 0 0 12px; }
   .row { display: flex; gap: 4px; margin-bottom: 4px; }
@@ -89,7 +89,7 @@ const CSS = `
   }
 `;
 
-function photoset(post) {
+function photoset(post, base = '') {
   const photos = post.photos.map((p) => ({ ...p, ...jpegSize(`blog/photos/${p.file}`) }));
   const rows = post.rows?.length ? post.rows : photos.map(() => 1);
   if (rows.reduce((a, b) => a + b, 0) !== photos.length) throw new Error(`${post.slug}: rows ${rows} do not add up to ${photos.length} photos`);
@@ -100,20 +100,20 @@ function photoset(post) {
     // (flex-grow x100: a lone portrait photo has a ratio under 1, and grow values under 1 leave the row part empty)
     const sum = row.reduce((a, p) => a + p.w / p.h, 0);
     return `  <div class="row" style="aspect-ratio:${sum.toFixed(3)} / 1">${row.map((p) =>
-      `<a href="photos/${p.file}" style="flex:${(100 * p.w / p.h).toFixed(1)} 1 0"><img src="photos/${p.file}" width="${p.w}" height="${p.h}" alt="${esc(p.alt)}" loading="lazy" decoding="async"></a>`).join('')}</div>`;
+      `<a href="${base}photos/${p.file}" style="flex:${(100 * p.w / p.h).toFixed(1)} 1 0"><img src="${base}photos/${p.file}" width="${p.w}" height="${p.h}" alt="${esc(p.alt)}" loading="lazy" decoding="async"></a>`).join('')}</div>`;
   }).join('\n')}\n</div>`;
 }
 
-function postHTML(post, i, { link = true } = {}) {
+function postHTML(post, i, { link = true, base = '' } = {}) {
   const r = rng('blog:' + post.slug);
-  const tilt = ((i % 2 ? 1 : -1) * (0.4 + r() * 0.9)).toFixed(1), nudge = (r() * 3).toFixed(1);
-  const title = link ? `<a href="${post.slug}.html">${esc(post.title)}</a>` : esc(post.title);
+  r(); r(); // posts sit straight and centered (Pat 2026-11-16); keep the draws so tape spots stay put
+  const title = link ? `<a href="${base}${post.slug}.html">${esc(post.title)}</a>` : esc(post.title);
   const tape = r() < 0.5 ? 'tape' : 'tape gaffer';
-  return `<li class="scrap post" id="${post.slug}" data-tags="${esc(post.tags.map((t) => t.replace(/\s+/g, '-')).join(' '))}" style="transform:rotate(${tilt}deg);margin-left:${nudge}vw">
+  return `<li class="scrap post" id="${post.slug}" data-tags="${esc(post.tags.map((t) => t.replace(/\s+/g, '-')).join(' '))}">
 <i class="${tape}" aria-hidden="true" style="left:${(30 + r() * 40).toFixed(0)}%"></i>
-${post.photos.length ? photoset(post) + '\n' : ''}<h2>${title}</h2>
+${post.photos.length ? photoset(post, base) + '\n' : ''}<h2>${title}</h2>
 ${post.big ? `<p class="big">${esc(post.big)}</p>\n` : ''}${post.stamp ? `<span class="stamp">${esc(post.stamp)}</span>\n` : ''}${post.body.map((p) => `<p>${esc(p)}</p>`).join('\n')}
-<div class="meta"><span class="tags">${post.tags.map((t) => `<a href="${link ? '' : './'}#${esc(t.replace(/\s+/g, '-'))}">#${esc(t)}</a>`).join('')}</span><span class="when"><a href="${post.slug}.html">${day(post.date)}</a> &middot; ${esc(post.place || 'Petoskey, MI')}</span></div>
+<div class="meta"><span class="tags">${post.tags.map((t) => base ? `<span>#${esc(t)}</span>` : `<a href="${link ? '' : './'}#${esc(t.replace(/\s+/g, '-'))}">#${esc(t)}</a>`).join('')}</span><span class="when">${day(post.date)} &middot; ${esc(post.place || 'Petoskey, MI')}</span></div>
 </li>`;
 }
 
@@ -143,34 +143,61 @@ ${body}
 </html>
 `;
 
-export function blogHTML(posts = loadPosts()) {
-  const body = `<main>
-<div class="cols">
-${WHO}
-<ol class="feed">
-${posts.map((p, i) => postHTML(p, i)).join('\n')}
-</ol>
-</div>
-<p class="scrap back" id="showall" hidden><a href="./">show every post</a></p>
-</main>
-<script>
-// #tag in the address shows only the posts with that tag (Tumblr's /tagged/, without a server)
-(function () {
-  function show() {
-    var tag = decodeURIComponent(location.hash.slice(1)), any = false;
-    var posts = document.querySelectorAll('.post');
-    for (var i = 0; i < posts.length; i++) {
-      var on = !tag || (' ' + posts[i].getAttribute('data-tags') + ' ').indexOf(' ' + tag + ' ') > -1 || posts[i].id === tag;
-      posts[i].hidden = !on; any = any || on;
-    }
-    if (!any) for (var j = 0; j < posts.length; j++) posts[j].hidden = false;
-    document.getElementById('showall').hidden = !tag || !any;
-  }
-  window.addEventListener('hashchange', show); show();
-})();
-</script>`;
-  return page('Blog: Grand Royale Pizza', 'Pizza research log Grand Royale Pizza, Petoskey, MI.', body);
+// /blog/ is now the homepage (Pat 2026-11-16: "move the blog to the homepage ... so everything is one page";
+// "redirect /blog to homepage"). GitHub Pages has no server redirects, so this page sends people on.
+export function blogHTML() {
+  return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Blog: Grand Royale Pizza</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="/#blog">
+<meta http-equiv="refresh" content="0; url=/#blog">
+<script>location.replace('/#blog');</script>
+</head>
+<body>
+<p><a href="/#blog">The blog lives on the homepage now &rarr;</a></p>
+</body>
+</html>
+`;
 }
+
+// the feed on the homepage: the same taped-up posts, over the photo wall (build.mjs puts it in index.html)
+export function feedHTML(posts = loadPosts()) {
+  return `<ol class="feed">
+${posts.map((p, i) => postHTML(p, i, { base: 'blog/' })).join('\n')}
+</ol>`;
+}
+
+export const FEED_CSS = `
+  /* the blog, on the homepage over the wall (Pat 2026-11-16); same posts as blog/<slug>.html */
+  #blog { position: relative; z-index: 900; width: min(560px, 100%); margin: 70px 0 0 6vw; }
+  #blog .feed-head { margin: 0 0 34px 8px; }
+  #blog .feed-head img { display: block; width: 110px; height: auto; transform: rotate(-3deg); }
+  #blog .scrap { position: relative; background: var(--paper); }
+  #blog .tape { position: absolute; top: -12px; width: 96px; height: 26px; transform: translateX(-50%) rotate(-3deg); background: var(--tape); }
+  #blog .tape.gaffer { background: var(--ink); opacity: .93; }
+  #blog .feed { list-style: none; margin: 0; padding: 0; }
+  #blog .post { width: min(540px, 100%); margin: 0 auto 54px; padding: 12px 12px 14px; box-shadow: 2px 3px 0 rgba(26, 26, 26, .18); }
+  #blog .set { margin: 0 0 12px; }
+  #blog .row { display: flex; gap: 4px; margin-bottom: 4px; }
+  #blog .row a { display: block; min-width: 0; overflow: hidden; background: var(--ink); }
+  #blog .row img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  #blog .post h2 { margin: 4px 4px 8px; font: 900 22px/1.1 "Arial Black", Arial, sans-serif; letter-spacing: -.01em; }
+  #blog .post h2 a { color: var(--ink); text-decoration: none; }
+  #blog .post .big { margin: 10px 4px 6px; font: 900 clamp(38px, 9vw, 56px)/.95 "Arial Black", Arial, sans-serif; letter-spacing: -.02em; }
+  #blog .post .stamp { display: inline-block; margin: 6px 0 16px 8px; padding: 4px 12px 2px; border: 4px solid var(--red); color: var(--red); font: 900 30px/1 "Arial Black", Arial, sans-serif; text-transform: uppercase; transform: rotate(-7deg); }
+  #blog .post p { margin: 0 4px 10px; font-size: 16px; }
+  #blog .meta { margin: 14px 4px 0; padding-top: 10px; border-top: 1px dashed var(--ink); font-size: 13px; }
+  #blog .meta .tags span { color: var(--red); margin-right: 10px; white-space: nowrap; }
+  #blog .meta .when { display: block; margin-top: 6px; opacity: .8; }
+  #blog .meta .when a { color: var(--ink); }
+  /* desktop: the blog runs down the middle of the page, the wall around it (Pat 2026-11-16: "center the blog") */
+  /* a wide white sheet with room around it, so the blog breathes over the wall (Pat 2026-11-16) */
+  @media (min-width: 600px) { #blog { width: min(760px, calc(100vw - 48px)); margin: 220px auto 120px; padding: 56px 64px 30px; background: var(--wall); box-shadow: 0 0 0 1px rgba(26, 26, 26, .06); } }
+  @media (max-width: 599px) { #blog { margin: 40px 0 0; } }
+`;
 
 export function postPageHTML(post, posts = loadPosts()) {
   const i = posts.findIndex((p) => p.slug === post.slug);
@@ -181,7 +208,7 @@ ${WHO}
 ${postHTML(post, i, { link: false })}
 </ol>
 </div>
-<a class="back" href="./">more from the blog</a>
+<a class="back" href="/#blog">more from the blog</a>
 </main>`;
   return page(`${post.title}: Grand Royale Pizza`, [post.big, ...post.body].filter(Boolean).join(' '), body);
 }

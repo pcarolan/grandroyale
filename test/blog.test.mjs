@@ -8,7 +8,7 @@ const read = (p) => readFileSync(new URL(p, root), 'utf8');
 const { blogHTML, postPageHTML, loadPosts, jpegSize } = await import('../tools/blog.mjs');
 const { WALL_CSS } = await import('../tools/pages.mjs');
 const posts = loadPosts();
-const pages = [['blog/index.html', read('blog/index.html')], ...posts.map((p) => [`blog/${p.slug}.html`, read(`blog/${p.slug}.html`)])];
+const pages = [...posts.map((p) => [`blog/${p.slug}.html`, read(`blog/${p.slug}.html`)])];
 
 test('blog pages are current (node build.mjs)', () => {
   assert.equal(read('blog/index.html'), blogHTML(posts));
@@ -52,5 +52,16 @@ test('every post photo exists, is small, has no metadata left, and has alt text;
 test('newest first, and the wall links in', () => {
   const dates = posts.map((p) => p.date);
   assert.deepEqual(dates, [...dates].sort().reverse());
-  assert.match(read('index.html'), /<a class="it kitchen" href="blog\/"/);
+  assert.match(read('index.html'), /<a class="it kitchen" href="#blog"/);
+});
+
+// Pat 2026-11-16: "move the blog to the homepage and keep the photos as background so everything is one page"; "redirect /blog to homepage"
+test('the blog lives on the homepage, and /blog/ sends people there', () => {
+  const home = read('index.html');
+  assert.match(home, /<div id="blog">/);
+  for (const p of posts) assert.match(home, new RegExp(`<li class="scrap post" id="${p.slug}"`), p.slug);
+  assert.match(home, /<a class="tag-link" href="#blog">/);
+  const b = read('blog/index.html');
+  assert.match(b, /http-equiv="refresh" content="0; url=\/#blog"/);
+  assert.match(b, /location\.replace\('\/#blog'\)/);
 });
