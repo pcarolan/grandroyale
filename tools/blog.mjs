@@ -1,4 +1,4 @@
-// The test kitchen: a Tumblr-style blog on the same wall. One column of taped-up posts, newest first;
+// The blog: a Tumblr-style blog on the same wall. One column of taped-up posts, newest first;
 // photo posts are Tumblr photosets (rows of 1-3, cropped to one height per row), text posts are big type.
 // Written by `node build.mjs` from blog/posts.json into blog/index.html and blog/<slug>.html.
 // Add a post: drop photos with `node tools/post-photo.mjs`, add an entry at the top of blog/posts.json, run node build.mjs.
@@ -92,7 +92,7 @@ ${post.big ? `<p class="big">${esc(post.big)}</p>\n` : ''}${post.stamp ? `<span 
 const WHO = `<div class="scrap who">
   <i class="tape gaffer" aria-hidden="true"></i>
   <i class="ava" role="img" aria-label="Grand Royale crown sticker"></i>
-  <p class="name">test kitchen</p>
+  <p class="name">blog</p>
   <p class="handle">grandroyalepizza</p>
   <p>Pizza we made before we had a place to make it.</p>
   <a href="/">&larr; back to the wall</a>
@@ -140,7 +140,7 @@ ${posts.map((p, i) => postHTML(p, i)).join('\n')}
   window.addEventListener('hashchange', show); show();
 })();
 </script>`;
-  return page('Test kitchen: Grand Royale Pizza', 'Pizza we made before we had a place to make it. Grand Royale Pizza, Petoskey, MI.', body);
+  return page('Blog: Grand Royale Pizza', 'Pizza we made before we had a place to make it. Grand Royale Pizza, Petoskey, MI.', body);
 }
 
 export function postPageHTML(post, posts = loadPosts()) {
@@ -152,7 +152,7 @@ ${WHO}
 ${postHTML(post, i, { link: false })}
 </ol>
 </div>
-<a class="back" href="./">more from the test kitchen</a>
+<a class="back" href="./">more from the blog</a>
 </main>`;
   return page(`${post.title}: Grand Royale Pizza`, [post.big, ...post.body].filter(Boolean).join(' '), body);
 }

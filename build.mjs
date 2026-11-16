@@ -18,7 +18,7 @@ writeFileSync('credits.html', creditsHTML(manifest));
 writeFileSync('404.html', notFoundHTML());
 console.log('wrote credits.html and 404.html');
 
-// the test kitchen: a Tumblr-style blog on the same wall (tools/blog.mjs, blog/posts.json)
+// the blog: a Tumblr-style blog on the same wall (tools/blog.mjs, blog/posts.json)
 const { blogHTML, postPageHTML, loadPosts } = await import('./tools/blog.mjs');
 const posts = loadPosts();
 writeFileSync('blog/index.html', blogHTML(posts));

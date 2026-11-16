@@ -1,4 +1,4 @@
-// The test kitchen (blog/): a Tumblr-style feed on the same wall. Pat, 2026-11-16: "give it tumblr vibes, keep with the site vibe".
+// The blog (blog/): a Tumblr-style feed on the same wall. Pat, 2026-11-16: "give it tumblr vibes, keep with the site vibe".
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
