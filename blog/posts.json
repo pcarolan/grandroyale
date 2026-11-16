@@ -32,10 +32,6 @@
   ],
   "photos": [
    {
-    "file": "deer-camp-kitchen-wide.jpg",
-    "alt": "Wide shot of a log cabin kitchen: copper pans hung from the ceiling, a red tile counter, bowls of dough, two guys at work."
-   },
-   {
     "file": "deer-camp-kitchen-topping.jpg",
     "alt": "Two guys at the red tile counter, one topping a pie, bowls of dough waiting."
    },
@@ -57,7 +53,7 @@
    }
   ],
   "rows": [
-   3,
+   2,
    3
   ],
   "tags": [
