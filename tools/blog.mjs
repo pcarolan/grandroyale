@@ -28,7 +28,29 @@ const day = (d) => { const [y, m, dd] = d.split('-').map(Number); return `${MONT
 
 const CSS = `
   [hidden] { display: none !important; }
-  main { padding: 28px 16px 90px; }
+  /* the header, same as the wall's (index.html .topstrip / .dymo, and the spray name's size, tilt and spot): the crowned name top left, the PETOSKEY, MI label and a label-maker tape top right (Pat 2026-11-16) */
+  .topstrip { position: relative; z-index: 10; padding: 4px 0 0; min-height: 150px; }
+  .topstrip .name { position: absolute; left: 3vw; top: 4px; display: block; width: min(445px, 60vw); transform: rotate(-5deg); }
+  .topstrip .name img { display: block; width: 100%; height: auto; }
+  .topstrip .tape-link { position: absolute; top: 0; right: 0; padding: 18px 16px 6px; display: flex; align-items: center; gap: 14px; }
+  .topstrip .tag-petoskey { width: 190px; height: auto; transform: rotate(2deg); }
+  .dymo {
+    display: inline-block; padding: 9px 20px 8px; border-radius: 5px; white-space: nowrap;
+    background: var(--ink) linear-gradient(rgba(255, 255, 255, .07) 0 3px, transparent 3px);
+    color: #e9e6df; text-decoration: none; text-transform: uppercase;
+    font: 700 26px/1 "Arial Narrow", "Helvetica Neue", Arial, sans-serif; font-stretch: condensed; letter-spacing: .14em;
+    text-shadow: 0 0 .6px #fff; transform: rotate(-2deg); box-shadow: 1px 2px 0 rgba(26, 26, 26, .25);
+  }
+  .dymo:hover { color: #fff; }
+  .dymo:focus-visible, .topstrip .name:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
+  @media (max-width: 599px) {
+    .topstrip { min-height: 0; padding: 0; }
+    .topstrip .tape-link { position: relative; display: flex; justify-content: flex-end; padding-top: 12px; }
+    .topstrip .name { position: relative; left: -3vw; top: 2px; width: 71vw; transform: rotate(-7deg); }
+    .dymo { font-size: 17px; padding: 8px 12px 7px; }
+    .topstrip .tag-petoskey { width: 112px; }
+  }
+  main { padding: 8px 16px 90px; }
   .cols { max-width: 1000px; margin: 0 auto; }
   /* the blog's "header": a taped index card, not a header */
   .who { position: relative; width: min(300px, 100%); margin: 14px 0 34px 2vw; padding: 26px 18px 18px; transform: rotate(-1.5deg); border-top: 3px solid var(--red); }
@@ -110,6 +132,7 @@ const page = (title, desc, body) => `<!doctype html>
 <style>${WALL_CSS}${CSS}</style>
 </head>
 <body>
+<div class="topstrip"><div class="tape-link"><img class="tag-petoskey" src="../lettering/label-petoskey.png" width="386" height="64" alt="Petoskey, MI" decoding="async"><a class="dymo" href="/">&larr; the wall</a></div><a class="name" href="/"><img src="../lettering/wordmark-grand-royale.png" width="1727" height="606" alt="Grand Royale Pizza"></a></div>
 ${body}
 </body>
 </html>

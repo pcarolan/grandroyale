@@ -21,7 +21,7 @@ test('has the submit button with the right words', () => {
 });
 // _why crit (CRIT.md #2, bees-pyrm.2): the card talks like the person who wrote "PIZZA." on the flyer
 test('the card asks like a friend, not an intake form', () => {
-  assert.match(html, /<p class="lede">We're not open yet\. Leave your number and we'll text you the first night we fire the oven\.<\/p>/);
+  assert.match(html, /<p class="lede">We're not open yet\. Leave your number and we'll text you the night we open\.<\/p>/);
   assert.match(html, /<label for="phone">your number<\/label>/);
   assert.match(html, /placeholder="231 and the rest"/);
   assert.doesNotMatch(html, /555-0199/, 'no fake phone number on a wall of true things');
@@ -44,7 +44,7 @@ test('signup.js errors are said by a person', () => {
   assert.doesNotMatch(js, /Enter a 10-digit|555-0199|isn't connected yet|Check your connection/);
 });
 test('the meta description matches the card', () => {
-  assert.match(html, /<meta name="description" content="[^"]*first night we fire the oven[^"]*">/);
+  assert.match(html, /<meta name="description" content="[^"]*the night we open[^"]*">/);
 });
 // Consent checkbox and fine print removed; submitting a number is the opt-in (bees-vo70.16)
 test('has no checkbox', () => assert.ok(!/type="checkbox"/.test(html)));
@@ -316,11 +316,11 @@ test('pinned items stack over the other photos but under the name', () => {
   assert.match(html, /it\.place === 'top' \? 41 \+ z % 19/);
 });
 
-// Pat 2026-10-06: card is a tropical pink post-it (bees-xzb4.1). --red stays the one spot colour for stripe/button.
-test('the card is a tropical pink post-it; inputs stay cream', () => {
+// Pat 2026-11-16: card is a white mix tape insert (was a tropical pink post-it from 2026-10-06, bees-xzb4.1). The button is white with blue ballpoint text (Pat 2026-11-16).
+test('the card is a white mix tape insert; inputs stay cream', () => {
   const root = html.match(/:root\s*\{[^}]*\}/)?.[0] ?? '';
-  assert.match(root, /--postit:\s*#ff7eb9/i);
-  assert.match(html.match(/#card\s*\{[^}]*\}/)?.[0] ?? '', /background:\s*var\(--postit\)/);
+  assert.match(root, /--jcard:\s*#ffffff/i);
+  assert.match(html.match(/#card\s*\{[^}]*\}/)?.[0] ?? '', /background:\s*var\(--jcard\)/);
   assert.match(html.match(/#card input\s*\{[^}]*\}/)?.[0] ?? '', /background:\s*var\(--paper\)/);
   assert.match(html.match(/#card \.error\s*\{[^}]*\}/)?.[0] ?? '', /border-left:\s*4px solid var\(--ink\)/);
 });

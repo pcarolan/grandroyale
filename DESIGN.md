@@ -32,8 +32,8 @@ A design crit "in the manner of" _why the lucky stiff (`CRIT.md`: 12 ranked chan
 stranger to find someone in the room, a friend asking instead of a form, and the people who taped the wall up to
 admit it. What changed (bees-pyrm.2):
 
-- **The card talks like the `PIZZA.` flyer.** "We're not open yet. Leave your number and we'll text you the first
-  night we fire the oven." Label `your number`, placeholder `231 and the rest` (no fake 555 number), success
+- **The card talks like the `PIZZA.` flyer.** "We're not open yet. Leave your number and we'll text you the night we open." (was "…the first
+  night we fire the oven.") Label `your number`, placeholder `231 and the rest` (no fake 555 number), success
   "Got it. We'll text (number) once, when the pizza's on. No newsletter, we promise." Errors: "That's not ten
   digits. Try again, we'll wait." / "Our phone isn't plugged in yet. Come back in a day." / "Didn't go through.
   Bad signal or bad luck; try once more." The crit's "the oven's hot" became "we fire the oven" (no "hot").
@@ -68,4 +68,5 @@ unwritten rather than faked; the jokes live in typed captions and alt text until
 phone-only crops (CRIT #11, second half).
 
 Don'ts honoured: no speech bubbles, no handwriting webfont or faux scrawl or coffee rings, no confetti, emoji or "Yay!".
-- 2026-10-06 (Pat): sign-up card is a tropical pink post-it (--postit #ff7eb9, ink on pink ~8:1); inputs stay cream, button stays red, error rule is ink.
+- 2026-10-06 (Pat, superseded 2026-11-16): sign-up card is a tropical pink post-it (--postit #ff7eb9, ink on pink ~8:1); inputs stay cream, button stays red, error rule is ink.
+- 2026-11-16 (Pat): sign-up card is a white mix tape insert (J-card): printed black blocks, handwritten title and message on ruled lines (--jcard #ffffff).

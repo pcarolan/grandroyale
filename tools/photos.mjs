@@ -42,7 +42,7 @@ export const PHOTOS = [
   { slug: 'brooklyn-stoops', title: 'File:SMALL, WELL-CARED-FOR GARDENS WITH WROUGHT-IRON FENCES ADORN THESE HOUSES ON 3RD STREET NEAR PROSPECT PARK, BROOKLYN - NARA - 551729.jpg', t: 'xerox', w: 4 },
   { slug: 'bodega-ice', title: 'File:McKibbin Street bodega ice fridge Brooklyn 2022.jpg', t: 'xerox', w: 4 },
   { slug: 'east-village-1998', title: 'File:East Village, New York City, 1998.jpg', t: 'xerox', w: 5 },
-  { slug: 'petoskey-stone', title: 'File:Petoskey stone Hexagonaria percarinata 2.jpg', t: 'color', w: 6, cap: 'petoskey stone', author: 'Jtmichcock at English Wikipedia' },
+  { slug: 'petoskey-stone', title: 'File:Petoskey stone Hexagonaria percarinata 2.jpg', t: 'xerox', w: 6, cap: 'petoskey stone', author: 'Jtmichcock at English Wikipedia' },
   { slug: 'stone-hunting', title: 'File:Looking For Petoskey Stones.jpg', t: 'xerox', w: 5, cap: "still looking" },
   { slug: 'lake-ice-1911', title: 'File:342. C. Ice Formations on shoreline of Lake Michigan, Muskegon, Michigan, 1911 (26801547200).jpg', t: 'xerox', w: 4 },
   { slug: 'lake-in-january', title: 'File:Winter on Lake Michigan (16662112762).jpg', t: 'xerox', w: 7, cap: 'the lake in january' },
