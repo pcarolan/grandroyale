@@ -1,0 +1,46 @@
+[
+ {
+  "slug": "verdict",
+  "date": "2026-11-15",
+  "title": "verdict",
+  "big": "hot honey margherita.",
+  "stamp": "winner",
+  "body": ["After a weekend of research, one pie came out on top."],
+  "photos": [],
+  "rows": [],
+  "tags": ["verdict", "hot honey", "margherita"]
+ },
+ {
+  "slug": "recipe-exploration",
+  "date": "2026-11-15",
+  "title": "recipe exploration",
+  "body": ["Dough in the cabin kitchen. Out to the oven on the deck. Back in for the next one. Repeat."],
+  "photos": [
+   { "file": "deer-camp-kitchen-wide.jpg", "alt": "Wide shot of a log cabin kitchen: copper pans hung from the ceiling, a red tile counter, bowls of dough, two guys at work." },
+   { "file": "deer-camp-kitchen-peel.jpg", "alt": "In the cabin kitchen, a guy in a tan cap holds a pepperoni pie on the peel and a speckled enamel plate." },
+   { "file": "deer-camp-kitchen-topping.jpg", "alt": "Two guys at the red tile counter, one topping a pie, bowls of dough waiting." },
+   { "file": "deer-camp-kitchen-out.jpg", "alt": "A pie on the peel on its way out of the kitchen, a bowl of floured dough in front." },
+   { "file": "deer-camp-kitchen-pepperoni.jpg", "alt": "Close up of a pepperoni pie on the peel over a cutting board on the red tile counter." },
+   { "file": "deer-camp-deck-pie-oven.jpg", "alt": "A pie on the peel just out of the oven on the deck rail." },
+   { "file": "deer-camp-deck-pie-rail.jpg", "alt": "A pie on the peel over the deck rail: tomato, cubed cheese, pepperoni, a charred crust." },
+   { "file": "deer-camp-deck-pie-held.jpg", "alt": "A guy on the deck holds out a pie on the peel, pine trees behind him." },
+   { "file": "deer-camp-plate-pie.jpg", "alt": "A pie on a speckled enamel plate held out over the forest floor: tomato, cheese, a little green, charred spots." },
+   { "file": "deer-camp-pepperoni-peel.jpg", "alt": "A pepperoni pie on the peel, cupped pepperoni, leopard-spotted crust, fallen leaves below." }
+  ],
+  "rows": [2, 3, 2, 3],
+  "tags": ["recipe exploration", "dough", "deer camp"]
+ },
+ {
+  "slug": "research-at-deer-camp",
+  "date": "2026-11-15",
+  "title": "research at deer camp",
+  "body": ["Research trip. We brought the Roccbox."],
+  "photos": [
+   { "file": "deer-camp-buck-pole.jpg", "alt": "A buck pole: a timber arch with antlers on top and a banner reading Buck Pole, deer hanging from it, low sun behind." },
+   { "file": "deer-camp-deck-oven-wait.jpg", "alt": "A guy in a tan cap waits on the cabin deck by the Roccbox, peel in hand, a propane tank beside it." },
+   { "file": "deer-camp-deck-oven-crowd.jpg", "alt": "Four guys around the Roccbox on the deck rail, pine trees all around." }
+  ],
+  "rows": [1, 2],
+  "tags": ["deer camp", "research", "roccbox"]
+ }
+]

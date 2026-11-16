@@ -131,6 +131,12 @@
   .label { height: auto; }
   .label.petoskey { width: 200px; } .label.names { width: 330px; }
 
+  /* the way into the test kitchen (blog/): our own pie, on a Polaroid sheet */
+  .kitchen { display: block; width: 190px; padding: 9px 9px 0; background: var(--paper); color: var(--ink); text-decoration: none; }
+  .kitchen img { width: 100%; height: auto; }
+  .kitchen span { display: block; padding: 8px 2px 12px; font: 700 16px/1.2 var(--type); }
+  .kitchen:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
+
   /* a thank-you card, taped up at the bottom right */
   .thanks { right: 14px; bottom: 16px; z-index: 95; width: min(260px, 66vw); padding: 22px 16px 16px; background: var(--paper); transform: rotate(-2deg); font: 700 14px/1.4 var(--type); }
   .thanks p { margin: 0 0 8px; }
@@ -209,6 +215,11 @@ the one Todd keeps
   ....... when he's ready
 slices after 2am ..... no</pre>
   </div>
+
+  <a class="it kitchen" href="blog/" data-scrap data-w="9" data-m data-z="46" data-clear data-tape="masking" data-tilt="4">
+    <img src="blog/photos/thumb-pepperoni-peel.jpg" width="360" height="480" alt="Our pepperoni pie on the peel, deer camp, November 2026. Ours, finally." decoding="async" loading="lazy">
+    <span>test kitchen &rarr;</span>
+  </a>
 
   <div class="it thanks">
     <i class="tape" aria-hidden="true"></i>

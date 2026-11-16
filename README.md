@@ -22,6 +22,20 @@ nothing is allowed to overlap it.
 | `credits.html`, `404.html` | Thank-you note with every photo's credit, and the not-found page; written by `node build.mjs` from `tools/pages.mjs`. |
 | `scraps/` | The slice tip cut from Cecilia's sketch for 404.html by `node tools/scraps.mjs` (the wall itself shows each photo once); a stand-in until the scans in `TODO-scans.md` arrive. |
 
+## The test kitchen (blog)
+
+`blog/` is a Tumblr-style feed on the same wall: taped-up posts, newest first, photo posts as photosets
+(rows of 1-3, at most 10 photos), text posts in big type, `#tags` that filter the feed. The wall links in
+from a Polaroid of our own pie. Live at https://grandroyalepizza.com/blog/.
+
+```
+node tools/post-photo.mjs <image> <name>   # blog/photos/<name>.jpg: upright, max 1280px, metadata (GPS) stripped
+# add a post at the top of blog/posts.json: slug, date, title, body [paragraphs], photos [{file, alt}], rows [per-row counts], tags
+node build.mjs                             # writes blog/index.html and blog/<slug>.html
+```
+
+Text posts use `big` (the headline) and an optional red `stamp`. Don't name people in alt text unless they say so.
+
 ## Changing photos
 
 ```bash
