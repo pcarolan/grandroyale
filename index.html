@@ -86,6 +86,16 @@
   #card .success p { margin: 0; font-size: 18px; font-weight: 700; }
 
 
+  /* the blog, up top: a red tab on the card, so it rides wherever the card goes (Pat 2026-11-16); inside the card's clip-path, which allows 30px above */
+  #card .blogtab {
+    position: absolute; top: -24px; right: 14px; z-index: 2;
+    padding: 10px 16px 8px; background: var(--red); color: var(--paper);
+    font: 900 24px/1 "Arial Black", "Helvetica Neue", Arial, sans-serif; letter-spacing: -.01em;
+    text-decoration: none; transform: rotate(1.5deg); box-shadow: 2px 3px 0 rgba(26, 26, 26, .25);
+  }
+  #card .blogtab:hover { color: var(--wall); }
+  #card .blogtab:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
   /* tear-off flyer */
   .flyer { width: 228px; padding: 18px 16px 0; background: var(--paper); }
   .flyer p { margin: 0 0 4px; font-size: 17px; font-weight: 700; }
@@ -171,6 +181,7 @@
 
 
   <div id="card">
+    <a class="blogtab" href="blog/">read the blog &rarr;</a>
     <i class="tape gaffer" aria-hidden="true"></i>
     <form id="signup" novalidate>
       <p class="lede">We're not open yet. Leave your number and we'll text you the first night we fire the oven.</p>
