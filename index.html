@@ -86,15 +86,19 @@
   #card .success p { margin: 0; font-size: 18px; font-weight: 700; }
 
 
-  /* the blog, up top: a red tab on the card, so it rides wherever the card goes (Pat 2026-11-16); inside the card's clip-path, which allows 30px above */
-  #card .blogtab {
-    position: absolute; top: -24px; right: 14px; z-index: 2;
-    padding: 10px 16px 8px; background: var(--red); color: var(--paper);
-    font: 900 24px/1 "Arial Black", "Helvetica Neue", Arial, sans-serif; letter-spacing: -.01em;
-    text-decoration: none; transform: rotate(1.5deg); box-shadow: 2px 3px 0 rgba(26, 26, 26, .25);
+  /* the top strip: a label-maker tape link to the blog, same tape as "Todd Webb + Pat Carolan" (Pat 2026-11-16) */
+  .topstrip { position: relative; z-index: 1100; display: flex; justify-content: flex-end; padding: 18px 16px 6px; }
+  @media (min-width: 600px) { .topstrip { position: absolute; top: 0; right: 0; } }   /* desktop: the tape floats top right, so the name sits at the very top */
+  .dymo {
+    display: inline-block; padding: 9px 20px 8px; border-radius: 5px;
+    background: var(--ink) linear-gradient(rgba(255, 255, 255, .07) 0 3px, transparent 3px);
+    color: #e9e6df; text-decoration: none; text-transform: uppercase;
+    font: 700 26px/1 "Arial Narrow", "Helvetica Neue", Arial, sans-serif; font-stretch: condensed; letter-spacing: .14em;
+    text-shadow: 0 0 .6px #fff; transform: rotate(-2deg); box-shadow: 1px 2px 0 rgba(26, 26, 26, .25);
   }
-  #card .blogtab:hover { color: var(--wall); }
-  #card .blogtab:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+  .dymo:hover { color: #fff; }
+  .dymo:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
+  @media (max-width: 599px) { .topstrip { padding-top: 12px; } .dymo { font-size: 17px; padding: 8px 12px 7px; } }
 
   /* tear-off flyer */
   .flyer { width: 228px; padding: 18px 16px 0; background: var(--paper); }
@@ -175,13 +179,13 @@
 </style>
 </head>
 <body>
+<div class="topstrip"><a class="dymo" href="blog/">read the blog &rarr;</a></div>
 <main id="wall">
 
   <h1 class="spray" id="spray"><img src="lettering/wordmark-grand-royale.png" width="1727" height="606" alt="Grand Royale Pizza"></h1>
 
 
   <div id="card">
-    <a class="blogtab" href="blog/">read the blog &rarr;</a>
     <i class="tape gaffer" aria-hidden="true"></i>
     <form id="signup" novalidate>
       <p class="lede">We're not open yet. Leave your number and we'll text you the first night we fire the oven.</p>
@@ -334,7 +338,7 @@ slices after 2am ..... no</pre>
     // pinned: the name over the top
     var c = { x: card.offsetLeft - 20, y: card.offsetTop - 26, w: card.offsetWidth + 40, h: card.offsetHeight + 46 };
     var sw = mobile ? W * 1.02 : Math.min(W * 0.62, 900, c.x - W * 0.03 - 10);
-    spray.style.cssText = 'width:' + sw.toFixed(0) + 'px;left:' + (mobile ? -W * 0.03 : W * 0.03).toFixed(0) + 'px;top:' + (mobile ? 54 : 74) + 'px;transform:rotate(' + (mobile ? -7 : -5) + 'deg)';
+    spray.style.cssText = 'width:' + sw.toFixed(0) + 'px;left:' + (mobile ? -W * 0.03 : W * 0.03).toFixed(0) + 'px;top:' + (mobile ? 2 : 4) + 'px;transform:rotate(' + (mobile ? -7 : -5) + 'deg)';
     var keepOut = [c];
     // text scraps and busy color prints stay out from under the name so both stay readable.
     // Measured on the old 1256x169 stencil footprint so the rest of the wall stays exactly where it was.
