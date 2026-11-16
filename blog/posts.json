@@ -60,10 +60,6 @@
     "alt": "A pie on the peel over the deck rail: tomato, cubed cheese, pepperoni, a charred crust."
    },
    {
-    "file": "deer-camp-deck-pie-held.jpg",
-    "alt": "A guy on the deck holds out a pie on the peel, pine trees behind him."
-   },
-   {
     "file": "deer-camp-plate-pie.jpg",
     "alt": "A pie on a speckled enamel plate held out over the forest floor: tomato, cheese, a little green, charred spots."
    }
@@ -71,8 +67,7 @@
   "rows": [
    2,
    3,
-   2,
-   2
+   3
   ],
   "tags": [
    "recipe exploration",
