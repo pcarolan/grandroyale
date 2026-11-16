@@ -32,7 +32,7 @@ test('the card asks like a friend, not an intake form', () => {
 test('success says "Got it" and is quiet: no list, no newsletter, no confetti', () => {
   const ok = html.match(/<div class="success" id="signup-success" hidden>[\s\S]*?<\/div>/)?.[0] ?? '';
   assert.match(ok, /<h3 tabindex="-1">Got it\.<\/h3>/);
-  assert.match(ok, /<p>We'll text <strong id="signup-number"><\/strong> once, when the pizza's on\. No newsletter, we promise\.<\/p>/);
+  assert.match(ok, /<p>We'll text <strong id="signup-number"><\/strong> once, when the pizza's on\.<\/p>/);
   assert.doesNotMatch(ok, /on the list|Yay|!/);
   assert.doesNotMatch(ok, /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u, 'no emoji');
 });

@@ -34,7 +34,7 @@ admit it. What changed (bees-pyrm.2):
 
 - **The card talks like the `PIZZA.` flyer.** "We're not open yet. Leave your number and we'll text you the night we open." (was "…the first
   night we fire the oven.") Label `your number`, placeholder `231 and the rest` (no fake 555 number), success
-  "Got it. We'll text (number) once, when the pizza's on. No newsletter, we promise." Errors: "That's not ten
+  "Got it. We'll text (number) once, when the pizza's on." (Pat 2026-11-16 dropped "No newsletter, we promise.") Errors: "That's not ten
   digits. Try again, we'll wait." / "Our phone isn't plugged in yet. Come back in a day." / "Didn't go through.
   Bad signal or bad luck; try once more." The crit's "the oven's hot" became "we fire the oven" (no "hot").
 - **Cecilia's slice is the resident.** On phones the first screen is the name, the slice (top-left, sized to fit,
