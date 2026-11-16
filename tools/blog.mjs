@@ -94,7 +94,7 @@ const WHO = `<div class="scrap who">
   <i class="ava" role="img" aria-label="Grand Royale crown sticker"></i>
   <p class="name">blog</p>
   <p class="handle">grandroyalepizza</p>
-  <p>Pizza we made before we had a place to make it.</p>
+  <p>Pizza research log</p>
   <a href="/">&larr; back to the wall</a>
 </div>`;
 
@@ -140,7 +140,7 @@ ${posts.map((p, i) => postHTML(p, i)).join('\n')}
   window.addEventListener('hashchange', show); show();
 })();
 </script>`;
-  return page('Blog: Grand Royale Pizza', 'Pizza we made before we had a place to make it. Grand Royale Pizza, Petoskey, MI.', body);
+  return page('Blog: Grand Royale Pizza', 'Pizza research log Grand Royale Pizza, Petoskey, MI.', body);
 }
 
 export function postPageHTML(post, posts = loadPosts()) {
