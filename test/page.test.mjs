@@ -319,7 +319,7 @@ test('pinned items stack over the other photos but under the name', () => {
 // Pat 2026-11-16: card is a white mix tape insert (was a tropical pink post-it from 2026-10-06, bees-xzb4.1). The button is white with blue ballpoint text (Pat 2026-11-16).
 test('the card is a white mix tape insert; inputs stay cream', () => {
   const root = html.match(/:root\s*\{[^}]*\}/)?.[0] ?? '';
-  assert.match(root, /--jcard:\s*#ffffff/i);
+  assert.match(root, /--jcard:\s*#f8f6f0/i);
   assert.match(html.match(/#card\s*\{[^}]*\}/)?.[0] ?? '', /background:\s*var\(--jcard\)/);
   assert.match(html.match(/#card input\s*\{[^}]*\}/)?.[0] ?? '', /background:\s*var\(--paper\)/);
   assert.match(html.match(/#card \.error\s*\{[^}]*\}/)?.[0] ?? '', /border-left:\s*4px solid var\(--ink\)/);

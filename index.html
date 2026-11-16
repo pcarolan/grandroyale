@@ -14,7 +14,7 @@
     --paper: #f1ede3;   /* copy paper, index card, receipt */
     --ink: #1a1a1a;     /* toner, sharpie, gaffer tape */
     --blueink: #1f3fb0; /* blue ballpoint: the sign-up button text (Pat 2026-11-16) */
-    --jcard: #ffffff;   /* the sign-up card: a white mix tape insert (Pat 2026-11-16; was Post-it pink #ff7eb9 from 2026-10-06) */
+    --jcard: #f8f6f0;   /* the sign-up card: a white mix tape insert (Pat 2026-11-16; was Post-it pink #ff7eb9 from 2026-10-06) */
     --red: #d62718;     /* the one spot color */
     --tape: rgba(238, 229, 200, .78);
     --type: "Courier New", Courier, monospace;
@@ -52,23 +52,24 @@
 
   /* the one thing to tap: an index card, taped up, on top of everything */
   /* the card is a cassette (Pat 2026-11-16): ink shell, the pink post-it is its handwritten label, a tape window under it */
-  /* a mix tape insert (J-card): a ruled title box, the DATE / N.R. YES NO row, then the lines, all filled in with a marker (Pat 2026-11-16) */
+  /* a mix tape insert (J-card) in its dark case: a side A box by the title, then heavy black rules, all filled in with a marker (Pat 2026-11-16) */
   #card {
     position: relative; z-index: 1000;
     width: min(400px, 88vw);
     margin: 330px 0 0 6vw;
-    padding: 20px 20px 24px;
+    padding: 16px 18px 22px;
     background: var(--jcard);
-    border: 1px solid rgba(26, 26, 26, .6); border-radius: 2px;
-    box-shadow: 0 0 0 6px rgba(255, 255, 255, .55), 0 0 0 7px rgba(26, 26, 26, .18), 3px 6px 0 7px rgba(26, 26, 26, .12);
+    border: 12px solid #2e2e2e; border-radius: 3px;   /* the case, like Pat's "My Love Mix" card (2026-11-16) */
+    box-shadow: 0 0 0 2px var(--ink), -30px 24px 0 2px rgba(26, 26, 26, .2);
     transform: rotate(-1.5deg);
   }
-  #card .jtitle { margin: 0 0 4px; padding: 8px 6px 6px; border: 1px solid rgba(26, 26, 26, .55); }
-  #card .jtitle img { display: block; width: 60%; height: auto; transform: rotate(-1deg); }
-  #card .jrow { display: flex; gap: 14px; margin: 0 0 14px; padding: 0 2px 4px; border-bottom: 1px solid rgba(26, 26, 26, .55); font: 700 9px/1 Arial, sans-serif; letter-spacing: .12em; }
-  #card .jrow span:first-child { flex: 1 1 auto; }
+  #card .jtitle { position: relative; margin: 0 0 16px; padding: 4px 34px 8px; border-bottom: 3px solid var(--ink); }
+  #card .jtitle img { display: block; width: 82%; height: auto; margin: 0 auto; transform: rotate(-1deg); }
+  /* side A, printed in a black box in the corner */
+  #card .jtitle::before { position: absolute; top: 6px; width: 22px; height: 22px; background: var(--ink); color: var(--jcard); font: 700 16px/22px Arial, sans-serif; text-align: center; border-radius: 3px; }
+  #card .jtitle::before { content: "A"; left: 0; }
   #card .hand { display: block; height: auto; margin: 0 0 14px; }
-  #card .hand.lede-hand { width: 91%; }
+  #card .hand.lede-hand { width: 100%; }
   #card .hand.number-hand { width: 112px; margin: 0 0 6px; }
   #card p.lede { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }   /* read aloud; the eye gets the handwriting */
   #card label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -198,7 +199,6 @@
 
   <div id="card">
     <div class="jtitle" aria-hidden="true"><img src="lettering/card-title.svg" width="507" height="126" alt="" decoding="async"></div>
-    <div class="jrow" aria-hidden="true"><span>DATE &nbsp;. . . . . . . .</span><span>N.R.</span><span>YES</span><span>NO</span></div>
     <form id="signup" novalidate>
       <img class="hand lede-hand" src="lettering/card-lede.svg" width="835" height="396" alt="" aria-hidden="true" decoding="async">
       <p class="lede">We're not open yet. Leave your number and we'll text you the night we open.</p>

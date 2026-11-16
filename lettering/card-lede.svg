@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 139.1 66.0" width="835" height="396">
 <filter id="ink" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="78"/><feDisplacementMap in="SourceGraphic" scale="0.45"/></filter>
 
-<g stroke="#1a1a1a" stroke-width=".22" opacity=".45"><path d="M-2 13.5 H137.1"/><path d="M-2 28.5 H137.1"/><path d="M-2 43.5 H137.1"/><path d="M-2 58.5 H137.1"/></g>
+<g stroke="#1a1a1a" stroke-width="1.1" opacity=".92"><path d="M-2 13.5 H137.1"/><path d="M-2 28.5 H137.1"/><path d="M-2 43.5 H137.1"/><path d="M-2 58.5 H137.1"/></g>
 <g fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#ink)">
 <path d="M0.78 1.12 C0.92 2.89 1.11 11.15 1.64 11.78 C2.17 12.40 3.46 4.93 3.98 4.89 C4.49 4.85 4.14 12.19 4.72 11.55 C5.29 10.90 6.99 2.79 7.45 1.04"/>
 <path d="M13.13 2.78 C12.37 2.80 9.29 1.29 8.53 2.90 C7.78 4.52 7.92 10.93 8.61 12.48 C9.29 14.04 11.97 12.27 12.64 12.23"/>

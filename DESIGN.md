@@ -69,4 +69,4 @@ phone-only crops (CRIT #11, second half).
 
 Don'ts honoured: no speech bubbles, no handwriting webfont or faux scrawl or coffee rings, no confetti, emoji or "Yay!".
 - 2026-10-06 (Pat, superseded 2026-11-16): sign-up card is a tropical pink post-it (--postit #ff7eb9, ink on pink ~8:1); inputs stay cream, button stays red, error rule is ink.
-- 2026-11-16 (Pat): sign-up card is a white mix tape insert (J-card): printed black blocks, handwritten title and message on ruled lines (--jcard #ffffff).
+- 2026-11-16 (Pat): sign-up card is a mix tape insert (J-card) in a dark case, after his "My Love Mix" reference: off-white paper (--jcard #f8f6f0), a side A box, the title and message handwritten on heavy black rules; button white with blue ballpoint words.

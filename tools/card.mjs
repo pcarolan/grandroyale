@@ -12,4 +12,4 @@ const text = "WE'RE NOT OPEN YET.\nLEAVE YOUR NUMBER AND\nWE'LL TEXT YOU THE\nNI
 const { width } = write(text, { seed: 'mixtape-lede' });
 const rules = text.split('\n').map((_, i) => `<path d="M-2 ${(13.5 + 15 * i).toFixed(1)} H${(width + 2).toFixed(1)}"/>`);
 out('card-lede.svg', scrawlSVG(text, { seed: 'mixtape-lede', px: 6, stroke: 1.2 })
-  .replace('<g fill="none" stroke="#1a1a1a"', `<g stroke="#1a1a1a" stroke-width=".22" opacity=".45">${rules.join('')}</g>\n<g fill="none" stroke="#1a1a1a"`));
+  .replace('<g fill="none" stroke="#1a1a1a"', `<g stroke="#1a1a1a" stroke-width="1.1" opacity=".92">${rules.join('')}</g>\n<g fill="none" stroke="#1a1a1a"`));
