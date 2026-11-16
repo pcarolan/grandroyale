@@ -24,9 +24,10 @@ nothing is allowed to overlap it.
 
 ## The blog
 
-`blog/` is a Tumblr-style feed on the same wall: taped-up posts, newest first, photo posts as photosets
-(rows of 1-3, at most 10 photos), text posts in big type, `#tags` that filter the feed. The wall links in
-from a Polaroid of our own pie. Live at https://grandroyalepizza.com/blog/.
+The blog lives on the homepage (Pat, 2026-11-16: everything is one page): taped-up posts, newest first,
+photo posts as photosets (rows of 1-3, at most 10 photos), text posts in big type, running down under the
+sign-up card with the wall's photos behind them. `node build.mjs` writes the feed into `index.html`
+(`<!-- feed -->`), each post's own page to `blog/<slug>.html`, and `blog/index.html` as a redirect to `/#blog`.
 
 ```
 node tools/post-photo.mjs <image> <name>   # blog/photos/<name>.jpg: upright, max 1280px, metadata (GPS) stripped

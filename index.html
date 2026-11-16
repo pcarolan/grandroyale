@@ -206,9 +206,37 @@
     #card button:active { transform: rotate(.6deg); }
   }
 </style>
+<style id="feed-css">
+  /* the blog, on the homepage over the wall (Pat 2026-11-16); same posts as blog/<slug>.html */
+  #blog { position: relative; z-index: 900; width: min(560px, 100%); margin: 70px 0 0 6vw; }
+  #blog .feed-head { margin: 0 0 34px 8px; }
+  #blog .feed-head img { display: block; width: 110px; height: auto; transform: rotate(-3deg); }
+  #blog .scrap { position: relative; background: var(--paper); }
+  #blog .tape { position: absolute; top: -12px; width: 96px; height: 26px; transform: translateX(-50%) rotate(-3deg); background: var(--tape); }
+  #blog .tape.gaffer { background: var(--ink); opacity: .93; }
+  #blog .feed { list-style: none; margin: 0; padding: 0; }
+  #blog .post { width: min(540px, 100%); margin: 0 auto 54px; padding: 12px 12px 14px; box-shadow: 2px 3px 0 rgba(26, 26, 26, .18); }
+  #blog .set { margin: 0 0 12px; }
+  #blog .row { display: flex; gap: 4px; margin-bottom: 4px; }
+  #blog .row a { display: block; min-width: 0; overflow: hidden; background: var(--ink); }
+  #blog .row img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  #blog .post h2 { margin: 4px 4px 8px; font: 900 22px/1.1 "Arial Black", Arial, sans-serif; letter-spacing: -.01em; }
+  #blog .post h2 a { color: var(--ink); text-decoration: none; }
+  #blog .post .big { margin: 10px 4px 6px; font: 900 clamp(38px, 9vw, 56px)/.95 "Arial Black", Arial, sans-serif; letter-spacing: -.02em; }
+  #blog .post .stamp { display: inline-block; margin: 6px 0 16px 8px; padding: 4px 12px 2px; border: 4px solid var(--red); color: var(--red); font: 900 30px/1 "Arial Black", Arial, sans-serif; text-transform: uppercase; transform: rotate(-7deg); }
+  #blog .post p { margin: 0 4px 10px; font-size: 16px; }
+  #blog .meta { margin: 14px 4px 0; padding-top: 10px; border-top: 1px dashed var(--ink); font-size: 13px; }
+  #blog .meta .tags span { color: var(--red); margin-right: 10px; white-space: nowrap; }
+  #blog .meta .when { display: block; margin-top: 6px; opacity: .8; }
+  #blog .meta .when a { color: var(--ink); }
+  /* desktop: the blog runs down the middle of the page, the wall around it (Pat 2026-11-16: "center the blog") */
+  /* a wide white sheet with room around it, so the blog breathes over the wall (Pat 2026-11-16) */
+  @media (min-width: 600px) { #blog { width: min(760px, calc(100vw - 48px)); margin: 220px auto 120px; padding: 56px 64px 30px; background: var(--wall); box-shadow: 0 0 0 1px rgba(26, 26, 26, .06); } }
+  @media (max-width: 599px) { #blog { margin: 40px 0 0; } }
+</style>
 </head>
 <body>
-<div class="topstrip"><img class="tag-petoskey" src="lettering/label-petoskey.png" width="386" height="64" alt="Petoskey, MI" decoding="async"><a class="tag-link" href="blog/"><img class="tag-blog" src="lettering/label-blog.png" width="162" height="64" alt="Blog" decoding="async"></a></div>
+<div class="topstrip"><img class="tag-petoskey" src="lettering/label-petoskey.png" width="386" height="64" alt="Petoskey, MI" decoding="async"><a class="tag-link" href="#blog"><img class="tag-blog" src="lettering/label-blog.png" width="162" height="64" alt="Blog" decoding="async"></a></div>
 <main id="wall">
 
   <h1 class="spray" id="spray"><img src="lettering/wordmark-grand-royale.png" width="1727" height="606" alt="Grand Royale Pizza"></h1>
@@ -233,6 +261,46 @@
       <h3 tabindex="-1">Got it.</h3>
       <p>We'll text <strong id="signup-number"></strong> once, when the pizza's on.</p>
     </div>
+  </div>
+
+  <!-- the blog, on the homepage (Pat 2026-11-16): written by node build.mjs from blog/posts.json; the wall's photos sit behind it -->
+  <div id="blog">
+    <h2 class="feed-head"><img src="lettering/label-blog.png" width="162" height="64" alt="Blog" decoding="async"></h2>
+<!-- feed -->
+<ol class="feed">
+<li class="scrap post" id="verdict" data-tags="verdict hot-honey margherita">
+<i class="tape gaffer" aria-hidden="true" style="left:64%"></i>
+<div class="set">
+  <div class="row" style="aspect-ratio:0.800 / 1"><a href="blog/photos/deer-camp-pepperoni-peel.jpg" style="flex:80.0 1 0"><img src="blog/photos/deer-camp-pepperoni-peel.jpg" width="1024" height="1280" alt="The hot honey margherita on the peel over the deck rail: honey shining on top, leopard-spotted crust, fallen leaves below." loading="lazy" decoding="async"></a></div>
+</div>
+<h2><a href="blog/verdict.html">verdict</a></h2>
+<p class="big">hot honey margherita: The &quot;Royale with Cheese&quot;</p>
+<span class="stamp">winner</span>
+<p>After a weekend of research, many iterations, one pie reigned. Made with cured pepperoni, local honey off the comb, calabrian chili oil and an overdose of dried oregano, recipe #1 is locked in. We give you the &quot;Royale with Cheese&quot;.</p>
+<div class="meta"><span class="tags"><span>#verdict</span><span>#hot honey</span><span>#margherita</span></span><span class="when">Nov 15, 2026 &middot; Grayling, MI</span></div>
+</li>
+<li class="scrap post" id="recipe-exploration" data-tags="recipe-exploration dough deer-camp">
+<i class="tape gaffer" aria-hidden="true" style="left:34%"></i>
+<div class="set">
+  <div class="row" style="aspect-ratio:1.500 / 1"><a href="blog/photos/deer-camp-kitchen-topping.jpg" style="flex:75.0 1 0"><img src="blog/photos/deer-camp-kitchen-topping.jpg" width="960" height="1280" alt="Two guys at the red tile counter, one topping a pie, bowls of dough waiting." loading="lazy" decoding="async"></a><a href="blog/photos/deer-camp-kitchen-pepperoni.jpg" style="flex:75.0 1 0"><img src="blog/photos/deer-camp-kitchen-pepperoni.jpg" width="960" height="1280" alt="Close up of a pepperoni pie on the peel over a cutting board on the red tile counter." loading="lazy" decoding="async"></a></div>
+  <div class="row" style="aspect-ratio:1.500 / 1"><a href="blog/photos/deer-camp-deck-pie-rail.jpg" style="flex:75.0 1 0"><img src="blog/photos/deer-camp-deck-pie-rail.jpg" width="960" height="1280" alt="A pie on the peel over the deck rail: tomato, cubed cheese, pepperoni, a charred crust." loading="lazy" decoding="async"></a><a href="blog/photos/deer-camp-plate-pie.jpg" style="flex:75.0 1 0"><img src="blog/photos/deer-camp-plate-pie.jpg" width="960" height="1280" alt="A pie on a speckled enamel plate held out over the forest floor: tomato, cheese, a little green, charred spots." loading="lazy" decoding="async"></a></div>
+</div>
+<h2><a href="blog/recipe-exploration.html">recipe exploration</a></h2>
+<p>Dough in the cabin kitchen. Out to the oven on the deck. Back in for the next one. Repeat.</p>
+<div class="meta"><span class="tags"><span>#recipe exploration</span><span>#dough</span><span>#deer camp</span></span><span class="when">Nov 15, 2026 &middot; Grayling, MI</span></div>
+</li>
+<li class="scrap post" id="research-at-deer-camp" data-tags="deer-camp research roccbox">
+<i class="tape gaffer" aria-hidden="true" style="left:38%"></i>
+<div class="set">
+  <div class="row" style="aspect-ratio:1.333 / 1"><a href="blog/photos/deer-camp-buck-pole.jpg" style="flex:133.3 1 0"><img src="blog/photos/deer-camp-buck-pole.jpg" width="1280" height="960" alt="A buck pole: a timber arch with antlers on top and a banner reading Buck Pole, deer hanging from it, low sun behind." loading="lazy" decoding="async"></a></div>
+  <div class="row" style="aspect-ratio:2.083 / 1"><a href="blog/photos/deer-camp-deck-oven-wait.jpg" style="flex:75.0 1 0"><img src="blog/photos/deer-camp-deck-oven-wait.jpg" width="960" height="1280" alt="A guy in a tan cap waits on the cabin deck by the Roccbox, peel in hand, a propane tank beside it." loading="lazy" decoding="async"></a><a href="blog/photos/deer-camp-deck-oven-crowd.jpg" style="flex:133.3 1 0"><img src="blog/photos/deer-camp-deck-oven-crowd.jpg" width="1280" height="960" alt="Four guys around the Roccbox on the deck rail, pine trees all around." loading="lazy" decoding="async"></a></div>
+</div>
+<h2><a href="blog/research-at-deer-camp.html">deer camp, grayling MI</a></h2>
+<p>We brought the Roccbox to work on some new recipes and get ready for launch. Chef Todd didn't disappoint with 72 hour dough, chili oil, and low moisture cheese of the Wisconsin cow gods on hand.</p>
+<div class="meta"><span class="tags"><span>#deer camp</span><span>#research</span><span>#roccbox</span></span><span class="when">Nov 15, 2026 &middot; Grayling, MI</span></div>
+</li>
+</ol>
+<!-- /feed -->
   </div>
 
   <!-- scraps: placed by the scatter below; data-w = weight, data-m = also on phones -->
@@ -265,7 +333,7 @@ the one Todd keeps
 slices after 2am ..... no</pre>
   </div>
 
-  <a class="it kitchen" href="blog/" data-scrap data-w="9" data-m data-z="46" data-clear data-tape="masking" data-tilt="4">
+  <a class="it kitchen" href="#blog" data-scrap data-w="9" data-m data-z="46" data-clear data-tape="masking" data-tilt="4">
     <img src="blog/photos/thumb-pepperoni-peel.jpg" width="360" height="450" alt="The winning pie from deer camp, on the peel, November 2026. Ours, finally." decoding="async" loading="lazy">
     <span>blog &rarr;</span>
   </a>
@@ -286,6 +354,7 @@ slices after 2am ..... no</pre>
 
   var wall = document.getElementById('wall');
   var card = document.getElementById('card');
+  var feed = document.getElementById('blog');
   var spray = document.getElementById('spray');
   var scraps = Array.prototype.slice.call(wall.querySelectorAll('[data-scrap]'));
   var BELOW = ['petoskey-postcard.jpg'];   // phones: under the fold, so the first screen is name, slice, card (CRIT #9)
@@ -412,12 +481,25 @@ slices after 2am ..... no</pre>
       it.el.style.width = it.w.toFixed(0) + 'px';
     });
 
+    // the blog runs down the middle of the page on white; the photos fill the sides all the way to its last post
+    var fb = feed ? { x: feed.offsetLeft - 16, y: feed.offsetTop - 16, w: feed.offsetWidth + 32, h: feed.offsetHeight + 32 } : null;
+    if (!mobile && fb) items.forEach(function (it) {
+      // desktop: the pinned sketch shrinks to fit the white between the name and the blog, so it stays in the first screen
+      if (it.place !== 'top') return;
+      var room = (fb.y - 56 - sprayBottom - 24) / 1.25;   // its dart keeps ~9% slop on each side
+      if (it.h <= room || room < 160) return;
+      var imgW = (room - it.padV) / it.ratio;
+      it.w = imgW + it.padH; it.h = room;
+      it.el.style.width = it.w.toFixed(0) + 'px';
+    });
+    var ru = mulberry32(1993 ^ 0xb1);   // how far each photo may tuck under the blog: its own dice, so the rest of the wall keeps its seed
+    items.forEach(function (it) { it.under = ru() * 0.25; });
     items.forEach(function (it) { it.order = it.weight + r() * 4; });
     items.sort(function (a, b) { return b.order - a.order; });
 
     // dart-throwing scatter over a coarse occupancy grid: fill holes, overlap 10-40%, bleed off the edges
     var area = items.reduce(function (n, it) { return n + it.w * it.h; }, 0);
-    var H = Math.max(c.y + c.h + 120, area * (mobile ? 1.3 : 1.0) / W);
+    var H = Math.max(c.y + c.h + 120, area * (mobile ? 1.3 : 1.0) / W, fb ? fb.y + fb.h - 200 : 0);
     var CELL = 20, cols = Math.ceil(W / CELL), rows = Math.ceil((H + 900) / CELL), occ = new Uint8Array(cols * rows);
     var placed = [], pinned = [], bottom = c.y + c.h;
     function dart(it, rr, top) {
@@ -444,7 +526,15 @@ slices after 2am ..... no</pre>
         if (keepOut.some(function (o) { return overlaps(box, o); })) continue;
         if (overlaps(box, it.flip ? grow(c, 140) : c)) continue;   // the tap surprise never sits near the card's taps
         if ((it.clear || top) && !(top && mobile) && overlaps(box, sprayBox)) continue;
-        if (it.clear && pinned.some(function (o) { return overlaps(box, o); })) continue;   // labels and scraps never cover Cecilia's slice   // pinned items stay out from under the name too
+        if (it.clear && pinned.some(function (o) { return overlaps(box, o); })) continue;
+        if (fb) {
+          // the blog column: notes, labels, links and phones keep clear of it; other photos tuck under its edge by 0-25% of themselves (Pat 2026-11-16)
+          if (it.clear || top || mobile || it.el.tagName === 'A') { if (overlaps(box, fb)) continue; }
+          else {
+            var ix = Math.max(0, Math.min(x + it.w, fb.x + fb.w) - Math.max(x, fb.x)), iy = Math.max(0, Math.min(y + it.h, fb.y + fb.h) - Math.max(y, fb.y));
+            if (ix * iy > it.under * it.w * it.h) continue;
+          }
+        }   // labels and scraps never cover Cecilia's slice   // pinned items stay out from under the name too
         var empty = 0, full = 0;
         var c0 = Math.max(0, Math.floor(x / CELL)), c1 = Math.min(cols - 1, Math.floor((x + it.w) / CELL));
         var r0 = Math.max(0, Math.floor(y / CELL)), r1 = Math.min(rows - 1, Math.floor((y + it.h) / CELL));
@@ -490,7 +580,7 @@ slices after 2am ..... no</pre>
 
     // room at the bottom for the thank-you card, half on the wall, half below the last photos
     var thanks = wall.querySelector('.thanks');
-    wall.style.height = Math.ceil(bottom + 40 + (thanks ? thanks.offsetHeight * 0.6 : 0)) + 'px';
+    wall.style.height = Math.ceil(Math.max(bottom, fb ? fb.y + fb.h : 0) + 40 + (thanks ? thanks.offsetHeight * 0.6 : 0)) + 'px';
   }
 
   function fill(mobile) {

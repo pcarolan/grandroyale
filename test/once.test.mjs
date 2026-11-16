@@ -20,7 +20,7 @@ test('no file appears twice in the manifest', () => {
 test('no photos/<file> src appears twice in index.html (the STRIP contact strip aside)', () => {
   const page = html.replace(STRIP_RE, '');
   const seen = {};
-  for (const [, f] of page.matchAll(/photos\/([\w.-]+\.jpg)/g)) seen[f] = (seen[f] || 0) + 1;
+  for (const [, f] of page.matchAll(/(?<!blog\/)photos\/([\w.-]+\.jpg)/g))   // blog/photos/ are the posts' own (Pat 2026-11-16: the blog lives on the homepage) seen[f] = (seen[f] || 0) + 1;
   for (const m of manifest) seen[m.file] = (seen[m.file] || 0) + 1;   // each manifest entry is rendered once
   const twice = Object.entries(seen).filter(([, n]) => n > 1).map(([f]) => f);
   assert.deepEqual(twice, []);
