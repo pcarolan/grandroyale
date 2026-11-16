@@ -65,3 +65,16 @@ test('the blog lives on the homepage, and /blog/ sends people there', () => {
   assert.match(b, /http-equiv="refresh" content="0; url=\/#blog"/);
   assert.match(b, /location\.replace\('\/#blog'\)/);
 });
+
+// Pat 2026-11-16: "make each blog post linkable externally with anchor links"; "also make them social embeddable individually, but still 1 pager"
+test('each post has an anchor on the homepage and a share link with a preview card that leads back to it', () => {
+  const home = read('index.html');
+  for (const p of posts) {
+    assert.match(home, new RegExp(`<a href="#${p.slug}">`), `${p.slug}: anchor link`);
+    assert.match(home, new RegExp(`<a class="share" href="https://grandroyalepizza.com/blog/${p.slug}.html">`), `${p.slug}: share link`);
+    const pg = read(`blog/${p.slug}.html`);
+    for (const tag of ['og:title', 'og:description', 'og:url', 'twitter:card']) assert.match(pg, new RegExp(`(property|name)="${tag}"`), `${p.slug}: ${tag}`);
+    if (p.photos.length) assert.match(pg, new RegExp(`<meta property="og:image" content="https://grandroyalepizza.com/blog/photos/${p.photos[0].file}">`), `${p.slug}: og:image`);
+    assert.match(pg, new RegExp(`location.replace\\('/#${p.slug}'\\)`), `${p.slug}: sends people to the post on the homepage`);
+  }
+});

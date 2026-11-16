@@ -107,13 +107,13 @@ function photoset(post, base = '') {
 function postHTML(post, i, { link = true, base = '' } = {}) {
   const r = rng('blog:' + post.slug);
   r(); r(); // posts sit straight and centered (Pat 2026-11-16); keep the draws so tape spots stay put
-  const title = link ? `<a href="${base}${post.slug}.html">${esc(post.title)}</a>` : esc(post.title);
+  const title = !link ? esc(post.title) : base ? `<a href="#${post.slug}">${esc(post.title)}</a>` : `<a href="${post.slug}.html">${esc(post.title)}</a>`;
   const tape = r() < 0.5 ? 'tape' : 'tape gaffer';
   return `<li class="scrap post" id="${post.slug}" data-tags="${esc(post.tags.map((t) => t.replace(/\s+/g, '-')).join(' '))}">
 <i class="${tape}" aria-hidden="true" style="left:${(30 + r() * 40).toFixed(0)}%"></i>
 ${post.photos.length ? photoset(post, base) + '\n' : ''}<h2>${title}</h2>
 ${post.big ? `<p class="big">${esc(post.big)}</p>\n` : ''}${post.stamp ? `<span class="stamp">${esc(post.stamp)}</span>\n` : ''}${post.body.map((p) => `<p>${esc(p)}</p>`).join('\n')}
-<div class="meta"><span class="tags">${post.tags.map((t) => base ? `<span>#${esc(t)}</span>` : `<a href="${link ? '' : './'}#${esc(t.replace(/\s+/g, '-'))}">#${esc(t)}</a>`).join('')}</span><span class="when">${day(post.date)} &middot; ${esc(post.place || 'Petoskey, MI')}</span></div>
+<div class="meta"><span class="tags">${post.tags.map((t) => base ? `<span>#${esc(t)}</span>` : `<a href="${link ? '' : './'}#${esc(t.replace(/\s+/g, '-'))}">#${esc(t)}</a>`).join('')}</span><span class="when">${base ? `<a href="#${post.slug}">${day(post.date)}</a>` : day(post.date)} &middot; ${esc(post.place || 'Petoskey, MI')}${base ? ` &middot; <a class="share" href="${SITE}/blog/${post.slug}.html">share</a>` : ''}</span></div>
 </li>`;
 }
 
@@ -126,7 +126,7 @@ const WHO = `<div class="scrap who">
   <a href="/">&larr; Home</a>
 </div>`;
 
-const page = (title, desc, body) => `<!doctype html>
+const page = (title, desc, body, head = '') => `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -134,7 +134,7 @@ const page = (title, desc, body) => `<!doctype html>
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <meta name="theme-color" content="#ffffff">
-<style>${WALL_CSS}${CSS}</style>
+${head}<style>${WALL_CSS}${CSS}</style>
 </head>
 <body>
 <div class="topstrip"><div class="tape-link"><img class="tag-petoskey" src="../lettering/label-petoskey.png" width="386" height="64" alt="Petoskey, MI" decoding="async"><a class="tag-link" href="/"><img class="tag-home" src="../lettering/label-home.png" width="162" height="64" alt="Home" decoding="async"></a></div><a class="name" href="/"><img src="../lettering/wordmark-grand-royale.png" width="1727" height="606" alt="Grand Royale Pizza"></a></div>
@@ -167,7 +167,21 @@ export function blogHTML() {
 export function feedHTML(posts = loadPosts()) {
   return `<ol class="feed">
 ${posts.map((p, i) => postHTML(p, i, { base: 'blog/' })).join('\n')}
-</ol>`;
+</ol>
+<script>
+// each post is linkable: grandroyalepizza.com/#<slug> (Pat 2026-11-16). The wall is laid out by script, so jump again once it settles.
+(function () {
+  function go() { var el = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1))); if (el && /\bpost\b/.test(el.className)) el.scrollIntoView(); }
+  window.addEventListener('load', function () { setTimeout(go, 50); });
+  // "share" hands the post's link to the phone's share sheet, or copies it; the link itself still works without script
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('#blog a.share'); if (!a) return;
+    var title = a.closest('.post').querySelector('h2').textContent;
+    if (navigator.share) { e.preventDefault(); navigator.share({ title: title, url: a.href }).catch(function () {}); }
+    else if (navigator.clipboard) { e.preventDefault(); navigator.clipboard.writeText(a.href).then(function () { a.textContent = 'link copied'; setTimeout(function () { a.textContent = 'share'; }, 1600); }); }
+  });
+})();
+</script>`;
 }
 
 export const FEED_CSS = `
@@ -179,7 +193,7 @@ export const FEED_CSS = `
   #blog .tape { position: absolute; top: -12px; width: 96px; height: 26px; transform: translateX(-50%) rotate(-3deg); background: var(--tape); }
   #blog .tape.gaffer { background: var(--ink); opacity: .93; }
   #blog .feed { list-style: none; margin: 0; padding: 0; }
-  #blog .post { width: min(540px, 100%); margin: 0 auto 54px; padding: 12px 12px 14px; box-shadow: 2px 3px 0 rgba(26, 26, 26, .18); }
+  #blog .post { scroll-margin-top: 24px; width: min(540px, 100%); margin: 0 auto 54px; padding: 12px 12px 14px; box-shadow: 2px 3px 0 rgba(26, 26, 26, .18); }
   #blog .set { margin: 0 0 12px; }
   #blog .row { display: flex; gap: 4px; margin-bottom: 4px; }
   #blog .row a { display: block; min-width: 0; overflow: hidden; background: var(--ink); }
@@ -199,6 +213,33 @@ export const FEED_CSS = `
   @media (max-width: 599px) { #blog { margin: 40px 0 0; } }
 `;
 
+export const SITE = 'https://grandroyalepizza.com';
+
+// a post's own page is its share link (Pat 2026-11-16: "make them social embeddable individually, but still 1 pager"):
+// the card tags are for link previews (they don't run scripts); people are sent on to the post on the homepage
+export function shareTags(post) {
+  const url = `${SITE}/blog/${post.slug}.html`, desc = [post.big, ...post.body].filter(Boolean).join(' ');
+  const short = desc.length > 200 ? desc.slice(0, 197).replace(/\s+\S*$/, '') + '...' : desc;
+  const ph = post.photos[0], img = ph ? { src: `${SITE}/blog/photos/${ph.file}`, ...jpegSize(`blog/photos/${ph.file}`), alt: ph.alt } : null;
+  return `<link rel="canonical" href="${url}">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Grand Royale Pizza">
+<meta property="og:url" content="${url}">
+<meta property="og:title" content="${esc(post.title)}">
+<meta property="og:description" content="${esc(short)}">
+${img ? `<meta property="og:image" content="${img.src}">
+<meta property="og:image:width" content="${img.w}">
+<meta property="og:image:height" content="${img.h}">
+<meta property="og:image:alt" content="${esc(img.alt)}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="${img.src}">` : `<meta name="twitter:card" content="summary">`}
+<meta name="twitter:title" content="${esc(post.title)}">
+<meta name="twitter:description" content="${esc(short)}">
+<meta property="article:published_time" content="${post.date}">
+<script>location.replace('/#${post.slug}');</script>
+`;
+}
+
 export function postPageHTML(post, posts = loadPosts()) {
   const i = posts.findIndex((p) => p.slug === post.slug);
   const body = `<main>
@@ -210,5 +251,5 @@ ${postHTML(post, i, { link: false })}
 </div>
 <a class="back" href="/#blog">more from the blog</a>
 </main>`;
-  return page(`${post.title}: Grand Royale Pizza`, [post.big, ...post.body].filter(Boolean).join(' '), body);
+  return page(`${post.title}: Grand Royale Pizza`, [post.big, ...post.body].filter(Boolean).join(' '), body, shareTags(post));
 }
