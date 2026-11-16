@@ -32,12 +32,16 @@
   .tape.gaffer { background: var(--ink); opacity: .93; }
 
   [hidden] { display: none !important; }
-  /* the header, same as the wall's (index.html .topstrip / .dymo, and the spray name's size, tilt and spot): the crowned name top left, the PETOSKEY, MI label and a label-maker tape top right (Pat 2026-11-16) */
+  /* the header, same as the wall's (index.html .topstrip / .dymo, and the spray name's size, tilt and spot): the crowned name top left, the PETOSKEY, MI and HOME label-maker tapes top right (Pat 2026-11-16) */
   .topstrip { position: relative; z-index: 10; padding: 4px 0 0; min-height: 150px; }
   .topstrip .name { position: absolute; left: 3vw; top: 4px; display: block; width: min(445px, 60vw); transform: rotate(-5deg); }
   .topstrip .name img { display: block; width: 100%; height: auto; }
   .topstrip .tape-link { position: absolute; top: 0; right: 0; padding: 18px 16px 6px; display: flex; align-items: center; gap: 14px; }
   .topstrip .tag-petoskey { width: 190px; height: auto; transform: rotate(2deg); }
+  /* the way home: a label-maker tape like PETOSKEY, MI (Pat 2026-11-16) */
+  .topstrip .tag-link { display: block; }
+  .topstrip .tag-home { display: block; width: 80px; height: auto; transform: rotate(-2deg); }
+  .topstrip .tag-link:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
   .dymo {
     display: inline-block; padding: 9px 20px 8px; border-radius: 5px; white-space: nowrap;
     background: var(--ink) linear-gradient(rgba(255, 255, 255, .07) 0 3px, transparent 3px);
@@ -53,6 +57,7 @@
     .topstrip .name { position: relative; left: -3vw; top: 2px; width: 71vw; transform: rotate(-7deg); }
     .dymo { font-size: 17px; padding: 8px 12px 7px; }
     .topstrip .tag-petoskey { width: 112px; }
+    .topstrip .tag-home { width: 47px; }
   }
   main { padding: 8px 16px 90px; }
   .cols { max-width: 1000px; margin: 0 auto; }
@@ -89,7 +94,7 @@
 </style>
 </head>
 <body>
-<div class="topstrip"><div class="tape-link"><img class="tag-petoskey" src="../lettering/label-petoskey.png" width="386" height="64" alt="Petoskey, MI" decoding="async"><a class="dymo" href="/">&larr; the wall</a></div><a class="name" href="/"><img src="../lettering/wordmark-grand-royale.png" width="1727" height="606" alt="Grand Royale Pizza"></a></div>
+<div class="topstrip"><div class="tape-link"><img class="tag-petoskey" src="../lettering/label-petoskey.png" width="386" height="64" alt="Petoskey, MI" decoding="async"><a class="tag-link" href="/"><img class="tag-home" src="../lettering/label-home.png" width="162" height="64" alt="Home" decoding="async"></a></div><a class="name" href="/"><img src="../lettering/wordmark-grand-royale.png" width="1727" height="606" alt="Grand Royale Pizza"></a></div>
 <main>
 <div class="cols">
 <div class="scrap who">
@@ -98,7 +103,7 @@
   <p class="name">blog</p>
   <p class="handle">grandroyalepizza</p>
   <p>Pizza research log</p>
-  <a href="/">&larr; back to the wall</a>
+  <a href="/">&larr; Home</a>
 </div>
 <ol class="feed">
 <li class="scrap post" id="verdict" data-tags="verdict hot-honey margherita" style="transform:rotate(-1.1deg);margin-left:2.3vw">

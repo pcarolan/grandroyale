@@ -23,7 +23,8 @@ test('same wall: wall CSS, no webfonts, no header/nav, no grid, no magazine clas
     assert.doesNotMatch(p, /display:\s*grid|flex-wrap/, name);
     const classes = [...p.matchAll(/class="([^"]*)"/g)].map((m) => m[1]).join(' ');
     assert.doesNotMatch(classes, /\b(masthead|issue|spread|section|toc|folio|wordmark)\b/, name);
-    assert.match(p, /href="\/">&larr; back to the wall/, name);
+    assert.match(p, /href="\/">&larr; Home</, name);   // Pat 2026-11-16: "the wall" -> Home
+    assert.match(p, /alt="Home"/, name);
   }
 });
 
