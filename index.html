@@ -51,12 +51,12 @@
   h1.spray img { width: 100%; height: auto; }
 
   /* the one thing to tap: an index card, taped up, on top of everything */
-  /* the card is a cassette (Pat 2026-11-16): ink shell, the pink post-it is its handwritten label, a tape window under it */
   /* a mix tape insert (J-card) in its dark case: a side A box by the title, then heavy black rules, all filled in with a marker (Pat 2026-11-16) */
   #card {
     position: relative; z-index: 1000;
     width: min(400px, 88vw);
     margin: 330px 0 0 6vw;
+    display: flex; flex-direction: column;
     padding: 16px 18px 22px;
     background: var(--jcard);
     border: 12px solid #2e2e2e; border-radius: 3px;   /* the case, like Pat's "My Love Mix" card (2026-11-16) */
@@ -68,6 +68,8 @@
   /* side A, printed in a black box in the corner */
   #card .jtitle::before { position: absolute; top: 6px; width: 22px; height: 22px; background: var(--ink); color: var(--jcard); font: 700 16px/22px Arial, sans-serif; text-align: center; border-radius: 3px; }
   #card .jtitle::before { content: "A"; left: 0; }
+  #card.side-b .jtitle::before { content: "B"; }   /* after sign-up the card flips to side B (Pat 2026-11-16) */
+  #card form, #card .success { flex: 1 1 auto; }
   #card .hand { display: block; height: auto; margin: 0 0 14px; }
   #card .hand.lede-hand { width: 100%; }
   #card .hand.number-hand { width: 112px; margin: 0 0 6px; }
@@ -93,7 +95,18 @@
   #card button:disabled { opacity: .7; }
   #card .success h3 { margin: 0 0 10px; font: 900 26px/1.1 "Arial Black", Arial, sans-serif; }
   #card .success h3:focus { outline: none; }
-  #card .success p { margin: 0; font-size: 18px; font-weight: 700; }
+  /* side B gets the same heavy rules as side A */
+  #card .success p { margin: 0; font-size: 18px; font-weight: 700; line-height: 36px; background: repeating-linear-gradient(transparent 0 32px, var(--ink) 32px 35px, transparent 35px 36px); }
+  /* desktop: a cassette insert, landscape, the same size on both sides (Pat 2026-11-16) */
+  @media (min-width: 600px) {
+    #card { width: min(560px, calc(100vw - 48px)); aspect-ratio: 1.55 / 1; }
+    #card form { display: flex; gap: 22px; align-items: flex-start; }
+    #card form[hidden] { display: none; }
+    #card .jtitle img { width: 58%; }
+    #card form .side-l { flex: 1 1 0; min-width: 0; }
+    #card form .side-r { flex: 1 1 0; min-width: 0; padding-top: 4px; }
+    #card button { font-size: 18px; }
+  }
 
 
   /* the top strip: a label-maker tape link to the blog, same tape as "Todd Webb + Pat Carolan" (Pat 2026-11-16) */
@@ -170,10 +183,10 @@
   .thanks .tape { top: -12px; left: 50%; transform: translateX(-50%) rotate(-4deg); }
 
   @media (min-width: 600px) {
-    #card { margin: 300px 0 0 38vw; }
+    #card { margin: 300px 0 0 max(16px, min(38vw, calc(100vw - 600px))); }
   }
   @media (min-width: 1000px) {
-    #card { margin: 170px 0 0 55vw; }
+    #card { margin: 170px 0 0 min(55vw, calc(100vw - 600px)); }
   }
   @media (max-width: 599px) {
     #card { margin-top: 400px; }
@@ -200,13 +213,17 @@
   <div id="card">
     <div class="jtitle" aria-hidden="true"><img src="lettering/card-title.svg" width="507" height="126" alt="" decoding="async"></div>
     <form id="signup" novalidate>
+      <div class="side-l">
       <img class="hand lede-hand" src="lettering/card-lede.svg" width="835" height="396" alt="" aria-hidden="true" decoding="async">
       <p class="lede">We're not open yet. Leave your number and we'll text you the night we open.</p>
+      </div>
+      <div class="side-r">
       <img class="hand number-hand" src="lettering/card-number.svg" width="240" height="63" alt="" aria-hidden="true" decoding="async">
       <label for="phone">your number</label>
       <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="231 and the rest" required aria-describedby="signup-error">
       <p class="error" id="signup-error" role="alert" hidden></p>
       <button type="submit">Text me when the pizza's on</button>
+      </div>
     </form>
     <div class="success" id="signup-success" hidden>
       <h3 tabindex="-1">Got it.</h3>

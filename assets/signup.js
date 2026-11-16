@@ -70,6 +70,8 @@ if (form) {
     }
 
     document.getElementById('signup-number').textContent = pretty(phone);
+    const card = document.getElementById('card');   // flip to side B, same size as side A
+    if (card) { card.style.minHeight = card.offsetHeight + 'px'; card.classList.add('side-b'); }
     form.hidden = true;
     success.hidden = false;
     success.querySelector('h3').focus();
