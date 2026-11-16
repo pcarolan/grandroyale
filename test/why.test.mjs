@@ -17,18 +17,17 @@ test('the marker hand can write numbers', () => {
   for (const d of '0123456789') assert.ok(GLYPHS[d] && GLYPHS[d].s.length, `no glyph for ${d}`);
   assert.ok(write('12.').paths.length >= 3);
 });
-test('a dozen photos carry numbered deadpan captions, numbers unique, out of order on purpose', () => {
-  const run = manifest.filter((m) => /^\d+\. /.test(m.caption || ''));
-  assert.ok(run.length >= 10 && run.length <= 14, `run of ${run.length}`);
-  const nums = run.map((m) => parseInt(m.caption, 10));
-  assert.equal(new Set(nums).size, nums.length, 'numbers repeat');
-  assert.ok(Math.max(...nums) > run.length, 'the numbers skip, so the reader goes hunting');
-  for (const m of run) assert.ok(existsSync(new URL(`lettering/cap-${m.file.replace(/\.jpg$/, '')}.svg`, root)), `no lettering for ${m.file}`);
+// Pat, 2026-11-16: "take the numbers off the photo captions" (15. seating (not ours) -> seating (not ours))
+test('captions carry no running numbers, and every caption has its lettering', () => {
+  for (const m of manifest.filter((m) => m.caption)) {
+    assert.doesNotMatch(m.caption, /^\d+\. /, m.file);
+    assert.ok(existsSync(new URL(`lettering/cap-${m.file.replace(/\.jpg$/, '')}.svg`, root)), `no lettering for ${m.file}`);
+  }
 });
-test('the run has the crit\'s lines, and the sketch is "our pizza (artist\'s rendering)"', () => {
+test('the crit\'s lines stay, without numbers, and the sketch is "our pizza (artist\'s rendering)"', () => {
   const caps = manifest.map((m) => m.caption || '');
-  for (const c of ['3. not our pizza', '7. also not our pizza', '19. Todd, probably']) assert.ok(caps.includes(c), c);
-  assert.equal(byFile('crown-slice-sketch.jpg').caption, "12. this is our pizza\n(artist's rendering)");
+  for (const c of ['not our pizza', 'also not our pizza', 'Todd, probably', 'seating (not ours)']) assert.ok(caps.includes(c), c);
+  assert.equal(byFile('crown-slice-sketch.jpg').caption, "this is our pizza\n(artist's rendering)");
   assert.equal(byFile('crown-slice-sketch.jpg').place, 'top');
 });
 test("Pat's own captions are untouched", () => {
@@ -42,8 +41,8 @@ test('captions stay inside the house words', () => {
 test('archive picks can carry their own caption and alt', () => {
   const pick = JSON.parse(read('archive/pick.json'));
   const dance = pick.find((p) => p.id === '1980_petosegan_dance-candids_01-1');
-  assert.equal(dance.caption, '19. Todd, probably');
-  assert.equal(byFile('1980_petosegan_dance-candids_01-1.jpg').caption, '19. Todd, probably');
+  assert.equal(dance.caption, 'Todd, probably');
+  assert.equal(byFile('1980_petosegan_dance-candids_01-1.jpg').caption, 'Todd, probably');
   assert.match(read('tools/archive.mjs'), /caption: p\.caption \?\? ''/);
 });
 test('multi-line captions get a taller strip of marker', () => {

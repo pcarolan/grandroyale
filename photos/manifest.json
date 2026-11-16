@@ -12,7 +12,7 @@
   "place": "top",
   "w": 862,
   "h": 900,
-  "caption": "12. this is our pizza\n(artist's rendering)"
+  "caption": "this is our pizza\n(artist's rendering)"
  },
  {
   "file": "victory-lanes.jpg",
@@ -26,7 +26,7 @@
   "weight": 8,
   "w": 168,
   "h": 300,
-  "caption": "2. victory lanes"
+  "caption": "victory lanes"
  },
  {
   "file": "vacancy-bar.jpg",
@@ -96,7 +96,7 @@
   "weight": 7,
   "w": 542,
   "h": 720,
-  "caption": "7. also not our pizza"
+  "caption": "also not our pizza"
  },
  {
   "file": "two-slices.jpg",
@@ -110,7 +110,7 @@
   "weight": 4,
   "w": 560,
   "h": 498,
-  "caption": "3. not our pizza"
+  "caption": "not our pizza"
  },
  {
   "file": "square-slice.jpg",
@@ -151,7 +151,7 @@
   "weight": 3,
   "w": 560,
   "h": 420,
-  "caption": "31. leftovers"
+  "caption": "leftovers"
  },
  {
   "file": "sticker-wall.jpg",
@@ -178,7 +178,7 @@
   "weight": 4,
   "w": 560,
   "h": 374,
-  "caption": "15. seating (not ours)"
+  "caption": "seating (not ours)"
  },
  {
   "file": "bar-sink.jpg",
@@ -363,7 +363,7 @@
   "weight": 9,
   "w": 720,
   "h": 480,
-  "caption": "9. delivery (proposed)"
+  "caption": "delivery (proposed)"
  },
  {
   "file": "red-pit.jpg",
@@ -403,7 +403,7 @@
   "weight": 6,
   "w": 720,
   "h": 478,
-  "caption": "22. house rules"
+  "caption": "house rules"
  },
  {
   "file": "club-shutter.jpg",
@@ -509,7 +509,7 @@
   "weight": 5,
   "w": 560,
   "h": 492,
-  "caption": "33. still looking"
+  "caption": "still looking"
  },
  {
   "file": "lake-ice-1911.jpg",
@@ -576,7 +576,7 @@
   "weight": 6,
   "w": 262,
   "h": 281,
-  "caption": "19. Todd, probably"
+  "caption": "Todd, probably"
  },
  {
   "file": "1980_petosegan_halloween-costumes_01-1.jpg",
@@ -618,7 +618,7 @@
   "weight": 7,
   "w": 592,
   "h": 800,
-  "caption": "40. the line (someday)"
+  "caption": "the line (someday)"
  },
  {
   "file": "1986_rampage-ads-family-video-club_p136-1.jpg",
@@ -688,7 +688,7 @@
   "weight": 7,
   "w": 530,
   "h": 350,
-  "caption": "44. the competition"
+  "caption": "the competition"
  },
  {
   "file": "1976_ltrhs_color-guard-july-4-1976-parade-on-howard-stre_15409-1.jpg",

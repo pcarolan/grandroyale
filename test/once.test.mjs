@@ -37,7 +37,7 @@ test("Cecilia's sketch is on the wall once: no scraps cut from it on index.html"
   const sketch = manifest.filter((m) => m.file === 'crown-slice-sketch.jpg');
   assert.equal(sketch.length, 1);
   assert.equal(sketch[0].place, 'top');
-  assert.equal(sketch[0].caption, "12. this is our pizza\n(artist's rendering)");
+  assert.equal(sketch[0].caption, "this is our pizza\n(artist's rendering)");
 });
 test('the 404 keeps the slice tip (a different page)', () => {
   assert.ok(existsSync(new URL('scraps/cecilia-tip.jpg', root)));
