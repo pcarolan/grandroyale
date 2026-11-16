@@ -70,9 +70,10 @@ function photoset(post) {
   return `<div class="set">\n${rows.map((n) => {
     const row = photos.slice(i, i += n);
     // widths follow each photo's aspect ratio, so the whole row shares one height and nothing is cropped
+    // (flex-grow x100: a lone portrait photo has a ratio under 1, and grow values under 1 leave the row part empty)
     const sum = row.reduce((a, p) => a + p.w / p.h, 0);
     return `  <div class="row" style="aspect-ratio:${sum.toFixed(3)} / 1">${row.map((p) =>
-      `<a href="photos/${p.file}" style="flex:${(p.w / p.h).toFixed(3)} 1 0"><img src="photos/${p.file}" width="${p.w}" height="${p.h}" alt="${esc(p.alt)}" loading="lazy" decoding="async"></a>`).join('')}</div>`;
+      `<a href="photos/${p.file}" style="flex:${(100 * p.w / p.h).toFixed(1)} 1 0"><img src="photos/${p.file}" width="${p.w}" height="${p.h}" alt="${esc(p.alt)}" loading="lazy" decoding="async"></a>`).join('')}</div>`;
   }).join('\n')}\n</div>`;
 }
 
