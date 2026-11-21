@@ -37,6 +37,7 @@ const CSS = `
   /* the way home: a label-maker tape like PETOSKEY, MI (Pat 2026-11-16) */
   .topstrip .tag-link { display: block; }
   .topstrip .tag-home { display: block; width: 80px; height: auto; transform: rotate(-2deg); }
+  .topstrip .tag-bars { display: block; width: 163px; height: auto; transform: rotate(1.5deg); }   /* to /cook, for bar owners (Pat 2026-11-21) */
   .topstrip .tag-link:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
   .dymo {
     display: inline-block; padding: 9px 20px 8px; border-radius: 5px; white-space: nowrap;
@@ -54,6 +55,7 @@ const CSS = `
     .dymo { font-size: 17px; padding: 8px 12px 7px; }
     .topstrip .tag-petoskey { width: 112px; }
     .topstrip .tag-home { width: 47px; }
+    .topstrip .tag-bars { width: 96px; }
   }
   main { padding: 8px 16px 90px; }
   .cols { max-width: 1000px; margin: 0 auto; }
@@ -137,7 +139,7 @@ const page = (title, desc, body, head = '') => `<!doctype html>
 ${head}<style>${WALL_CSS}${CSS}</style>
 </head>
 <body>
-<div class="topstrip"><div class="tape-link"><img class="tag-petoskey" src="../lettering/label-petoskey.png" width="386" height="64" alt="Petoskey, MI" decoding="async"><a class="tag-link" href="/"><img class="tag-home" src="../lettering/label-home.png" width="162" height="64" alt="Home" decoding="async"></a></div><a class="name" href="/"><img src="../lettering/wordmark-grand-royale.png" width="1727" height="606" alt="Grand Royale Pizza"></a></div>
+<div class="topstrip"><div class="tape-link"><img class="tag-petoskey" src="../lettering/label-petoskey.png" width="386" height="64" alt="Petoskey, MI" decoding="async"><a class="tag-link" href="/"><img class="tag-home" src="../lettering/label-home.png" width="162" height="64" alt="Home" decoding="async"></a><a class="tag-link" href="../cook/"><img class="tag-bars" src="../lettering/label-bars.png" width="330" height="64" alt="Bar owners" decoding="async"></a></div><a class="name" href="/"><img src="../lettering/wordmark-grand-royale.png" width="1727" height="606" alt="Grand Royale Pizza"></a></div>
 ${body}
 </body>
 </html>

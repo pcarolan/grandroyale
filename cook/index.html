@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://grandroyalepizza.com/cook/">
 <meta property="og:title" content="A free pizza pop up at your bar">
 <meta property="og:description" content="Grand Royale Pizza for bars in northern Michigan: we loan the oven, you sell the pizza. Book a free pop up at your bar.">
-<meta property="og:image" content="https://grandroyalepizza.com/lettering/wordmark-grand-royale.png">
+<meta property="og:image" content="https://grandroyalepizza.com/cook/pizza-pub-1985.jpg">
 <meta name="theme-color" content="#ffffff">
 <style>
   :root {
@@ -39,22 +39,47 @@
   .tape.gaffer { background: var(--ink); opacity: .93; }
 
   [hidden] { display: none !important; }
-  main { position: relative; padding: 18px 16px 90px; max-width: 1100px; }
-  .name { display: block; width: min(420px, 74vw); margin: 0 0 8px -6px; transform: rotate(-5deg); }
-  .name img { display: block; width: 100%; height: auto; }
-  .name:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
-  .flyer { width: min(520px, 100%); margin: 26px 0 0 2vw; padding: 26px 22px 20px; transform: rotate(-1.2deg); }
-  .flyer h1 { margin: 0 0 14px; font: 900 44px/0.95 "Arial Black", Arial, sans-serif; letter-spacing: -.01em; }
-  .flyer p { margin: 0 0 12px; font-size: 17px; font-weight: 700; }
-  .offer { width: min(480px, 100%); margin: 34px 0 0 clamp(0px, 14vw - 40px, 220px); padding: 26px 22px 18px; transform: rotate(1.4deg); border-top: 3px solid var(--red); }
-  .offer h2 { margin: 0 0 12px; font: 900 30px/1 "Arial Black", Arial, sans-serif; }
+  /* the header, same as the blog's: the crowned name top left, the label-maker tapes top right (Pat 2026-11-21: "bring in the nav") */
+  .topstrip { position: relative; z-index: 10; padding: 4px 0 0; min-height: 150px; }
+  .topstrip .name { position: absolute; left: 3vw; top: 4px; display: block; width: min(445px, 60vw); transform: rotate(-5deg); }
+  .topstrip .name img { display: block; width: 100%; height: auto; }
+  .topstrip .tape-link { position: absolute; top: 0; right: 0; padding: 18px 16px 6px; display: flex; align-items: center; gap: 14px; }
+  .topstrip .tag-petoskey { width: 190px; height: auto; transform: rotate(2deg); }
+  .topstrip .tag-link { display: block; }
+  .topstrip .tag-home, .topstrip .tag-blog { display: block; width: 80px; height: auto; transform: rotate(-2deg); }
+  .topstrip .tag-bars { display: block; width: 163px; height: auto; transform: rotate(1.5deg); }
+  .topstrip .tag-link:focus-visible, .topstrip .name:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
+  @media (max-width: 599px) {
+    .topstrip { min-height: 0; padding: 0; }
+    .topstrip .tape-link { position: relative; justify-content: flex-end; gap: 10px; padding: 12px 12px 6px; }
+    .topstrip .name { position: relative; left: -3vw; top: 2px; width: 71vw; transform: rotate(-7deg); }
+    .topstrip .tag-petoskey { width: 96px; }
+    .topstrip .tag-home, .topstrip .tag-blog { width: 42px; }
+    .topstrip .tag-bars { width: 86px; }
+  }
+  /* one centered column; every scrap a little off true, like it was taped up by hand */
+  main { position: relative; width: min(680px, 100%); margin: 0 auto; padding: 24px 16px 90px; }
+  .flyer { position: relative; margin: 18px auto 0; padding: 30px 24px 20px; transform: rotate(-1.2deg); text-align: center; }
+  .flyer h1 { margin: 0 0 14px; font: 900 48px/0.95 "Arial Black", Arial, sans-serif; letter-spacing: -.01em; }
+  .flyer p { margin: 0 auto 12px; max-width: 520px; font-size: 17px; font-weight: 700; }
+  .flyer .sticker { position: absolute; right: -22px; top: -26px; width: 96px; height: auto; transform: rotate(14deg); }
+  /* the photos: Polaroids, taped, with a marker caption on the bottom lip */
+  .pol { position: relative; width: min(560px, 92%); margin: 38px auto 0; padding: 10px 10px 44px; background: var(--paper); box-shadow: 0 1px 0 rgba(26, 26, 26, .08); }
+  .pol img:not(.cap) { display: block; width: 100%; height: auto; }
+  .pol svg.cap { position: absolute; left: 14px; bottom: 8px; height: 26px; width: auto; }
+  .pol.a { transform: rotate(1.8deg); }
+  .pol.b { width: min(420px, 84%); transform: rotate(-2.4deg); margin-top: -18px; margin-left: auto; margin-right: 4%; }
+  .offer { position: relative; margin: 40px auto 0; padding: 26px 24px 18px; transform: rotate(.8deg); border-top: 3px solid var(--red); }
+  .offer h2 { margin: 0 0 14px; font: 900 32px/1 "Arial Black", Arial, sans-serif; text-align: center; }
   .offer h2 em { font-style: normal; color: var(--red); }
-  .offer p { margin: 0 0 12px; font-size: 17px; font-weight: 700; }
-  .offer ol { margin: 0 0 12px; padding-left: 26px; font-size: 17px; font-weight: 700; }
-  .offer li { margin-bottom: 6px; }
-  .offer .small { font-size: 14px; font-weight: 400; }
+  .offer ol { list-style: none; margin: 0 0 12px; padding: 0; counter-reset: s; }
+  .offer li { position: relative; margin: 0 0 12px; padding-left: 46px; font-size: 17px; font-weight: 700; counter-increment: s; }
+  /* step numbers stamped in red, like the wall's marker numbers */
+  .offer li::before { content: counter(s); position: absolute; left: 0; top: -4px; width: 32px; height: 32px; border: 3px solid var(--red); border-radius: 50%;
+    color: var(--red); font: 900 18px/26px "Arial Black", Arial, sans-serif; text-align: center; transform: rotate(-8deg); }
+  .offer .small { margin: 0; font-size: 14px; text-align: center; }
   /* the sign-up: one big index card, taped up, rules and a red line like a real one */
-  #lead-card { position: relative; z-index: 10; width: min(640px, 100%); margin: 44px 0 0 clamp(0px, 4vw, 60px); padding: 30px 22px 26px; transform: rotate(-.6deg);
+  #lead-card { position: relative; z-index: 10; margin: 44px auto 0; padding: 30px 22px 26px; transform: rotate(-.6deg);
     background: var(--paper) repeating-linear-gradient(transparent 0 31px, rgba(31, 63, 176, .18) 31px 32px); border-top: 3px solid var(--red);
     box-shadow: -18px 16px 0 rgba(26, 26, 26, .12); }
   #lead-card h2 { margin: 0 0 6px; font: 900 28px/1 "Arial Black", Arial, sans-serif; }
@@ -79,24 +104,107 @@
   #lead-card button:disabled { opacity: .7; }
   #lead-card .success h2:focus { outline: none; }
   #lead-card .success p { font-size: 18px; font-weight: 700; }
-  .back { display: inline-block; margin: 40px 0 0 6vw; padding: 8px 12px; background: var(--paper); transform: rotate(1.5deg); font-weight: 700; }
+  .foot { margin: 40px 0 0; text-align: center; }
+  .back { display: inline-block; padding: 8px 12px; background: var(--paper); transform: rotate(1.5deg); font-weight: 700; }
+  .credit { margin: 14px auto 0; max-width: 480px; font-size: 12px; opacity: .75; }
   @media (max-width: 599px) {
     .flyer h1 { font-size: 34px; }
+    .flyer .sticker { width: 70px; right: -8px; top: -30px; }
+    .pol.b { margin-right: auto; margin-top: 18px; }
     .two { display: block; }
     #lead-card { padding: 26px 14px 22px; transform: none; }
   }
 </style>
 </head>
 <body>
+<div class="topstrip"><div class="tape-link"><img class="tag-petoskey" src="../lettering/label-petoskey.png" width="386" height="64" alt="Petoskey, MI" decoding="async"><a class="tag-link" href="/"><img class="tag-home" src="../lettering/label-home.png" width="162" height="64" alt="Home" decoding="async"></a><a class="tag-link" href="/#blog"><img class="tag-blog" src="../lettering/label-blog.png" width="162" height="64" alt="Blog" decoding="async"></a><a class="tag-link" href="./" aria-current="page"><img class="tag-bars" src="../lettering/label-bars.png" width="330" height="64" alt="Bar owners" decoding="async"></a></div><a class="name" href="/"><img src="../lettering/wordmark-grand-royale.png" width="1727" height="606" alt="Grand Royale Pizza"></a></div>
 <main>
-<a class="name" href="/"><img src="../lettering/wordmark-grand-royale.png" width="1727" height="606" alt="Grand Royale Pizza, back to the wall"></a>
-
 <div class="scrap flyer">
   <i class="tape gaffer" aria-hidden="true"></i>
+  <img class="sticker" src="../lettering/sticker.svg" width="98" height="98" alt="" aria-hidden="true">
   <h1>Your bar sells pizza now.</h1>
   <p>We make frozen pizza in northern Michigan for bars with no kitchen. We loan you the oven and the freezer, and teach your staff. Your bartender bakes a pie in minutes. No kitchen, no cook.</p>
   <p>You sell pies to the room, and frozen pies to go.</p>
 </div>
+
+<figure class="pol a">
+  <i class="tape" aria-hidden="true"></i>
+  <img src="pizza-pub-1985.jpg" width="720" height="474" alt="Snapshot from about 1985: regulars at the bar of The Pizza Pub in Apeldoorn, a glass raised, the owner behind the bar. Pizza pubs were a thing. Bring it back." loading="lazy" decoding="async">
+  <svg aria-hidden="true" class="cap" xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 115.6 21.0" width="462" height="84">
+<filter id="ink" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="62"/><feDisplacementMap in="SourceGraphic" scale="0.45"/></filter>
+
+<g fill="none" stroke="#1a1a1a" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" filter="url(#ink)">
+<path d="M0.05 2.26 L5.11 1.75"/>
+<path d="M2.61 2.00 L2.45 12.63"/>
+<path d="M7.75 2.78 L6.89 12.60"/>
+<path d="M12.37 2.81 L11.53 12.36"/>
+<path d="M7.57 7.50 L11.86 7.44"/>
+<path d="M19.01 1.94 C18.24 1.95 15.41 0.27 14.38 2.01 C13.35 3.75 12.34 10.65 12.83 12.38 C13.32 14.12 16.46 12.42 17.32 12.42 C18.18 12.43 17.88 12.43 17.99 12.43"/>
+<path d="M13.78 7.10 L17.16 6.99"/>
+<path d="M24.04 11.50 C24.25 9.79 24.56 2.89 25.29 1.22 C26.02 -0.46 27.65 1.18 28.41 1.45 C29.17 1.72 29.60 2.23 29.83 2.83 C30.06 3.44 30.10 4.42 29.79 5.05 C29.48 5.69 28.83 6.36 27.97 6.65 C27.11 6.95 25.18 6.81 24.63 6.84"/>
+<path d="M33.11 1.78 L31.97 12.05"/>
+<path d="M36.56 3.23 C37.27 3.22 40.85 1.63 40.79 3.17 C40.74 4.71 36.33 10.95 36.24 12.48 C36.16 14.01 39.60 12.36 40.27 12.34"/>
+<path d="M43.48 2.88 C44.23 2.91 48.10 1.60 47.97 3.11 C47.84 4.62 42.91 10.40 42.71 11.95 C42.52 13.51 46.13 12.36 46.81 12.44"/>
+<path d="M48.57 11.75 C49.37 10.10 52.46 1.82 53.35 1.83 C54.25 1.83 53.83 10.13 53.93 11.80"/>
+<path d="M50.73 8.21 L53.44 8.43"/>
+<path d="M59.47 12.36 C59.72 10.74 60.21 4.18 60.98 2.62 C61.75 1.06 63.37 2.71 64.07 2.98 C64.78 3.24 65.12 3.65 65.20 4.20 C65.27 4.75 64.86 5.68 64.51 6.28 C64.16 6.87 63.74 7.58 63.08 7.80 C62.41 8.01 61.00 7.63 60.51 7.59 C60.02 7.55 60.19 7.56 60.12 7.56"/>
+<path d="M66.46 1.43 C66.29 2.72 65.45 7.43 65.43 9.15 C65.40 10.87 65.93 11.25 66.32 11.75 C66.71 12.25 67.25 12.19 67.78 12.16 C68.31 12.12 69.04 12.05 69.51 11.57 C69.99 11.09 70.30 10.92 70.65 9.28 C70.99 7.64 71.41 2.99 71.56 1.73"/>
+<path d="M72.44 12.33 L74.73 1.70"/>
+<path d="M74.83 1.87 C75.34 1.83 77.19 1.44 77.89 1.63 C78.59 1.83 78.96 2.41 79.04 3.06 C79.11 3.70 78.67 4.87 78.35 5.50 C78.03 6.12 77.84 6.62 77.11 6.80 C76.39 6.99 74.50 6.63 73.98 6.59"/>
+<path d="M73.91 6.85 C74.43 6.88 76.33 6.83 77.08 7.03 C77.83 7.24 78.29 7.42 78.43 8.08 C78.57 8.74 78.32 10.31 77.94 10.98 C77.56 11.66 77.03 11.91 76.15 12.13 C75.27 12.35 73.24 12.28 72.66 12.32"/>
+<path d="M80.53 11.91 C80.51 12.00 80.54 12.02 80.41 12.44 C80.27 12.85 79.82 14.06 79.70 14.39"/>
+<path d="M88.64 3.70 C88.98 3.40 90.67 0.46 90.66 1.92 C90.65 3.38 88.92 10.70 88.57 12.45"/>
+<path d="M96.25 5.68 C96.09 5.86 95.68 6.44 95.28 6.77 C94.88 7.10 94.34 7.63 93.86 7.64 C93.39 7.65 92.74 7.28 92.42 6.85 C92.11 6.43 91.95 5.72 91.97 5.07 C92.00 4.42 92.22 3.40 92.59 2.95 C92.96 2.49 93.73 2.33 94.19 2.35 C94.65 2.37 95.02 2.65 95.35 3.05 C95.68 3.45 96.03 3.88 96.16 4.75 C96.28 5.63 96.28 7.20 96.11 8.30 C95.94 9.40 95.56 10.65 95.11 11.35 C94.66 12.06 93.90 12.44 93.42 12.53 C92.94 12.62 92.43 12.00 92.23 11.90"/>
+<path d="M100.72 7.52 C100.46 7.42 99.37 7.41 99.16 6.94 C98.94 6.48 99.20 5.33 99.45 4.73 C99.70 4.14 100.22 3.59 100.66 3.39 C101.10 3.19 101.73 3.31 102.09 3.53 C102.46 3.75 102.78 4.12 102.85 4.69 C102.92 5.26 102.91 6.48 102.52 6.95 C102.14 7.42 101.20 7.15 100.54 7.52 C99.88 7.88 98.98 8.54 98.57 9.13 C98.16 9.72 98.04 10.48 98.10 11.05 C98.17 11.62 98.55 12.28 98.95 12.54 C99.35 12.79 100.03 12.82 100.53 12.57 C101.03 12.31 101.69 11.58 101.95 11.00 C102.22 10.42 102.31 9.62 102.09 9.08 C101.88 8.54 100.90 7.99 100.66 7.77"/>
+<path d="M108.69 2.91 C108.09 2.92 105.80 2.17 105.08 2.94 C104.36 3.71 104.25 6.86 104.38 7.52 C104.51 8.18 105.37 6.96 105.87 6.89 C106.37 6.81 107.02 6.83 107.39 7.08 C107.76 7.33 108.01 7.69 108.09 8.37 C108.17 9.04 108.12 10.45 107.88 11.14 C107.63 11.82 107.16 12.17 106.62 12.47 C106.07 12.78 105.12 13.03 104.60 12.96 C104.08 12.89 103.67 12.21 103.49 12.06"/>
+
+</g></svg>
+
+</figure>
+
+<figure class="pol b">
+  <i class="tape gaffer" aria-hidden="true"></i>
+  <img src="../photos/red-stools.jpg" width="560" height="374" alt="Photocopy of a dark bar, a long row of empty chrome stools. Your bar, before pizza." loading="lazy" decoding="async">
+  <svg aria-hidden="true" class="cap" xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 138.6 21.0" width="555" height="84">
+<filter id="ink" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="64"/><feDisplacementMap in="SourceGraphic" scale="0.45"/></filter>
+
+<g fill="none" stroke="#1a1a1a" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" filter="url(#ink)">
+<path d="M0.92 2.73 L2.72 7.28"/>
+<path d="M5.14 2.48 C4.74 3.31 3.17 5.88 2.73 7.44 C2.29 9.01 2.55 11.15 2.52 11.89"/>
+<path d="M10.42 2.75 C10.15 2.87 9.29 2.94 8.77 3.49 C8.26 4.04 7.62 5.15 7.34 6.05 C7.06 6.95 7.13 7.98 7.08 8.88 C7.03 9.78 6.77 10.90 7.04 11.46 C7.31 12.02 8.18 12.26 8.70 12.25 C9.23 12.24 9.72 11.90 10.17 11.38 C10.61 10.86 11.05 9.96 11.35 9.15 C11.65 8.34 11.85 7.37 11.94 6.50 C12.03 5.63 12.08 4.46 11.89 3.92 C11.70 3.38 11.03 3.39 10.83 3.26 C10.62 3.14 10.69 3.18 10.67 3.16"/>
+<path d="M14.04 2.42 C13.85 3.62 13.04 8.08 12.93 9.61 C12.83 11.14 13.11 11.09 13.42 11.59 C13.73 12.08 14.25 12.53 14.78 12.57 C15.31 12.62 16.11 12.34 16.58 11.86 C17.04 11.38 17.23 11.20 17.56 9.69 C17.90 8.19 18.41 3.97 18.58 2.82"/>
+<path d="M18.59 12.32 C18.72 10.69 18.68 4.16 19.35 2.51 C20.02 0.86 21.85 2.27 22.60 2.42 C23.34 2.58 23.69 2.86 23.82 3.45 C23.96 4.04 23.68 5.29 23.40 5.96 C23.12 6.62 22.92 7.12 22.15 7.42 C21.39 7.73 19.36 7.70 18.80 7.76"/>
+<path d="M20.89 7.71 L23.30 12.24"/>
+<path d="M28.95 11.89 L30.25 1.37"/>
+<path d="M29.90 1.26 C30.44 1.29 32.40 1.24 33.15 1.46 C33.90 1.69 34.23 1.99 34.39 2.62 C34.55 3.24 34.38 4.58 34.09 5.22 C33.81 5.86 33.43 6.29 32.70 6.47 C31.98 6.65 30.26 6.34 29.77 6.31"/>
+<path d="M29.69 6.65 C30.27 6.64 32.38 6.34 33.16 6.58 C33.93 6.81 34.15 7.45 34.34 8.06 C34.53 8.66 34.56 9.55 34.28 10.21 C34.00 10.88 33.51 11.78 32.65 12.02 C31.79 12.26 29.70 11.72 29.11 11.66"/>
+<path d="M36.22 12.29 C36.82 10.54 38.97 1.81 39.80 1.82 C40.63 1.83 40.92 10.32 41.18 12.34 C41.44 14.35 41.35 13.65 41.39 13.91"/>
+<path d="M37.62 8.52 L40.97 8.22"/>
+<path d="M44.27 12.41 C44.40 10.88 44.50 4.77 45.07 3.23 C45.63 1.70 46.99 3.01 47.68 3.20 C48.38 3.39 49.02 3.77 49.22 4.38 C49.42 4.99 49.19 6.27 48.87 6.86 C48.56 7.46 48.02 7.76 47.34 7.95 C46.66 8.14 45.23 7.98 44.81 7.99"/>
+<path d="M46.54 8.27 L48.30 12.34"/>
+<path d="M50.72 11.10 C50.74 11.25 50.94 11.60 50.81 12.01 C50.68 12.42 50.09 13.27 49.92 13.56 C49.75 13.86 49.81 13.76 49.79 13.80"/>
+<path d="M57.34 11.90 C57.55 10.34 58.34 4.35 58.58 2.56 C58.82 0.77 58.74 1.39 58.77 1.16"/>
+<path d="M58.39 2.49 C58.86 2.50 60.55 2.37 61.22 2.58 C61.89 2.78 62.26 3.15 62.41 3.71 C62.56 4.26 62.43 5.30 62.12 5.88 C61.82 6.46 61.30 7.02 60.60 7.17 C59.90 7.33 58.38 6.86 57.93 6.80"/>
+<path d="M58.16 6.86 C58.63 6.92 60.38 6.94 61.01 7.22 C61.64 7.51 61.84 7.97 61.96 8.58 C62.08 9.18 61.99 10.24 61.74 10.83 C61.48 11.43 61.16 11.96 60.41 12.14 C59.66 12.33 57.77 11.98 57.24 11.95"/>
+<path d="M68.98 2.30 C68.23 2.23 65.32 0.18 64.46 1.84 C63.60 3.51 63.21 10.51 63.82 12.28 C64.44 14.05 67.42 12.42 68.15 12.45"/>
+<path d="M64.00 7.33 L67.83 7.14"/>
+<path d="M76.42 2.04 C75.67 2.02 72.99 0.20 71.96 1.93 C70.94 3.67 70.55 10.69 70.27 12.44"/>
+<path d="M71.08 7.46 L74.57 7.44"/>
+<path d="M80.09 1.53 C79.82 1.69 78.94 1.92 78.49 2.54 C78.04 3.15 77.65 4.27 77.39 5.22 C77.12 6.16 76.85 7.23 76.89 8.20 C76.94 9.16 77.23 10.39 77.66 10.98 C78.09 11.57 78.89 11.76 79.45 11.76 C80.00 11.75 80.54 11.55 80.99 10.95 C81.43 10.36 81.86 9.12 82.10 8.17 C82.34 7.22 82.53 6.21 82.45 5.27 C82.37 4.34 81.93 3.19 81.64 2.56 C81.34 1.92 80.85 1.67 80.66 1.47 C80.48 1.26 80.54 1.33 80.52 1.30"/>
+<path d="M83.77 12.53 C83.98 10.81 84.27 3.90 84.98 2.21 C85.69 0.53 87.27 2.22 88.03 2.42 C88.79 2.63 89.37 2.85 89.54 3.46 C89.71 4.07 89.34 5.39 89.03 6.09 C88.72 6.79 88.43 7.33 87.66 7.64 C86.89 7.95 84.96 7.89 84.42 7.94"/>
+<path d="M86.47 7.69 L88.63 12.79"/>
+<path d="M96.29 2.23 C95.56 2.20 92.86 0.41 91.94 2.09 C91.02 3.77 90.25 10.57 90.78 12.31 C91.30 14.04 94.39 12.47 95.11 12.50"/>
+<path d="M91.19 7.25 L95.08 7.21"/>
+<path d="M101.87 12.12 C102.13 10.31 102.64 3.04 103.43 1.25 C104.22 -0.54 105.86 1.13 106.61 1.37 C107.35 1.61 107.73 2.00 107.90 2.69 C108.08 3.38 107.97 4.81 107.65 5.50 C107.34 6.18 106.87 6.59 106.01 6.78 C105.14 6.97 103.04 6.65 102.45 6.62"/>
+<path d="M110.60 1.92 L109.62 12.31"/>
+<path d="M113.86 2.13 C114.61 2.15 118.64 0.50 118.38 2.25 C118.13 4.01 112.52 10.88 112.31 12.67 C112.09 14.45 116.31 12.91 117.11 12.96"/>
+<path d="M120.26 2.95 C121.01 2.92 124.95 1.14 124.75 2.75 C124.55 4.37 119.23 11.01 119.08 12.62 C118.93 14.24 123.05 12.47 123.84 12.44"/>
+<path d="M125.96 13.00 C126.44 11.38 128.03 3.31 128.86 3.25 C129.69 3.18 130.59 11.06 130.93 12.62"/>
+<path d="M127.27 9.56 L130.07 9.49"/>
+
+</g></svg>
+
+</figure>
 
 <div class="scrap offer">
   <i class="tape" aria-hidden="true"></i>
@@ -158,7 +266,10 @@
   </div>
 </div>
 
-<a class="back" href="/">back to the wall</a>
+<div class="foot">
+  <a class="back" href="/">back to the wall</a>
+  <p class="credit">Photos: The Pizza Pub, Apeldoorn, about 1985, by Rowena Christie (<a href="https://commons.wikimedia.org/wiki/File:Jilles_vermaat-1461752389.jpg">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>), color-adjusted by us. The stools: Slim Jims, Islington, by Ewan Munro (<a href="https://commons.wikimedia.org/wiki/File:Slim_Jims_Liquor_Store,_Islington,_N1_(3590013603).jpg">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0">CC BY-SA 2.0</a>), photocopied by us. Our copies carry the same licenses.</p>
+</div>
 </main>
 <script src="../assets/config.js"></script>
 <script type="module" src="../assets/lead.js"></script>
