@@ -132,10 +132,12 @@
   /* the blog link: a label-maker tape like PETOSKEY, MI, same size type (Pat 2026-11-16) */
   .topstrip .tag-link { display: block; }
   .topstrip .tag-blog { display: block; width: 80px; height: auto; transform: rotate(-2deg); }
+  /* the way in for bar owners: /cook, the free pop up (Pat 2026-11-21) */
+  .topstrip .tag-bars { display: block; width: 163px; height: auto; transform: rotate(1.5deg); }
   .topstrip .tag-link:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
   .dymo:hover { color: #fff; }
   .dymo:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
-  @media (max-width: 599px) { .topstrip { padding-top: 12px; } .dymo { font-size: 17px; padding: 8px 12px 7px; } .topstrip .tag-petoskey { width: 112px; } .topstrip .tag-blog { width: 47px; } }
+  @media (max-width: 599px) { .topstrip { padding-top: 12px; } .dymo { font-size: 17px; padding: 8px 12px 7px; } .topstrip .tag-petoskey { width: 112px; } .topstrip .tag-blog { width: 47px; } .topstrip .tag-bars { width: 96px; } }
 
   /* tear-off flyer */
   .flyer { width: 228px; padding: 18px 16px 0; background: var(--paper); }
@@ -244,7 +246,7 @@
 </style>
 </head>
 <body>
-<div class="topstrip"><img class="tag-petoskey" src="lettering/label-petoskey.png" width="386" height="64" alt="Petoskey, MI" decoding="async"><a class="tag-link" href="#blog"><img class="tag-blog" src="lettering/label-blog.png" width="162" height="64" alt="Blog" decoding="async"></a></div>
+<div class="topstrip"><img class="tag-petoskey" src="lettering/label-petoskey.png" width="386" height="64" alt="Petoskey, MI" decoding="async"><a class="tag-link" href="#blog"><img class="tag-blog" src="lettering/label-blog.png" width="162" height="64" alt="Blog" decoding="async"></a><a class="tag-link" href="cook/"><img class="tag-bars" src="lettering/label-bars.png" width="330" height="64" alt="Bar owners" decoding="async"></a></div>
 <main id="wall">
 
   <h1 class="spray" id="spray"><img src="lettering/wordmark-grand-royale.png" width="1727" height="606" alt="Grand Royale Pizza"></h1>
