@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A free pop up at your bar: Grand Royale Pizza</title>
+<meta name="description" content="Grand Royale Pizza for bars in northern Michigan: we loan the oven, you sell the pizza. Book a free pop up at your bar.">
+<link rel="canonical" href="https://grandroyalepizza.com/cook/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Grand Royale Pizza">
+<meta property="og:url" content="https://grandroyalepizza.com/cook/">
+<meta property="og:title" content="A free pizza pop up at your bar">
+<meta property="og:description" content="Grand Royale Pizza for bars in northern Michigan: we loan the oven, you sell the pizza. Book a free pop up at your bar.">
+<meta property="og:image" content="https://grandroyalepizza.com/lettering/wordmark-grand-royale.png">
+<meta name="theme-color" content="#ffffff">
+<style>
+  :root {
+    --kraft: #c9a77a;
+    --wall: #ffffff;
+    --paper: #f1ede3;
+    --ink: #1a1a1a;
+    --red: #d62718;
+    --tape: rgba(238, 229, 200, .78);
+    --type: "Courier New", Courier, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { overflow-x: clip; }
+  body {
+    margin: 0; overflow-x: clip;
+    background: var(--wall) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .08 0 0 0 0 .05 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
+    color: var(--ink);
+    font: 16px/1.4 var(--type);
+    -webkit-text-size-adjust: 100%;
+  }
+  a { color: var(--ink); }
+  a:focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
+  .scrap { position: relative; background: var(--paper); }
+  .tape { position: absolute; top: -13px; left: 50%; width: 96px; height: 26px; transform: translateX(-50%) rotate(-3deg); background: var(--tape); pointer-events: none; }
+  .tape.gaffer { background: var(--ink); opacity: .93; }
+
+  [hidden] { display: none !important; }
+  main { position: relative; padding: 18px 16px 90px; max-width: 1100px; }
+  .name { display: block; width: min(420px, 74vw); margin: 0 0 8px -6px; transform: rotate(-5deg); }
+  .name img { display: block; width: 100%; height: auto; }
+  .name:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
+  .flyer { width: min(520px, 100%); margin: 26px 0 0 2vw; padding: 26px 22px 20px; transform: rotate(-1.2deg); }
+  .flyer h1 { margin: 0 0 14px; font: 900 44px/0.95 "Arial Black", Arial, sans-serif; letter-spacing: -.01em; }
+  .flyer p { margin: 0 0 12px; font-size: 17px; font-weight: 700; }
+  .offer { width: min(480px, 100%); margin: 34px 0 0 clamp(0px, 14vw - 40px, 220px); padding: 26px 22px 18px; transform: rotate(1.4deg); border-top: 3px solid var(--red); }
+  .offer h2 { margin: 0 0 12px; font: 900 30px/1 "Arial Black", Arial, sans-serif; }
+  .offer h2 em { font-style: normal; color: var(--red); }
+  .offer p { margin: 0 0 12px; font-size: 17px; font-weight: 700; }
+  .offer ol { margin: 0 0 12px; padding-left: 26px; font-size: 17px; font-weight: 700; }
+  .offer li { margin-bottom: 6px; }
+  .offer .small { font-size: 14px; font-weight: 400; }
+  /* the sign-up: one big index card, taped up, rules and a red line like a real one */
+  #lead-card { position: relative; z-index: 10; width: min(640px, 100%); margin: 44px 0 0 clamp(0px, 4vw, 60px); padding: 30px 22px 26px; transform: rotate(-.6deg);
+    background: var(--paper) repeating-linear-gradient(transparent 0 31px, rgba(31, 63, 176, .18) 31px 32px); border-top: 3px solid var(--red);
+    box-shadow: -18px 16px 0 rgba(26, 26, 26, .12); }
+  #lead-card h2 { margin: 0 0 6px; font: 900 28px/1 "Arial Black", Arial, sans-serif; }
+  #lead-card .note { margin: 0 0 18px; font-weight: 700; }
+  #lead-card fieldset { margin: 18px 0 4px; padding: 0; border: 0; }
+  #lead-card legend { padding: 0; margin-bottom: 8px; font: 900 17px/1.2 "Arial Black", Arial, sans-serif; }
+  .f { margin: 0 0 12px; }
+  .two { display: flex; gap: 12px; }
+  .two .f { flex: 1 1 0; min-width: 0; }
+  .f label { display: block; margin-bottom: 3px; font-size: 14px; font-weight: 700; }
+  .f label b { color: var(--red); }
+  .f input, .f select { display: block; width: 100%; min-height: 46px; padding: 8px 10px; font: 700 17px/1.2 var(--type); color: var(--ink); background: #fff; border: 2px solid var(--ink); border-radius: 0; }
+  .f select { appearance: none; -webkit-appearance: none; padding-right: 30px;
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231a1a1a' stroke-width='2'/%3E%3C/svg%3E") right 10px center no-repeat; }
+  .f input:focus, .f select:focus, #lead-card button:focus { outline: 3px solid var(--red); outline-offset: 2px; }
+  .f input[aria-invalid="true"] { border-color: var(--red); border-width: 3px; }
+  .trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  #lead-card .error { margin: 10px 0 0; padding-left: 10px; border-left: 4px solid var(--red); font-weight: 700; }
+  #lead-card button { display: block; width: 100%; min-height: 58px; margin-top: 18px; padding: 10px 14px; font: 900 22px/1.1 "Arial Black", Arial, sans-serif;
+    color: var(--paper); background: var(--red); border: 0; border-radius: 0; cursor: pointer; transform: rotate(.5deg); }
+  #lead-card button:active { transform: rotate(.5deg) translateY(2px); }
+  #lead-card button:disabled { opacity: .7; }
+  #lead-card .success h2:focus { outline: none; }
+  #lead-card .success p { font-size: 18px; font-weight: 700; }
+  .back { display: inline-block; margin: 40px 0 0 6vw; padding: 8px 12px; background: var(--paper); transform: rotate(1.5deg); font-weight: 700; }
+  @media (max-width: 599px) {
+    .flyer h1 { font-size: 34px; }
+    .two { display: block; }
+    #lead-card { padding: 26px 14px 22px; transform: none; }
+  }
+</style>
+</head>
+<body>
+<main>
+<a class="name" href="/"><img src="../lettering/wordmark-grand-royale.png" width="1727" height="606" alt="Grand Royale Pizza, back to the wall"></a>
+
+<div class="scrap flyer">
+  <i class="tape gaffer" aria-hidden="true"></i>
+  <h1>Your bar sells pizza now.</h1>
+  <p>We make frozen pizza in northern Michigan for bars with no kitchen. We loan you the oven and the freezer, and teach your staff. Your bartender bakes a pie in minutes. No kitchen, no cook.</p>
+  <p>You sell pies to the room, and frozen pies to go.</p>
+</div>
+
+<div class="scrap offer">
+  <i class="tape" aria-hidden="true"></i>
+  <h2>First, a free <em>pop up.</em></h2>
+  <ol>
+    <li>Pick a night you're open.</li>
+    <li>We bring the oven and the pies, bake them at your bar and hand them out to your crowd.</li>
+    <li>You watch what happens to the room.</li>
+    <li>You keep one sheet of paper: what a pie costs you, what to charge for it, and what a night like that would make you.</li>
+  </ol>
+  <p class="small">The pop up costs you nothing. Northern Michigan bars for now, Petoskey first.</p>
+</div>
+
+<div class="scrap" id="lead-card">
+  <i class="tape gaffer" aria-hidden="true"></i>
+  <form id="lead" novalidate>
+    <h2>Book a pop up</h2>
+    <p class="note">Leave your name and email. We'll get in touch to pick a night. Everything past that is optional, but it helps.</p>
+    <p class="trap" aria-hidden="true"><label for="website">Leave this empty</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></p>
+    <input type="hidden" id="lead_source" name="lead_source" value="cook-page">
+    <div class="two">
+      <p class="f"><label for="first_name">First name</label><input id="first_name" name="first_name" type="text" autocomplete="given-name"></p>
+      <p class="f"><label for="last_name">Last name <b>*</b></label><input id="last_name" name="last_name" type="text" autocomplete="family-name" required aria-required="true" aria-describedby="lead-error"></p>
+    </div>
+    <p class="f"><label for="email">Email <b>*</b></label><input id="email" name="email" type="email" autocomplete="email" inputmode="email" required aria-required="true" aria-describedby="lead-error"></p>
+    <p class="f"><label for="phone">Phone number</label><input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="231 and the rest" aria-describedby="lead-error"></p>
+    <p class="f"><label for="title">Title</label><select id="title" name="title"><option value="">pick one</option><option>Owner, CEO/President</option><option>Executive Chef or Chef</option><option>Food and Beverage (Professional or Mgr/Exec)</option><option>General or Operation Manager</option><option>Business Development</option><option>Marketing</option><option>Sales</option><option>Purchasing</option><option>Buyer</option><option>Distributor Manager</option><option>Consultant</option><option>Other</option></select></p>
+
+    <fieldset>
+      <legend>The bar</legend>
+      <p class="f"><label for="company">Company name</label><input id="company" name="company" type="text" autocomplete="organization"></p>
+      <p class="f"><label for="address">Business address</label><input id="address" name="address" type="text" autocomplete="address-line1"></p>
+      <p class="f"><label for="suite">Building / suite</label><input id="suite" name="suite" type="text" autocomplete="address-line2"></p>
+      <div class="two">
+        <p class="f"><label for="city">City</label><input id="city" name="city" type="text" autocomplete="address-level2"></p>
+        <p class="f"><label for="zip">Postal / zip code</label><input id="zip" name="zip" type="text" autocomplete="postal-code"></p>
+      </div>
+      <div class="two">
+        <p class="f"><label for="state">State / region / province</label><select id="state" name="state"><option value="">pick one</option><option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>District of Columbia</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option></select></p>
+        <p class="f"><label for="country">Country</label><select id="country" name="country"><option value="">pick one</option><option selected>United States</option><option>Canada</option><option>Other</option></select></p>
+      </div>
+      <p class="f"><label for="business_type">Type of food business</label><select id="business_type" name="business_type"><option value="">pick one</option><option>Hotel, Resort, Casino</option><option>Restaurant &amp; Coffee Shop</option><option>Bar, Brewery, Nightlife</option><option>Big Crowd Venue, Amusement Park</option><option>Sport or Recreation Center</option><option>Student, Employee Dining</option><option>Convenience Store &amp; Deli</option><option>Catering &amp; Food Truck</option><option>Convention Center</option><option>Airport &amp; Cruiseline</option><option>Food Manufacturer</option><option>Food Distributor</option><option>Other</option></select></p>
+      <p class="f"><label for="pizzas_per_day">How many pizzas could you sell?</label><select id="pizzas_per_day" name="pizzas_per_day"><option value="">pick one</option><option>Fewer than 6 a day</option><option>6 to 15 a day</option><option>15 to 23 a day</option><option>More than 23 a day</option></select></p>
+      <p class="f"><label for="distributor">Your current food distributor</label><input id="distributor" name="distributor" type="text"></p>
+    </fieldset>
+
+    <fieldset>
+      <legend>And</legend>
+      <p class="f"><label for="tasted">Have you tasted our pizza?</label><select id="tasted" name="tasted"><option value="">pick one</option><option>Yes</option><option>No</option></select></p>
+      <p class="f"><label for="heard">How did you hear about us?</label><select id="heard" name="heard"><option value="">pick one</option><option>Search Engine</option><option>Peer Referral</option><option>Social Media</option><option>Distributor</option><option>Tradeshow: NRA</option><option>Tradeshow: Bar &amp; Nightclub</option><option>Tradeshow: Canadian</option><option>Tradeshow: Other</option><option>Publication: Bar Magazine</option><option>TV ad: Bar Rescue Episode</option><option>Other</option></select></p>
+    </fieldset>
+
+    <p class="error" id="lead-error" role="alert" hidden></p>
+    <button type="submit">Book my pop up</button>
+  </form>
+  <div class="success" id="lead-success" hidden>
+    <h2 tabindex="-1">Got it.</h2>
+    <p>We'll email <strong id="lead-email"></strong> to pick a night for the pop up.</p>
+  </div>
+</div>
+
+<a class="back" href="/">back to the wall</a>
+</main>
+<script src="../assets/config.js"></script>
+<script type="module" src="../assets/lead.js"></script>
+</body>
+</html>

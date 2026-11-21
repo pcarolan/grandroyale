@@ -19,6 +19,7 @@ nothing is allowed to overlap it.
 | `photos/ATTRIBUTION.md` | Credits and licenses for every photo. |
 | `lettering/` | Lettering as images: crowned wordmark, stamps, label-maker tape, marker scrawls, sticker. |
 | `assets/` | Sign-up form: `config.js` (endpoint), `signup.js`, `phone.js`. |
+| `cook/index.html`, `assets/lead.js` | The page for bar owners: a free pop up at their bar, and a sign-up that writes to the Sheet's `leads` tab (`backend/README.md`). Written by `node build.mjs` from `tools/pages.mjs` (`cookHTML`). |
 | `credits.html`, `404.html` | Thank-you note with every photo's credit, and the not-found page; written by `node build.mjs` from `tools/pages.mjs`. |
 | `scraps/` | The slice tip cut from Cecilia's sketch for 404.html by `node tools/scraps.mjs` (the wall itself shows each photo once); a stand-in until the scans in `TODO-scans.md` arrive. |
 

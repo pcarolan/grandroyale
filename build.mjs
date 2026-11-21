@@ -1,6 +1,6 @@
 // Inline photos/manifest.json into index.html so the wall renders from file://
 // (fetch is only the fallback). Run after changing photos: node build.mjs
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 
 const manifest = JSON.parse(readFileSync('photos/manifest.json', 'utf8'));
 // only what the page renders; credits (author, license, source) live in photos/ATTRIBUTION.md
@@ -13,10 +13,13 @@ writeFileSync('index.html', html.replace(re, (m, a, b) => a + json + b));
 console.log(`inlined ${manifest.length} photos into index.html`);
 
 // the other doors in the house, on the same wall (tools/pages.mjs; bees-pyrm.2)
-const { creditsHTML, notFoundHTML } = await import('./tools/pages.mjs');
+const { creditsHTML, notFoundHTML, cookHTML } = await import('./tools/pages.mjs');
 writeFileSync('credits.html', creditsHTML(manifest));
 writeFileSync('404.html', notFoundHTML());
-console.log('wrote credits.html and 404.html');
+// the page for bar owners: a free pop up, and the sign-up that feeds the Sheet's "leads" tab (GR-697)
+mkdirSync('cook', { recursive: true });
+writeFileSync('cook/index.html', cookHTML());
+console.log('wrote credits.html, 404.html and cook/index.html');
 
 // the blog: a Tumblr-style blog on the same wall (tools/blog.mjs, blog/posts.json)
 const { blogHTML, postPageHTML, loadPosts, feedHTML, FEED_CSS } = await import('./tools/blog.mjs');
